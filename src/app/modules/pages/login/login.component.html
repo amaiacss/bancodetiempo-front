@@ -1,0 +1,65 @@
+<!-- Login-->
+<section class="page-section" id="registro">
+    <!--<div class="text-center">
+        <h2 class="section-heading">Comienza a intercambiar tu tiempo</h2>
+    </div>-->
+   
+    <div class="container d-flex justify-content-center" id="registroContainer">
+        
+        <!-- * * * * * * * * * * * * * * *-->
+        <!-- * * SB Forms Contact Form * *-->
+        <!-- * * * * * * * * * * * * * * *-->
+        <!-- This form is pre-integrated with SB Forms.-->
+        <!-- To make this form functional, sign up at-->
+        <!-- https://startbootstrap.com/solution/contact-forms-->
+        <!-- to get an API token!-->
+<div class="col-lg-6 col-sm-12 col-12">
+    <form  id="registerForm"  data-sb-form-api-token="API_TOKEN">
+        <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">Inicia sesión</h2>
+        <div class="row justify-content-center align-items-stretch mb-5">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+                
+                <div class="form-group">
+                    <!-- Usuario input-->
+                    <label for="usuario">Usuario</label>
+                    <input class="form-control" id="user" type="text" placeholder="Usuario*" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="name:required">Usuario es un campo obligatorio</div>
+                </div>
+                
+                <div class="form-group mb-md-3">
+                    <!-- Password input-->
+                    <label for="password">Password</label>
+                    <input class="form-control" id="password" type="tel" placeholder="Password *" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
+                </div>
+                
+                <!-- Olvido contrasenia-->
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                    
+                   
+                
+            </div>            
+        </div>
+        <!-- Submit success message-->
+        <!---->
+        <!-- This is what your users will see when the form-->
+        <!-- has successfully submitted-->
+        <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center text-white mb-3">
+                <div class="fw-bolder">El formulario se ha enviado correctamente</div>
+                To activate this form, sign up at
+                <br />
+                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+            </div>
+        </div>
+        <!-- Submit error message-->
+        <!---->
+        <!-- This is what your users will see when there is-->
+        <!-- an error submitting the form-->
+        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">El envio ha fallado, revise los campos</div></div>
+        <!-- Submit Button-->
+        <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar</button></div>
+    </form>
+</div>
+</div>
+</section>

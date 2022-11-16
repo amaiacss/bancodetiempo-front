@@ -1,0 +1,18 @@
+{
+    "nav_bar": {
+        "servicesLink": "¿Zer da?",
+        "portfolioLink": "¿Zer gertatzen ari da?",
+        "participateLink": "¿Parte hartu nahi duzu?",
+        "searchLink": "¿Zer behar duzu?",
+        "preferencesLink": "Konfigurazioa",
+        "logoutLink": "Saioa itxi"
+    },
+    "login_page": {
+        "title": "Saioa hasi",
+        "emailLabel": "Emaila",
+        "passwordLabel": "Pasahitza",
+        "passVerifyLabel": "Errepikatu pasahitza",
+        "registerLink": "¿Zure pasahitza ahaztu duzu?",
+        "loginButton": "Sartu"
+    }
+}

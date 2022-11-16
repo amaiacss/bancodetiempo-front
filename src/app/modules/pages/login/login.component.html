@@ -14,27 +14,33 @@
         <!-- https://startbootstrap.com/solution/contact-forms-->
         <!-- to get an API token!-->
 <div class="col-lg-6 col-sm-12 col-12">
-    <form  id="registerForm"  data-sb-form-api-token="API_TOKEN">
-        <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">Inicia sesión</h2>
+    <form [formGroup]="loginForm" id="registerForm"  data-sb-form-api-token="API_TOKEN">
+        <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">{{'login_page.title' | translate}}</h2>
         <div class="row justify-content-center align-items-stretch mb-5">
             <div class="col-lg-10 col-md-10 col-sm-10 col-10">
                 
                 <div class="form-group">
                     <!-- Usuario input-->
-                    <label for="usuario">Usuario</label>
-                    <input class="form-control" id="user" type="text" placeholder="Usuario*" data-sb-validations="required" />
+                    <label for="usuario">{{'login_page.emailLabel' | translate}}</label>
+                    <input formControlName="email" class="form-control" id="user" type="text" placeholder="{{'login_page.title' | translate}} *" data-sb-validations="required" />
                     <div class="invalid-feedback" data-sb-feedback="name:required">Usuario es un campo obligatorio</div>
                 </div>
                 
                 <div class="form-group mb-md-3">
                     <!-- Password input-->
-                    <label for="password">Password</label>
-                    <input class="form-control" id="password" type="tel" placeholder="Password *" data-sb-validations="required" />
+                    <label for="password">{{'login_page.passwordLabel' | translate}}</label>
+                    <input formControlName="password" class="form-control" id="password" type="password" placeholder="{{'login_page.passwordLabel' | translate}} *" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
+                </div>
+                <div class="form-group mb-md-3">
+                    <!-- Password Verify input-->
+                    <label for="password">{{'login_page.passVerifyLabel' | translate}}</label>
+                    <input formControlName="password_verify" class="form-control" id="password_verify" type="password" placeholder="{{'login_page.passVerifyLabel' | translate}} *" data-sb-validations="required" />
                     <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
                 </div>
                 
                 <!-- Olvido contrasenia-->
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#">{{'login_page.registerLink' | translate}}</a>
                     
                    
                 
@@ -58,7 +64,7 @@
         <!-- an error submitting the form-->
         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">El envio ha fallado, revise los campos</div></div>
         <!-- Submit Button-->
-        <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar</button></div>
+        <div class="text-center"><button (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button></div>
     </form>
 </div>
 </div>

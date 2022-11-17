@@ -1,0 +1,18 @@
+{
+    "nav_bar": {
+        "servicesLink": "¿Qué es?",
+        "portfolioLink": "¿Qué está pasando?",
+        "participateLink": "¿Quieres participar?",
+        "searchLink": "¿Qué necesitas?",
+        "preferencesLink": "Preferencias",
+        "logoutLink": "Cerrar sesión"
+    },
+    "login_page": {
+        "title": "Inicia Sesión",
+        "emailLabel": "Email",
+        "passwordLabel": "Contraseña",
+        "passVerifyLabel": "Repita contraseña",
+        "registerLink": "¿Has olvidado tu contraseña?",
+        "loginButton": "Entrar"
+    }
+}

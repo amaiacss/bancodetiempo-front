@@ -3,7 +3,7 @@
     <div class="container">
         <div class="masthead-subheading">Tiempo cuando lo necesitas</div>
         <div class="masthead-heading text-uppercase">por tiempo cuando puedas</div>
-        <a class="btn btn-primary btn-xl text-uppercase me-3" data-bs-toggle="modal" href="" routerLink="/login">Iniciar sesión</a>                     
+        <a *ngIf="!isLoged" class="btn btn-primary btn-xl text-uppercase me-3" data-bs-toggle="modal" href="" routerLink="/login">Iniciar sesión</a>                     
     </div>
 </header>
 <!-- Services-->
@@ -192,7 +192,7 @@
 </section>
 <!--Seccion de registro de usuario-->
 <section class="page-section">
-    <div class="container" id="secRegistro">
+    <div class="container" id="participate">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">¿Quieres participar?</h2>            
         </div>

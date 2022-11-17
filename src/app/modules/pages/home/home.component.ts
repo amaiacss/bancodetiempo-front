@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  isLoged:boolean = false
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersService.getSessionData().subscribe(response => {
+      this.isLoged = response.isLoged
+    })
   }
 
 }

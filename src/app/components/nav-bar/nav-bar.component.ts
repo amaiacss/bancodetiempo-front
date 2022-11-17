@@ -32,6 +32,15 @@ export class NavBarComponent implements OnInit {
     this.translateService.use(e.target.value)
   }
 
+  goToHomePage(){
+    if(this.userInfo.userData.id) {
+      this.router.navigate([`/user/${this.userInfo.userData.id}`])
+    }
+    else{
+      this.router.navigate([``])
+    }
+  }
+
   goToSearchPage(){
     this.router.navigate([`/user/${this.userInfo.userData.id}/search`])
   }

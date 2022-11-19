@@ -36,9 +36,9 @@
                     </div>
                 </div> -->
                 <!-- Submit error message: Errores de login-->
-                <div class="d-none" id="submitErrorMessage">
-                    <div class="text-center text-danger mb-3">Ningún usuario registrado con ese email.</div>
-                    <div class="text-center text-danger mb-3">Contraseña incorrecta. Revise los campos.</div>
+                <div id="submitErrorMessage">
+                    <div *ngIf="loginErrors.notRegistered" class="text-center text-danger mb-3">Ningún usuario registrado con ese email.</div>
+                    <div *ngIf="loginErrors.passwordIncorrect" class="text-center text-danger mb-3">Contraseña incorrecta. Revise los campos.</div>
                 </div>
                 <!-- Submit Button-->
                 <div class="text-center">

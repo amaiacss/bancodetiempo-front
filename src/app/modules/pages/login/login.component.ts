@@ -12,6 +12,10 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
+  loginErrors:{notRegistered:boolean,passwordIncorrect:boolean} = {
+    notRegistered: false,
+    passwordIncorrect: false
+  }
 
   constructor(
     private translateService: TranslateService,
@@ -31,9 +35,8 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['',Validators.required],
+      email: ['',[Validators.required,Validators.email]],
       password: ['',Validators.required],
-      password_verify: ['', Validators.required]
     })
   }
 
@@ -41,15 +44,16 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       const data = this.loginForm.value
       const user = this.usersService.findUserByEmail(data.email)
-      if(user && user.password===data.password) {
+      if(!user){
+        this.loginErrors.notRegistered=true
+        this.loginErrors.passwordIncorrect= false
+      }else if (user.password!==data.password){
+        this.loginErrors.notRegistered=false
+        this.loginErrors.passwordIncorrect= true
+      }else {
         this.usersService.login(user)
         this.router.navigate(['/user/',user.id])
-      } else {
-        alert('datos de acceso no válidos')
       }
-    }else {
-      alert('rellene todos los campos')
     }
   }
-
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 import { UsersService } from 'src/app/services/users.service';
+import { CustomValidation } from '../../auth-navigation/pipes/customVal';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     notRegistered: false,
     passwordIncorrect: false
   }
+  fieldTextType: boolean
 
   constructor(
     private translateService: TranslateService,
@@ -27,17 +29,24 @@ export class LoginComponent implements OnInit {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
     });
+    this.buildForm()
+    this.fieldTextType = false
   }
 
   ngOnInit(): void {
-    this.buildForm()
+    
   }
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['',[Validators.required,Validators.email]],
-      password: ['',Validators.required],
+      email: ['',{updateOn: 'blur', validators:[Validators.email]}],
+      password: ['',{updateOn:'blur', validators:[CustomValidation.passwordPattern]}],
     })
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+    console.log(this.fieldTextType)
   }
 
   validate() {
@@ -47,10 +56,12 @@ export class LoginComponent implements OnInit {
       if(!user){
         this.loginErrors.notRegistered=true
         this.loginErrors.passwordIncorrect= false
-      }else if (user.password!==data.password){
+      }else if (user.pass!==data.password){
         this.loginErrors.notRegistered=false
         this.loginErrors.passwordIncorrect= true
       }else {
+        this.loginErrors.notRegistered=false
+        this.loginErrors.passwordIncorrect= false
         this.usersService.login(user)
         this.router.navigate(['/user/',user.id])
       }

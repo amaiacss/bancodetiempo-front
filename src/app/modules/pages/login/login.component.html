@@ -11,15 +11,30 @@
                             <label for="usuario">{{'login_page.emailLabel' | translate}}</label>
                             <input formControlName="email" class="form-control" id="user" type="text"
                                 placeholder="{{'login_page.email_placeholder' | translate}} *" />
-                            <div class="invalid-feedback">Email es un campo
-                                obligatorio</div>
+                            <div *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid" class="text-center text-danger mb-3">Introduzca un email válido</div>
                         </div>
                         <div class="form-group mb-md-3">
                             <!-- Password input-->
                             <label for="password">{{'login_page.passwordLabel' | translate}}</label>
-                            <input formControlName="password" class="form-control" id="password" type="password"
-                                placeholder="{{'login_page.password_placeholder' | translate}} *" />
-                            <div class="invalid-feedback">Contraseña obligatoria</div>
+                            <div class="input-group">
+                                <input 
+                                    formControlName="password" 
+                                    class="form-control"
+                                    [type]="fieldTextType ? 'text' : 'password'" 
+                                    placeholder="{{'login_page.password_placeholder' | translate}} *" />
+                                <div class="input-group-append d-flex align-center">
+                                    <span class="input-group-text" style="background:'none';border:none;cursor:pointer;" (click)="toggleFieldTextType()">
+                                        <i 
+                                            class="fa"
+                                            [ngClass]="{
+                                                'fa-eye-slash': !fieldTextType,
+                                                'fa-eye': fieldTextType
+                                            }"
+                                        ></i>
+                                    </span>
+                                </div>
+                            </div>123456Aa (contraseña de prueba para todas las cuentas)
+                            <div *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid" class="text-center text-danger mb-3">Revisa la contraseña. Recuerda que debe tener 8 dígitos, al menos una mayúscula, una minúscula y un número.</div>
                         </div>
                         <!-- Enlace Registro -->
                         <a routerLink="/registro">{{'login_page.registerLink' | translate}}</a>
@@ -42,7 +57,7 @@
                 </div>
                 <!-- Submit Button-->
                 <div class="text-center">
-                    <button (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button>
+                    <button [disabled]="loginForm.invalid" (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button>
                 </div>
             </form>
         </div>

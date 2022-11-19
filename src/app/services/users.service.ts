@@ -11,10 +11,10 @@ export class UsersService {
 
   //Array para pruebas
   users: User[] = [
-    {id: 1, email:"nvega@birt.eus", password: "nvega@birt.eus"},
-    {id: 2, email:"iaguirreche@birt.eus", password: "iaguirreche@birt.eus"},
-    {id: 3, email:"acasas@birt.eus", password: "acasas@birt.eus"},
-    {id: 4, email:"anruiz@birt.eus", password: "anruiz@birt.eus"}
+    {id: 1, email:"nvega@birt.eus", pass: "123456Aa"},
+    {id: 2, email:"iaguirreche@birt.eus", pass: "123456Aa"},
+    {id: 3, email:"acasas@birt.eus", pass: "123456Aa"},
+    {id: 4, email:"anruiz@birt.eus", pass: "123456Aa"}
   ]
 
   private _sessionData = new BehaviorSubject<LoginResponse> ({

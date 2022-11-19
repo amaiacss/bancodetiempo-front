@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 import { UsersService } from 'src/app/services/users.service';
+import { CustomValidation } from '../../auth-navigation/pipes/customVal';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,11 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
+  loginErrors:{notRegistered:boolean,passwordIncorrect:boolean} = {
+    notRegistered: false,
+    passwordIncorrect: false
+  }
+  fieldTextType: boolean
 
   constructor(
     private translateService: TranslateService,
@@ -23,33 +29,42 @@ export class LoginComponent implements OnInit {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
     });
+    this.buildForm()
+    this.fieldTextType = false
   }
 
   ngOnInit(): void {
-    this.buildForm()
+    
   }
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['',Validators.required],
-      password: ['',Validators.required],
-      password_verify: ['', Validators.required]
+      email: ['',{updateOn: 'blur', validators:[Validators.email]}],
+      password: ['',{updateOn:'blur', validators:[CustomValidation.passwordPattern]}],
     })
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+    console.log(this.fieldTextType)
   }
 
   validate() {
     if(this.loginForm.valid) {
       const data = this.loginForm.value
       const user = this.usersService.findUserByEmail(data.email)
-      if(user && user.password===data.password) {
+      if(!user){
+        this.loginErrors.notRegistered=true
+        this.loginErrors.passwordIncorrect= false
+      }else if (user.pass!==data.password){
+        this.loginErrors.notRegistered=false
+        this.loginErrors.passwordIncorrect= true
+      }else {
+        this.loginErrors.notRegistered=false
+        this.loginErrors.passwordIncorrect= false
         this.usersService.login(user)
         this.router.navigate(['/user/',user.id])
-      } else {
-        alert('datos de acceso no válidos')
       }
-    }else {
-      alert('rellene todos los campos')
     }
   }
-
 }

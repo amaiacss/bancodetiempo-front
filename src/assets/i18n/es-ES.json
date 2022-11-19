@@ -10,9 +10,28 @@
     "login_page": {
         "title": "Inicia Sesión",
         "emailLabel": "Email",
+        "email_placeholder": "Introduzca su email",
         "passwordLabel": "Contraseña",
-        "passVerifyLabel": "Repita contraseña",
-        "registerLink": "¿Has olvidado tu contraseña?",
-        "loginButton": "Entrar"
+        "password_placeholder": "Introduzca su contraseña",
+        "passVerifyLabel": "Confirme contraseña",
+        "passVerify_placeholder": "Las contraseñas deben coincidir",
+        "registerLink": "¿No estás registrad@? ¡REGÍSTRATE!",
+        "loginButton": "Entrar",
+        "invalidEmail":"Introduzca un email válido",
+        "passwordPatternError": "Revisa la contraseña. Recuerda que debe tener 8 dígitos, al menos una mayúscula, una minúscula y un número.",
+        "notRegisteredError": "Ningún usuario registrado con ese email.",
+        "passwordError": "Contraseña incorrecta. Revise los campos."
+    },
+    "register_page": {
+        "title": "Regístrate",
+        "emailLabel": "Email",
+        "email_placeholder": "Introduzca su email",
+        "passwordLabel": "Contraseña",
+        "password_placeholder": "Introduzca su contraseña",
+        "passVerifyLabel": "Confirme contraseña",
+        "passVerify_placeholder": "Las contraseñas deben coincidir",
+        "loginLink": "¿Ya estás registrad@? ¡INICIA SESIÓN!",
+        "registerButton": "Registrarse"
     }
+
 }

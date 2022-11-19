@@ -1,71 +1,65 @@
-<!-- Login-->
 <section class="page-section" id="registro">
-    <!--<div class="text-center">
-        <h2 class="section-heading">Comienza a intercambiar tu tiempo</h2>
-    </div>-->
-   
     <div class="container d-flex justify-content-center" id="registroContainer">
-        
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
-<div class="col-lg-6 col-sm-12 col-12">
-    <form [formGroup]="loginForm" id="registerForm"  data-sb-form-api-token="API_TOKEN">
-        <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">{{'login_page.title' | translate}}</h2>
-        <div class="row justify-content-center align-items-stretch mb-5">
-            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
-                
-                <div class="form-group">
-                    <!-- Usuario input-->
-                    <label for="usuario">{{'login_page.emailLabel' | translate}}</label>
-                    <input formControlName="email" class="form-control" id="user" type="text" placeholder="{{'login_page.title' | translate}} *" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="name:required">Usuario es un campo obligatorio</div>
+        <div class="col-lg-6 col-sm-12 col-12">
+            <form [formGroup]="loginForm" id="registerForm">
+                <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">{{'login_page.title' |
+                    translate}}</h2>
+                <div class="row justify-content-center align-items-stretch mb-5">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+                        <div class="form-group">
+                            <!-- Usuario input-->
+                            <label for="usuario">{{'login_page.emailLabel' | translate}}</label>
+                            <input formControlName="email" class="form-control" id="user" type="text"
+                                placeholder="{{'login_page.email_placeholder' | translate}} *" />
+                            <div *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid" class="text-center text-danger mb-3">{{'login_page.invalidEmail' | translate}}</div>
+                        </div>
+                        <div class="form-group mb-md-3">
+                            <!-- Password input-->
+                            <label for="password">{{'login_page.passwordLabel' | translate}}</label>
+                            <div class="input-group">
+                                <input 
+                                    formControlName="password" 
+                                    class="form-control"
+                                    [type]="fieldTextType ? 'text' : 'password'" 
+                                    placeholder="{{'login_page.password_placeholder' | translate}} *" />
+                                <div class="input-group-append d-flex align-center">
+                                    <span class="input-group-text" style="background:'none';border:none;cursor:pointer;" (click)="toggleFieldTextType()">
+                                        <i 
+                                            class="fa"
+                                            [ngClass]="{
+                                                'fa-eye-slash': !fieldTextType,
+                                                'fa-eye': fieldTextType
+                                            }"
+                                        ></i>
+                                    </span>
+                                </div>
+                            </div>123456Aa (contraseña de prueba para todas las cuentas)
+                            <div *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid" class="text-center text-danger mb-3">{{'login_page.passwordPatternError' | translate}}</div>
+                        </div>
+                        <!-- Enlace Registro -->
+                        <a routerLink="/registro">{{'login_page.registerLink' | translate}}</a>
+                    </div>
                 </div>
-                
-                <div class="form-group mb-md-3">
-                    <!-- Password input-->
-                    <label for="password">{{'login_page.passwordLabel' | translate}}</label>
-                    <input formControlName="password" class="form-control" id="password" type="password" placeholder="{{'login_page.passwordLabel' | translate}} *" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
+                <!-- NO ES NECESARIO, SI EL LOGIN ES CORRECTO SE LE REDIRIGE A LA PÁGINA DE INICIO -->
+                <!-- Submit success message-->
+                <!-- <div class="d-none" id="submitSuccessMessage">
+                    <div class="text-center text-white mb-3">
+                        <div class="fw-bolder">El formulario se ha enviado correctamente</div>
+                        To activate this form, sign up at
+                        <br />
+                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                    </div>
+                </div> -->
+                <!-- Submit error message: Errores de login-->
+                <div id="submitErrorMessage">
+                    <div *ngIf="loginErrors.notRegistered" class="text-center text-danger mb-3">{{'login_page.notRegisteredError' | translate}}</div>
+                    <div *ngIf="loginErrors.passwordIncorrect" class="text-center text-danger mb-3">{{'login_page.passwordError' | translate}}</div>
                 </div>
-                <div class="form-group mb-md-3">
-                    <!-- Password Verify input-->
-                    <label for="password">{{'login_page.passVerifyLabel' | translate}}</label>
-                    <input formControlName="password_verify" class="form-control" id="password_verify" type="password" placeholder="{{'login_page.passVerifyLabel' | translate}} *" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
+                <!-- Submit Button-->
+                <div class="text-center">
+                    <button [disabled]="loginForm.invalid" (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button>
                 </div>
-                
-                <!-- Olvido contrasenia-->
-                <a href="#">{{'login_page.registerLink' | translate}}</a>
-                    
-                   
-                
-            </div>            
+            </form>
         </div>
-        <!-- Submit success message-->
-        <!---->
-        <!-- This is what your users will see when the form-->
-        <!-- has successfully submitted-->
-        <div class="d-none" id="submitSuccessMessage">
-            <div class="text-center text-white mb-3">
-                <div class="fw-bolder">El formulario se ha enviado correctamente</div>
-                To activate this form, sign up at
-                <br />
-                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-            </div>
-        </div>
-        <!-- Submit error message-->
-        <!---->
-        <!-- This is what your users will see when there is-->
-        <!-- an error submitting the form-->
-        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">El envio ha fallado, revise los campos</div></div>
-        <!-- Submit Button-->
-        <div class="text-center"><button (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button></div>
-    </form>
-</div>
-</div>
+    </div>
 </section>

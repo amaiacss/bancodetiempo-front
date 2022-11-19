@@ -10,9 +10,21 @@
     "login_page": {
         "title": "Saioa hasi",
         "emailLabel": "Emaila",
+        "email_placeholder": "Zure emaila idatzi",
         "passwordLabel": "Pasahitza",
-        "passVerifyLabel": "Errepikatu pasahitza",
-        "registerLink": "¿Zure pasahitza ahaztu duzu?",
+        "password_placeholder": "Zure pasahitza idatzi",
+        "registerLink": "Ez al zaude erregistratuta? SARTU!",
         "loginButton": "Sartu"
+    },
+    "register_page": {
+        "title": "Izen eman",
+        "emailLabel": "Emaila",
+        "email_placeholder": "Zure emaila idatzi",
+        "passwordLabel": "Pasahitza",
+        "password_placeholder": "Zortzi karaktere, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
+        "passVerifyLabel": "Errepikatu pasahitza",
+        "passVerify_placeholder": "Pasahitzak berdinak izan behar dira",
+        "loginLink": "Ez al zaude erregistratuta? IZEN EMAN!",
+        "registerButton": "Izen Eman"
     }
 }

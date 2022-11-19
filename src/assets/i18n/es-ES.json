@@ -10,9 +10,24 @@
     "login_page": {
         "title": "Inicia Sesión",
         "emailLabel": "Email",
+        "email_placeholder": "Introduzca su email",
         "passwordLabel": "Contraseña",
-        "passVerifyLabel": "Repita contraseña",
-        "registerLink": "¿Has olvidado tu contraseña?",
+        "password_placeholder": "Introduzca su contraseña",
+        "passVerifyLabel": "Confirme contraseña",
+        "passVerify_placeholder": "Las contraseñas deben coincidir",
+        "registerLink": "¿No estás registrad@? ¡REGÍSTRATE!",
         "loginButton": "Entrar"
+    },
+    "register_page": {
+        "title": "Regístrate",
+        "emailLabel": "Email",
+        "email_placeholder": "Introduzca su email",
+        "passwordLabel": "Contraseña",
+        "password_placeholder": "Introduzca su contraseña",
+        "passVerifyLabel": "Confirme contraseña",
+        "passVerify_placeholder": "Las contraseñas deben coincidir",
+        "loginLink": "¿Ya estás registrad@? ¡INICIA SESIÓN!",
+        "registerButton": "Registrarse"
     }
+
 }

@@ -14,7 +14,12 @@
         "passwordLabel": "Pasahitza",
         "password_placeholder": "Zure pasahitza idatzi",
         "registerLink": "Ez al zaude erregistratuta? SARTU!",
-        "loginButton": "Sartu"
+        "loginButton": "Sartu",
+        "invalidEmail":"Sartu baliozko email bat",
+        "passwordPatternError": "Berrikusi pasahitza. Gogoratu zortzi karaktere izan behar dituela, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
+        "notRegisteredError": "Ez da erabiltzailerik erregistratu email horrekin.",
+        "passwordError": "Pasahitz okerra. Berrikusi sartutako eremuak."
+
     },
     "register_page": {
         "title": "Izen eman",

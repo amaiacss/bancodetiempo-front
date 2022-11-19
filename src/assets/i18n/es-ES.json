@@ -16,7 +16,11 @@
         "passVerifyLabel": "Confirme contraseña",
         "passVerify_placeholder": "Las contraseñas deben coincidir",
         "registerLink": "¿No estás registrad@? ¡REGÍSTRATE!",
-        "loginButton": "Entrar"
+        "loginButton": "Entrar",
+        "invalidEmail":"Introduzca un email válido",
+        "passwordPatternError": "Revisa la contraseña. Recuerda que debe tener 8 dígitos, al menos una mayúscula, una minúscula y un número.",
+        "notRegisteredError": "Ningún usuario registrado con ese email.",
+        "passwordError": "Contraseña incorrecta. Revise los campos."
     },
     "register_page": {
         "title": "Regístrate",

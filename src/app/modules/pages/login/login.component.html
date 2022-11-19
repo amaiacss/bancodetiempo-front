@@ -11,7 +11,7 @@
                             <label for="usuario">{{'login_page.emailLabel' | translate}}</label>
                             <input formControlName="email" class="form-control" id="user" type="text"
                                 placeholder="{{'login_page.email_placeholder' | translate}} *" />
-                            <div *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid" class="text-center text-danger mb-3">Introduzca un email válido</div>
+                            <div *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid" class="text-center text-danger mb-3">{{'login_page.invalidEmail' | translate}}</div>
                         </div>
                         <div class="form-group mb-md-3">
                             <!-- Password input-->
@@ -34,7 +34,7 @@
                                     </span>
                                 </div>
                             </div>123456Aa (contraseña de prueba para todas las cuentas)
-                            <div *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid" class="text-center text-danger mb-3">Revisa la contraseña. Recuerda que debe tener 8 dígitos, al menos una mayúscula, una minúscula y un número.</div>
+                            <div *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid" class="text-center text-danger mb-3">{{'login_page.passwordPatternError' | translate}}</div>
                         </div>
                         <!-- Enlace Registro -->
                         <a routerLink="/registro">{{'login_page.registerLink' | translate}}</a>
@@ -52,8 +52,8 @@
                 </div> -->
                 <!-- Submit error message: Errores de login-->
                 <div id="submitErrorMessage">
-                    <div *ngIf="loginErrors.notRegistered" class="text-center text-danger mb-3">Ningún usuario registrado con ese email.</div>
-                    <div *ngIf="loginErrors.passwordIncorrect" class="text-center text-danger mb-3">Contraseña incorrecta. Revise los campos.</div>
+                    <div *ngIf="loginErrors.notRegistered" class="text-center text-danger mb-3">{{'login_page.notRegisteredError' | translate}}</div>
+                    <div *ngIf="loginErrors.passwordIncorrect" class="text-center text-danger mb-3">{{'login_page.passwordError' | translate}}</div>
                 </div>
                 <!-- Submit Button-->
                 <div class="text-center">

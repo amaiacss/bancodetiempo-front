@@ -1,17 +1,17 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading">Tiempo cuando lo necesitas</div>
-        <div class="masthead-heading text-uppercase">por tiempo cuando puedas</div>
-        <a *ngIf="!isLoged" class="btn btn-primary btn-xl text-uppercase me-3" data-bs-toggle="modal" href="" routerLink="/login">Iniciar sesión</a>                     
+        <div class="masthead-subheading">{{'home_page.header.title_sm' | translate}}</div>
+        <div class="masthead-heading text-uppercase">{{'home_page.header.title_lg' | translate}}</div>
+        <a *ngIf="!isLoged" class="btn btn-primary btn-xl text-uppercase me-3" data-bs-toggle="modal" href="" routerLink="/login">{{'home_page.header.button' | translate}}</a>                     
     </div>
 </header>
 <!-- Services-->
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">BANCO DEL TIEMPO</h2>
-            <h3 class="section-subheading text-muted">Tiempo cuando lo necesitas por tiempo cuando puedas</h3>
+            <h2 class="section-heading text-uppercase">{{'home_page.sect1.title' | translate}}</h2>
+            <h3 class="section-subheading text-muted">{{'home_page.sect1.subtitle' | translate}}</h3>
         </div>
         <div class="row text-center">
             <div class="col-md-4">
@@ -19,24 +19,24 @@
                     <i class="fas fa-circle fa-stack-2x text-primary"></i>
                     <i class="far fa-clock fa-stack-1x fa-inverse"></i>                                                        
                 </span>
-                <h4 class="my-3">Que es un banco del tiempo</h4>
-                <p class="text-muted">Es un sistema que promueve la ayuda entre nosotros motivados por el intercambio de tiempo, de manera que se crea una alternativa economico-social.</p>
+                <h4 class="my-3">{{'home_page.sect1.sub1.title' | translate}}</h4>
+                <p class="text-muted">{{'home_page.sect1.sub1.paragraph' | translate}}</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
                     <i class="fas fa-circle fa-stack-2x text-primary"></i>
                     <i class="fas fa-balance-scale-right fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="my-3">Como funciona</h4>
-                <p class="text-muted">Se trata de intercambiar habilidades a cambio de tiempo entre los miembros de la comunidad, de esta manera se genera una especie de saldo de horas el cual se ira incrementando o disminuyendo en funcion de los servicios prestados o recibidos.</p>
+                <h4 class="my-3">{{'home_page.sect1.sub2.title' | translate}}</h4>
+                <p class="text-muted">{{'home_page.sect1.sub2.paragraph' | translate}}</p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
                     <i class="fas fa-circle fa-stack-2x text-primary"></i>
                     <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="my-3">Que me ofrece</h4>
-                <p class="text-muted">Desde intercambio de tareas de la vida cotidiana, a intercambio de conocimientos mas complejos.</p>
+                <h4 class="my-3">{{'home_page.sect1.sub3.title' | translate}}</h4>
+                <p class="text-muted">{{'home_page.sect1.sub3.paragraph' | translate}}</p>
             </div>
         </div>
     </div>
@@ -45,8 +45,8 @@
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Ultimos Intercambios</h2>
-            <h3 class="section-subheading text-muted">Usuarios que ofrecen su tiempo</h3>
+            <h2 class="section-heading text-uppercase">{{'home_page.sect2.title' | translate}}</h2>
+            <h3 class="section-subheading text-muted">{{'home_page.sect2.subtitle' | translate}}</h3>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
@@ -194,14 +194,14 @@
 <section class="page-section">
     <div class="container" id="participate">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">¿Quieres participar?</h2>            
+            <h2 class="section-heading text-uppercase">{{'home_page.sect3.title' | translate}}</h2>            
         </div>
         <div class="row py-5">
             <div class="col-md-6 d-flex justify-content-end">
-                <p class="col-md-10">Si quieres participar en esta iniciativa no dudes en registrarte, tan solo te llevara un minuto poder compartir tu tiempo Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error tempore totam dolor alias at amet nostrum. Accusamus corporis alias vel accusantium, dignissimos doloremque nulla quisquam eos ratione id recusandae illum?</p>
+                <p class="col-md-10">{{'home_page.sect3.paragraph' | translate}}</p>
             </div>
             <div class="col-md-6 d-flex align-items-center justify-content-center">
-                <a class="btn btn-primary btn-xl text-uppercase"  href="" routerLink="/registro">Registrate</a>       
+                <a class="btn btn-primary btn-xl text-uppercase"  routerLink="/registro">{{'home_page.sect3.button' | translate}}</a>       
             </div>
         </div>
 

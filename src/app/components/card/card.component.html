@@ -1,0 +1,70 @@
+<!-- Portfolio item 1-->
+<div *ngFor="let card of lastActivities" class="col-lg-4 col-sm-6 mb-4">
+    <div class="portfolio-item">
+        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{card.id}}">
+            <div class="portfolio-hover">
+                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+            </div>
+            <img class="img-fluid" src="{{card.image_src}}" alt="{{card.title}} image" />
+        </a>
+        <div class="portfolio-caption">
+            <div class="col-2 col-md-3" (click)="goToProfile(card.transmitter_id)">
+                <a>
+                    <img src="{{card.transmitter_thumbnail}}" alt="user thumbnail" class="img-fluid rounded-circle">
+                </a>
+            </div>
+            <div id="portfolioUsuarios" class="col-10 col-md-9">
+                <p class="portfolio-caption-heading" (click)="goToProfile(card.transmitter_id)">{{card.transmitter_name}}</p>
+                <p class="portfolio-caption-subheading text-muted text">{{card.date}}</p>
+                <a class="portfolio-caption-subheading text-muted text" data-bs-toggle="modal" href="#portfolioModal{{card.id}}">{{card.title}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modals-->
+<div *ngFor="let card of lastActivities" class="portfolio-modal modal fade" id="portfolioModal{{card.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-uppercase">{{card.title}}</h2>
+                        <p class="item-intro text-muted">{{card.transmitter_location}}</p>
+                        <div class="modal-body cambio">
+                            <!-- Project details-->
+                            <div class="col-lg-6 col-sm-12 ">
+                                <img class="img-fluid d-block mx-auto" src="{{card.image_src}}" alt="{{card.title}} image" />
+                                <p class="text-start">{{card.description}}</p>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <ul class="list-inline">
+                                    <li class="mb-4">
+                                        <strong>{{'home_page.sect2.modal_transmitter_title' | translate}} </strong>
+                                        <a href="">{{card.transmitter_name}}</a>
+                                    </li>
+                                    <li>
+                                        <div class="col-4 mx-auto" data-bs-dismiss="modal" (click)="goToProfile(card.transmitter_id)">
+                                            <img class="img-fluid rounded-circle " src="{{card.transmitter_thumbnail}}"
+                                                alt="{{card.transmitter_name}} thumbnail" />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <strong>{{'home_page.sect2.modal_category_title' | translate}} </strong>
+                                        #{{card.category}}
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                    type="button">
+                                    {{'home_page.sect2.modal_button' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

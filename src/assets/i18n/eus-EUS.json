@@ -56,7 +56,11 @@
         },
         "sect2": {
             "title": "Azken trukeak",
-            "subtitle": "Denbora eskaintzen duten erabiltzaileak"
+            "subtitle": "Denbora eskaintzen duten erabiltzaileak",
+            "modal_transmitter_title":"Eskaintzen du:",
+            "modal_category_title":"Kategoria:",
+            "modal_button": "Eskatu"
+
         },
         "sect3": {
             "title": "Parte hartu nahi duzu?",

@@ -57,7 +57,10 @@
         },
         "sect2": {
             "title": "Últimos intercambios",
-            "subtitle": "Usuarios que ofrecen su tiempo"
+            "subtitle": "Usuarios que ofrecen su tiempo",
+            "modal_transmitter_title":"Ofrecido por:",
+            "modal_category_title":"Categoría:",
+            "modal_button": "Solicitar"
         },
         "sect3": {
             "title": "¿Quieres participar?",

@@ -73,7 +73,8 @@
   <li>Implementados los siguientes enlaces dinámicos en card/modal:
     <ul>
       <li>Thumnail y nombre de la persona que publica redirigen a su perfil</li>
-      <li>Imagen y título de actividad abran el modal</li>
+      <li>Imagen y título de la actividad abren el modal</li>
     </ul>
   </li>
 </ul>
+<p>Enlace a Registro con botón final de la página</p>

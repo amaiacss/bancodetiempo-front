@@ -61,3 +61,19 @@
     <ul>
   </li>
 </ol>
+
+### HOME
+<p>Implementada traducción</p>
+<p>Si está logueado, desaparece el botón de login</p>
+<p>Grid de cards con <b>Últimos intercambios</b></p>
+<ul>
+  <li>Creado componente para card/modal</li>
+  <li>Implementada carga dinámica de los últimos intercambios. Al recibirlos del servidor, necesitaríamos, por orden de "últimos intercambios":</li>
+  <image src="https://user-images.githubusercontent.com/77671360/203613202-17ccfb89-0425-461c-be24-d32d3662bda9.png" />
+  <li>Implementados los siguientes enlaces dinámicos en card/modal:
+    <ul>
+      <li>Thumnail y nombre de la persona que publica redirigen a su perfil</li>
+      <li>Imagen y título de actividad abran el modal</li>
+    </ul>
+  </li>
+</ul>

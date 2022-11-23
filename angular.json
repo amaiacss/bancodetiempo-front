@@ -1,11 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "cli": {
-    "cache": {
-      "enabled": false
-    }
-  },
   "newProjectRoot": "projects",
   "projects": {
     "banc-tiempo": {

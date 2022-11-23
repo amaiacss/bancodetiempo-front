@@ -6,10 +6,10 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-    {path: ':id',component:HomeComponent},
-    {path: ':id/search', component:BuscadorComponent},
-    {path: ':id/preferences', component: PreferencesComponent},
-    {path: ':id/profile/:profielid', component: UserComponent}
+    {path: '',component:HomeComponent},
+    {path: 'search', component:BuscadorComponent},
+    {path: 'preferences', component: PreferencesComponent},
+    {path: 'profile/:profile', component: UserComponent}
 ]
 
 @NgModule({

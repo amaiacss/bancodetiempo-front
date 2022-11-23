@@ -32,6 +32,40 @@
         "passVerify_placeholder": "Las contraseñas deben coincidir",
         "loginLink": "¿Ya estás registrad@? ¡INICIA SESIÓN!",
         "registerButton": "Registrarse"
+    },
+    "home_page": {
+        "header": {
+            "title_sm":"Tiempo cuando lo necesitas",
+            "title_lg": "Por tiempo cuando puedas",
+            "button": "Iniciar sesión"
+        },
+        "sect1": {
+            "title": "Banco del tiempo",
+            "subtitle": "Tiempo cuando lo necesitas por tiempo cuando puedas",
+            "sub1": {
+                "title":"Qué es un banco del tiempo",
+                "paragraph": "Es un sistema que promueve la ayuda entre nosotros motivados por el intercambio de tiempo, de manera que se crea una alternativa economico-social."
+            },
+            "sub2": {
+                "title": "Cómo funciona",
+                "paragraph": "Se trata de intercambiar habilidades a cambio de tiempo entre los miembros de la comunidad, de esta manera se genera una especie de saldo de horas el cual se ira incrementando o disminuyendo en funcion de los servicios prestados o recibidos."
+            },
+            "sub3": {
+                "title": "Qué me ofrece",
+                "paragraph": "Desde intercambio de tareas de la vida cotidiana, a intercambio de conocimientos mas complejos."
+            }
+        },
+        "sect2": {
+            "title": "Últimos intercambios",
+            "subtitle": "Usuarios que ofrecen su tiempo",
+            "modal_transmitter_title":"Ofrecido por:",
+            "modal_category_title":"Categoría:",
+            "modal_button": "Solicitar"
+        },
+        "sect3": {
+            "title": "¿Quieres participar?",
+            "paragraph": "Si quieres participar en esta iniciativa no dudes en registrarte, tan solo te llevara un minuto poder compartir tu tiempo Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error tempore totam dolor alias at amet nostrum. Accusamus corporis alias vel accusantium, dignissimos doloremque nulla quisquam eos ratione id recusandae illum?",
+            "button": "Regístrate"
+        }
     }
-
 }

@@ -31,5 +31,41 @@
         "passVerify_placeholder": "Pasahitzak berdinak izan behar dira",
         "loginLink": "Ez al zaude erregistratuta? IZEN EMAN!",
         "registerButton": "Izen Eman"
+    },
+    "home_page": {
+        "header": {
+            "title_sm":"Behar duzun denbora",
+            "title_lg": "Ahal duzun denboraren truke",
+            "button": "Saioa hasi"
+        },
+        "sect1": {
+            "title": "Denbora Bankua",
+            "subtitle": "Behar duzun denbora, ahal duzun denboraren truke",
+            "sub1": {
+                "title":"Zer da Denbora Bankua",
+                "paragraph": "Denbora-trukeak bultzatuta gure artean laguntza sustatzen duen sistema da, aldi berean, alternatiba ekonomiko-soziala sortzen duela."
+            },
+            "sub2": {
+                "title": "Nola?",
+                "paragraph": "Komunitateko kideen artean denboraren truke trebetasunak trukatzea da, modu honetan orduen balantze moduko bat sortzen da, emandako edo jasotako zerbitzuen arabera handitu edo txikiagotuko dena."
+            },
+            "sub3": {
+                "title": "Zer eskaintzen dit",
+                "paragraph": "Eguneroko bizitzako zereginen truketik, ezagutza konplexuagoen trukaketara."
+            }
+        },
+        "sect2": {
+            "title": "Azken trukeak",
+            "subtitle": "Denbora eskaintzen duten erabiltzaileak",
+            "modal_transmitter_title":"Eskaintzen du:",
+            "modal_category_title":"Kategoria:",
+            "modal_button": "Eskatu"
+
+        },
+        "sect3": {
+            "title": "Parte hartu nahi duzu?",
+            "paragraph": "Ekimen honetan parte hartu nahi baduzu, eman zazu izen gurekin, minutu bat besterik ez duzu beharko zure denbora partekatu ahal izateko",
+            "button": "Izen eman"
+        }
     }
 }

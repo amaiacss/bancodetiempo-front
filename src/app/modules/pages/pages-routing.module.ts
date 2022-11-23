@@ -25,7 +25,7 @@ const routes: Routes = [
   // {path: 'editar', component: PreferencesComponent},
   // {path: 'usuario', component: UserComponent},
 
-  {path: 'user', loadChildren: () => import('../auth-navigation/auth-navigation.module').then(module => module.AuthNavigationModule),canActivate:[AuthGuard]},
+  {path: 'user/:id', loadChildren: () => import('../auth-navigation/auth-navigation.module').then(module => module.AuthNavigationModule),canActivate:[AuthGuard]},
 
 
   {path:'*', redirectTo:'', pathMatch: 'full'}

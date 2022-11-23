@@ -1,27 +1,63 @@
-# BancTiempo
+# Banco del Tiempo - FRONT
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+## Actualizar repositorio local
+<p>Si siempre trabajas sobre la misma rama (ej. Nerea, Itziar), cada vez que se haya actualizado la rama master:</p>
+<ul>
+  <li>Cambia a la rama master: <b>git checkout master</b></li>
+  <li>Actualiza tu repositorio local: <b>git pull</b></li>
+  <li>Vuelve a tu rama: <b>git checkout <i>mirama</i></b></li>
+  <li>Vuelca los cambios en tu rama: <b>git merge master</b></li>
+</ul>
+<span><i>***Puedes comprobar que las ramas son idénticas con <b>git diff master mirama</b>, si es correcto, la consola no devuelve nada</i></span>
+</br></br>
+<p>Si creas ramas según flujo de trabajo y cada vez que mergeas en el repositorio remoto vas a iniciar un nuevo flujo (rama image-fix, implementTranslate,etc.)</p>
+<ul>
+  <li>Cambia a la rama master: <b>git checkout master</b></li>
+  <li>Actualiza tu repositorio local: <b>git pull</b></li>
+  <li>Crea la nueva rama: <b>git checkout -b <i>mirama</i></b></li>
+</ul>
 
-## Development server
+## Últimos cambios en capa de Lógica
+### ngx-translate
+<p>Algunos componentes ya cargan la funcionalidad de traducción de página, para que funcione en desarrollo, hay que instalar el módulo ngx-translate</p>
+<ul>
+  <li><b>npm install @ngx-translate/core --save</b></li>
+</ul>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### NAV
+<p>Implementada traducción</p>
+<p>Incluye switch de lenguaje para toda la aplicación</p>
+<p>Auth</p>
+<ul>
+  <li>Actualizadas rutas sin y con login /user/:id/loquesea</li>
+  <li>Solo muestra buscador y opciones de usuario si se está logueado</li>
+</ul>
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### LOGIN
+<p>Implementada traducción</p>
+<p>Comprobaciones antes de enviar petición al servidor: </p>
+<ul>
+  <li>Ambos campos obligatorios</li>
+  <li>Formato de email válido <i>Ahora mismo lo valido el pipe Validator.email de Angular, aunque lo cambiaré porque acepta algunas cosas como nombre@ y hay que afinarlo.</i></li>
+  <li>Patrón de contraseña válido: <i>mínimo 8 caracteres, al menos un número, una mayúscula y una minúscula</i></li>
+</ul>
+<p>Enlace a registro</p>
+<p>Para comunicar con el servidor, se ha simulado lo siguiente: </p>
+<ul>
+  <li> POST: {"email": "string", "pass": "string"}
+</ul>
+<p>Que requiere respuesta para tres situaciones diferentes: </p>
+<ol>
+  <li>Usuario <b>no registrado</b></li>
+  <image src="https://user-images.githubusercontent.com/77671360/203607224-210f1210-ea20-4f86-b483-4db1088e64dd.png" style="width:300px;"/>
+  <li>Usuario registrado, <b>contraseña incorrecta</b></li>
+  <image src="https://user-images.githubusercontent.com/77671360/203608549-68f10b1c-9ac4-46cc-a60b-aa99851fe455.png" style="width:300px;"/>
+  <li>Usuario registrado y contraseña correcta. El usuario se loguea, el front necesita <b>para redirigir a homepage</b> como mínimo la siguiente información:
+    <ul>
+      <li>id de usuario</li>
+      <image src="https://user-images.githubusercontent.com/77671360/203609706-d777479d-d577-4202-966d-cb54f4a76003.png"/>
+      <li>username o email de usuario <span><i>actualmente usamos email hasta que se confirmen los datos reales</i></span></li>
+      <image src="https://user-images.githubusercontent.com/77671360/203610412-d38f197d-76af-4b84-8943-28293b0d2411.png"/>
+    <ul>
+  </li>
+</ol>

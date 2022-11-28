@@ -2,7 +2,7 @@
 <section class="page-section" id="registro">
     <div class="container d-flex justify-content-center" id="registroContainer">
         <div class="col-md-6">
-            <form id="registerForm" data-sb-form-api-token="API_TOKEN">
+            <form [formGroup]="registerForm" id="registerForm">
                 <h2 class="section-heading text-uppercase text-center">{{'register_page.title' | translate}}</h2>
                 <div class="row justify-content-center align-items-stretch mb-5">
                     <div class="col-md-10">
@@ -11,21 +11,21 @@
                             <label for="email">{{'register_page.emailLabel' | translate}}</label>
                             <input class="form-control" id="email" type="email"
                                 placeholder="{{'register_page.email_placeholder' | translate}}"
-                                data-sb-validations="required,email" />
-                            <div class="invalid-feedback" data-sb-feedback="email:required">
+                            />
+                            <div class="invalid-feedback">
                                 {{'register_page.required_error' | translate}}</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">{{'register_page.invalidEmail'
+                            <div class="invalid-feedback">{{'register_page.invalidEmail'
                                 | translate}}</div>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <!-- Password input-->
                             <label for="password">{{'register_page.passwordLabel' | translate}}</label>
                             <input class="form-control" id="password" type="tel"
                                 placeholder="{{'register_page.password_placeholder' | translate}}"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="password:required">
+                            />
+                            <div class="invalid-feedback" >
                                 {{'register_page.required_error' | translate}}</div>
-                            <div class="invalid-feedback" data-sb-feedback="password:required">
+                            <div class="invalid-feedback">
                                 {{'register_page.passwordPatternError' | translate}}</div>
                         </div>
                         <div class="form-group ">
@@ -33,8 +33,8 @@
                             <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
                             <input class="form-control" id="passwordRepeat" type="tel"
                                 placeholder="{{'register_page.passVerify_placeholder' | translate}}"
-                                data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                            />
+                            <div class="invalid-feedback">
                                 {{'register_page.passwordMatchError' | translate}}</div>
                         </div>
                         <div class="form-check">
@@ -42,16 +42,16 @@
                             <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' |
                                 translate}}</label>
                         </div>
-                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                        <div class="invalid-feedback">
                             {{'register_page.adult_checkError' | translate}}</div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" [checked]="conditions_accepted" (change)="toggleConditionsAccepted()">
                             <label class="form-check-label" for="defaultCheck2">
                                 {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link"
                                     data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText'
                                     | translate}}</a>
                             </label>
-                            <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                            <div class="invalid-feedback">
                                 {{'register_page.adult_checkError' | translate}}</div>
                         </div>
                         <div class="form-group ">
@@ -63,9 +63,7 @@
 
                 </div>
                 <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
+
                 <div class="d-none" id="submitSuccessMessage">
                     <div class="text-center text-white mb-3">
                         <div class="fw-bolder">{{'register_page.register_success' | translate}}</div>
@@ -74,9 +72,7 @@
                             id="submitButton" type="submit">{{'register_page.login_button' | translate}}</a></div>
                 </div>
                 <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
+
                 <div class="d-none" id="submitErrorMessage">
                     <div class="text-center text-danger mb-3">{{'register_page.register_error' | translate}}</div>
                 </div>
@@ -103,7 +99,7 @@
                             <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate"
                                 class="item-intro text-muted">{{paragraph}}</p>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
-                                type="button">{{'register_page.conditions_modal.button' | translate}}</button>
+                                type="button" (click)="acceptTerms()">{{'register_page.conditions_modal.button' | translate}}</button>
                         </div>
                     </div>
                 </div>

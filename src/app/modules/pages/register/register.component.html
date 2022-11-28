@@ -38,21 +38,21 @@
                                 {{'register_page.passwordMatchError' | translate}}</div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <input formControlName="adult" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' |
                                 translate}}</label>
                         </div>
-                        <div class="invalid-feedback">
+                        <div *ngIf="registerForm.controls['adult'].invalid" class="text-center text-danger mb-3">
                             {{'register_page.adult_checkError' | translate}}</div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" [checked]="conditions_accepted" (change)="toggleConditionsAccepted()">
+                            <input formControlName="terms" class="form-check-input" type="checkbox" value="" id="defaultCheck2" [checked]="conditions_accepted" (change)="toggleConditionsAccepted()">
                             <label class="form-check-label" for="defaultCheck2">
                                 {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link"
                                     data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText'
                                     | translate}}</a>
                             </label>
-                            <div class="invalid-feedback">
-                                {{'register_page.adult_checkError' | translate}}</div>
+                            <div *ngIf="registerForm.controls['terms'].invalid" class="text-center text-danger mb-3">
+                                {{'register_page.conditions_checkError' | translate}}</div>
                         </div>
                         <div class="form-group ">
                             <!-- ¿Estas registrado? inicia sesion-->

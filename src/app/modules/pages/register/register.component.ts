@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
     });
+    this.buildForm()
   }
 
   ngOnInit(): void {
@@ -32,7 +33,8 @@ export class RegisterComponent implements OnInit {
       email: ['',{updateOn: 'change', validators:[Validators.required,Validators.email]}],
       password: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
       passwordVerify: ['',{updateOn:'change', validators:[Validators.required]}],
-      adult: []
+      adult: [false,{validators:[Validators.requiredTrue]}],
+      terms: [this.conditions_accepted, {validators:[Validators.requiredTrue]}]
     })
   }
 

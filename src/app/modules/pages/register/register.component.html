@@ -1,104 +1,109 @@
 <!-- Registro-->
 <section class="page-section" id="registro">
-    <!--<div class="text-center">
-        <h2 class="section-heading">Comienza a intercambiar tu tiempo</h2>
-    </div>-->
-   
     <div class="container d-flex justify-content-center" id="registroContainer">
-        
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
-       
-        
-        <div class="col-md-6">     
-        <form id="registerForm"  data-sb-form-api-token="API_TOKEN">
-            <h2 class="section-heading text-uppercase text-center">{{'register_page.title' | translate}}</h2>   
-            <div class="row justify-content-center align-items-stretch mb-5">
-                <div class="col-md-10">
-                     
-                    <div class="form-group">
-                        <!-- Email input-->
-                        <label for="email">{{'register_page.emailLabel' | translate}}</label>
-                        <input class="form-control" id="email" type="email" placeholder="{{'register_page.email_placeholder' | translate}}" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">{{'register_page.required_error' | translate}}</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">{{'register_page.invalidEmail' | translate}}</div>
+        <div class="col-md-6">
+            <form id="registerForm" data-sb-form-api-token="API_TOKEN">
+                <h2 class="section-heading text-uppercase text-center">{{'register_page.title' | translate}}</h2>
+                <div class="row justify-content-center align-items-stretch mb-5">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <!-- Email input-->
+                            <label for="email">{{'register_page.emailLabel' | translate}}</label>
+                            <input class="form-control" id="email" type="email"
+                                placeholder="{{'register_page.email_placeholder' | translate}}"
+                                data-sb-validations="required,email" />
+                            <div class="invalid-feedback" data-sb-feedback="email:required">
+                                {{'register_page.required_error' | translate}}</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">{{'register_page.invalidEmail'
+                                | translate}}</div>
+                        </div>
+                        <div class="form-group ">
+                            <!-- Password input-->
+                            <label for="password">{{'register_page.passwordLabel' | translate}}</label>
+                            <input class="form-control" id="password" type="tel"
+                                placeholder="{{'register_page.password_placeholder' | translate}}"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="password:required">
+                                {{'register_page.required_error' | translate}}</div>
+                            <div class="invalid-feedback" data-sb-feedback="password:required">
+                                {{'register_page.passwordPatternError' | translate}}</div>
+                        </div>
+                        <div class="form-group ">
+                            <!-- Password input-->
+                            <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
+                            <input class="form-control" id="passwordRepeat" type="tel"
+                                placeholder="{{'register_page.passVerify_placeholder' | translate}}"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                                {{'register_page.passwordMatchError' | translate}}</div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' |
+                                translate}}</label>
+                        </div>
+                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                            {{'register_page.adult_checkError' | translate}}</div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                            <label class="form-check-label" for="defaultCheck2">
+                                {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link"
+                                    data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText'
+                                    | translate}}</a>
+                            </label>
+                            <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">
+                                {{'register_page.adult_checkError' | translate}}</div>
+                        </div>
+                        <div class="form-group ">
+                            <!-- ¿Estas registrado? inicia sesion-->
+                            <p><a class="portfolio-link" routerLink="/login">{{'register_page.loginLink' |
+                                    translate}}</a></p>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <!-- Password input-->
-                        <label for="password">{{'register_page.passwordLabel' | translate}}</label>
-                        <input class="form-control" id="password" type="tel" placeholder="{{'register_page.password_placeholder' | translate}}" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="password:required">{{'register_page.required_error' | translate}}</div>
-                        <div class="invalid-feedback" data-sb-feedback="password:required">{{'register_page.passwordPatternError' | translate}}</div>
-                    </div>  
-                    <div class="form-group ">
-                        <!-- Password input-->
-                        <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
-                        <input class="form-control" id="passwordRepeat" type="tel" placeholder="{{'register_page.passVerify_placeholder' | translate}}" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.passwordMatchError' | translate}}</div>
-                    </div> 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' | translate}}</label>
-                      </div>
-                      <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.adult_checkError' | translate}}</div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                          {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link" data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText' | translate}}</a>
-                        </label>
-                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.adult_checkError' | translate}}</div>
-                      </div> 
-                      <div class="form-group ">
-                        <!-- ¿Estas registrado? inicia sesion-->
-                        <p><a class="portfolio-link" routerLink="/login">{{'register_page.loginLink' | translate}}</a></p>
-                       
-                    </div>           
+
                 </div>
-                
-            </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">El formulario se ha enviado correctamente</div>
-                    To activate this form, sign up at
-                    <br />
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                <!-- Submit success message-->
+                <!---->
+                <!-- This is what your users will see when the form-->
+                <!-- has successfully submitted-->
+                <div class="d-none" id="submitSuccessMessage">
+                    <div class="text-center text-white mb-3">
+                        <div class="fw-bolder">{{'register_page.register_success' | translate}}</div>
+                    </div>
+                    <div class="text-center"><a routerLink="/login" class="btn btn-primary btn-xl text-uppercase"
+                            id="submitButton" type="submit">{{'register_page.login_button' | translate}}</a></div>
                 </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">El envio ha fallado, revise los campos</div></div>
-            <!-- Submit Button-->
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'register_page.registerButton' | translate}}</button></div>
-        </form>
-       </div> 
-        
-       </div>
-    </section>
-    
+                <!-- Submit error message-->
+                <!---->
+                <!-- This is what your users will see when there is-->
+                <!-- an error submitting the form-->
+                <div class="d-none" id="submitErrorMessage">
+                    <div class="text-center text-danger mb-3">{{'register_page.register_error' | translate}}</div>
+                </div>
+                <!-- Submit Button-->
+                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
+                        type="submit">{{'register_page.registerButton' | translate}}</button></div>
+            </form>
+        </div>
+    </div>
+</section>
+
 <!-- Portfolio item 6 modal popup-->
 <div class="portfolio-modal modal fade" id="terminos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
                             <h2 class="text-uppercase">{{'register_page.conditions_modal.title' | translate}}</h2>
-                            <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate" class="item-intro text-muted">{{paragraph}}</p>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">{{'register_page.conditions_modal.button' | translate}}</button>
+                            <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate"
+                                class="item-intro text-muted">{{paragraph}}</p>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                type="button">{{'register_page.conditions_modal.button' | translate}}</button>
                         </div>
                     </div>
                 </div>

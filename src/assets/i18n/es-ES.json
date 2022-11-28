@@ -35,6 +35,10 @@
         "check_conditions_linkText": "terminos y condiciones",
         "loginLink": "¿Ya estás registrad@? ¡INICIA SESIÓN!",
         "registerButton": "Registrarse",
+        "login_button": "Iniciar sesión",
+        "register_succes": "Te has registrado correctamente. ¡Bienvenid@!",
+        "register_error": "Ups! Algo ha salido mal. Por favor, revisa los campos del formulario.",
+
         "required_error": "Es obligatorio cumplimentar todos los campos",
         "invalidEmail":"Introduzca un email válido",
         "passwordPatternError": "Revisa la contraseña. Recuerda que debe tener un mínimo de 8 dígitos, al menos una mayúscula, una minúscula y un número.",

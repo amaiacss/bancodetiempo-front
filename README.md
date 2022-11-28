@@ -78,3 +78,9 @@
   </li>
 </ul>
 <p>Enlace a Registro con botón final de la página</p>
+    
+### REGISTER
+<p>Implementada traducción</p>
+<p>Se puede activar el check de condiciones y términos desde el modal</p>
+    <p>Implementando validaciones de formulario, y mensajes de error</p>
+<p>Work in progress...</p>

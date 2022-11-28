@@ -26,11 +26,30 @@
         "emailLabel": "Emaila",
         "email_placeholder": "Zure emaila idatzi",
         "passwordLabel": "Pasahitza",
-        "password_placeholder": "Zortzi karaktere, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
+        "password_placeholder": "Gutxienez zortzi karaktere, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
         "passVerifyLabel": "Errepikatu pasahitza",
-        "passVerify_placeholder": "Pasahitzak berdinak izan behar dira",
+        "passVerify_placeholder": "Sartu berriro pasahitza",
+        "check_adult_label": "18 urte baino gehiago dauzkat",
+        "check_conditions_pre": "Onartzen ditut",
+        "check_conditions_linkText": "irakurritako baldintzak",
         "loginLink": "Ez al zaude erregistratuta? IZEN EMAN!",
-        "registerButton": "Izen Eman"
+        "registerButton": "Izen Eman",
+        "required_error": "Arlo guztiak betetzea derrigorrezkoa da",
+        "invalidEmail":"Sartu baliozko email bat",
+        "passwordPatternError": "Berrikusi pasahitza. Gogoratu zortzi karaktere izan behar dituela, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
+        "passwordMatchError": "Sartutako pasahitzak eztute bat egiten.",
+        "adult_checkError": "18 urte baino gehiago izan behar dituzu izen emateko.",
+        "conditions_checkError": "Gure baldintzak onartu behar dituzu izen emateko.",
+        "conditions_modal": {
+            "title":"Baldintzak",
+            "paragraphs": [
+                "Webgune honetara sartzean, baldintza hauek oso-osorik onartzen dituzula suposatzen dugu. Mesedez, ez jarraitu Denbora Banku Orrian webgunea erabiltzen orrialde honetan ezarritako baldintza eta baldintza guztiak onartzen ez badituzu.",
+                "Terminologia eta Baldintza hauei, Pribatutasun Agiriari eta Lege Oharrei eta Akordio batzuei edo guztiei aplikatzen zaie: Bezeroa, Zu eta Zure aipatzen zaituzte, webgune honetara sartzen den eta konpainiaren baldintzak onartzen dituen pertsona. Konpainiak, Guk, Guk eta Gureak, gure Enpresari egiten dio erreferentzia. Alderdiak, Alderdiak edo Gu, Bezeroari eta geure buruari, edo Bezeroari edo geure buruari, elkarrekin egiten dio erreferentzia.",
+                "Baldintza guztiek Bezeroari gure laguntza-prozesua modu egokienean burutzeko beharrezkoa den eskaintza, onarpena eta ordainketa kontuan hartzen dira, iraupen finkoko bilera formalen bidez edo beste edozein bideren bidez, berariazko xedearekin. Konpainiaren deklaratutako zerbitzu/produktuen hornikuntzari dagokionez Bezeroaren beharrak ezagutzea, indarrean dagoen (Helbidea) legearen arabera eta horren arabera.",
+                "Goiko terminologia edo beste hitz batzuen erabilera singularrean, pluralean, letra larriz edo/eta, bera edo haiek, trukagarritzat jotzen da eta, beraz, gauza bera aipatzen dute."
+            ],
+            "button":"Onartu"
+        }
     },
     "home_page": {
         "header": {

@@ -27,11 +27,30 @@
         "emailLabel": "Email",
         "email_placeholder": "Introduzca su email",
         "passwordLabel": "Contraseña",
-        "password_placeholder": "Introduzca su contraseña",
+        "password_placeholder": "Debe tener un mínimo de 8 dígitos, al menos una mayúscula, una minúscula y un número.",
         "passVerifyLabel": "Confirme contraseña",
-        "passVerify_placeholder": "Las contraseñas deben coincidir",
+        "passVerify_placeholder": "Introduzca de nuevo la contraseña",
+        "check_adult_label": "Soy mayor de 18 años",
+        "check_conditions_pre": "Acepto los",
+        "check_conditions_linkText": "terminos y condiciones",
         "loginLink": "¿Ya estás registrad@? ¡INICIA SESIÓN!",
-        "registerButton": "Registrarse"
+        "registerButton": "Registrarse",
+        "required_error": "Es obligatorio cumplimentar todos los campos",
+        "invalidEmail":"Introduzca un email válido",
+        "passwordPatternError": "Revisa la contraseña. Recuerda que debe tener un mínimo de 8 dígitos, al menos una mayúscula, una minúscula y un número.",
+        "passwordMatchError": "Las contraseñas no coinciden.",
+        "adult_checkError": "Debes tener más de 18 años para registrarte.",
+        "conditions_checkError": "Debes aceptar las condiciones para registrarte",
+        "conditions_modal": {
+            "title":"Términos y condiciones",
+            "paragraphs": [
+                "Al acceder a este sitio web, asumimos que aceptas estos términos y condiciones en su totalidad. No continúes usando el sitio web (Nombre de la tienda) si no aceptas todos los términos y condiciones establecidos en esta página.",
+                "La siguiente terminología se aplica a estos Términos y Condiciones, Declaración de Privacidad y Aviso legal y cualquiera o todos los Acuerdos: el Cliente, Usted y Su se refieren a usted, la persona que accede a este sitio web y acepta los términos y condiciones de la Compañía. La Compañía, Nosotros mismos, Nosotros y Nuestro, se refiere a nuestra Compañía. Parte, Partes o Nosotros, se refiere en conjunto al Cliente y a nosotros mismos, o al Cliente o a nosotros mismos.",
+                "Todos los términos se refieren a la oferta, aceptación y consideración del pago necesario para efectuar el proceso de nuestra asistencia al Cliente de la manera más adecuada, ya sea mediante reuniones formales de una duración fija, o por cualquier otro medio, con el propósito expreso de conocer las necesidades del Cliente con respecto a la provisión de los servicios/productos declarados de la Compañía, de acuerdo con y sujeto a la ley vigente de (Dirección).",
+                "Cualquier uso de la terminología anterior u otras palabras en singular, plural, mayúsculas y/o, él/ella o ellos, se consideran intercambiables y, por lo tanto, se refieren a lo mismo."
+            ],
+            "button":"Aceptar"
+        }
     },
     "home_page": {
         "header": {

@@ -17,44 +17,45 @@
         
         <div class="col-md-6">     
         <form id="registerForm"  data-sb-form-api-token="API_TOKEN">
-            <h2 class="section-heading text-uppercase text-center">Registrate</h2>   
+            <h2 class="section-heading text-uppercase text-center">{{'register_page.title' | translate}}</h2>   
             <div class="row justify-content-center align-items-stretch mb-5">
                 <div class="col-md-10">
                      
                     <div class="form-group">
                         <!-- Email input-->
-                        <label for="email">Email</label>
-                        <input class="form-control" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">Email es un campo obligatorio</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email no valido</div>
+                        <label for="email">{{'register_page.emailLabel' | translate}}</label>
+                        <input class="form-control" id="email" type="email" placeholder="{{'register_page.email_placeholder' | translate}}" data-sb-validations="required,email" />
+                        <div class="invalid-feedback" data-sb-feedback="email:required">{{'register_page.required_error' | translate}}</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">{{'register_page.invalidEmail' | translate}}</div>
                     </div>
                     <div class="form-group ">
                         <!-- Password input-->
-                        <label for="password">Contraseña</label>
-                        <input class="form-control" id="password" type="tel" placeholder="Password" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="password:required">Contraseña obligatoria</div>
+                        <label for="password">{{'register_page.passwordLabel' | translate}}</label>
+                        <input class="form-control" id="password" type="tel" placeholder="{{'register_page.password_placeholder' | translate}}" data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="password:required">{{'register_page.required_error' | translate}}</div>
+                        <div class="invalid-feedback" data-sb-feedback="password:required">{{'register_page.passwordPatternError' | translate}}</div>
                     </div>  
                     <div class="form-group ">
                         <!-- Password input-->
-                        <label for="passwordRepeat">Confirmar constraseña</label>
-                        <input class="form-control" id="passwordRepeat" type="tel" placeholder="Password" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">Contraseña obligatoria</div>
+                        <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
+                        <input class="form-control" id="passwordRepeat" type="tel" placeholder="{{'register_page.passVerify_placeholder' | translate}}" data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.passwordMatchError' | translate}}</div>
                     </div> 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                          Soy mayor de 18 años
-                        </label>
+                        <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' | translate}}</label>
                       </div>
+                      <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.adult_checkError' | translate}}</div>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
                         <label class="form-check-label" for="defaultCheck2">
-                          Acepto los <a class="portfolio-link" data-bs-toggle="modal" href="#terminos">terminos y condiciones</a>
+                          {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link" data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText' | translate}}</a>
                         </label>
+                        <div class="invalid-feedback" data-sb-feedback="passwordRepeat:required">{{'register_page.adult_checkError' | translate}}</div>
                       </div> 
                       <div class="form-group ">
                         <!-- ¿Estas registrado? inicia sesion-->
-                        <p>¿Estás registrado? <a class="portfolio-link" routerLink="/login">Inicia sesión</a> </p>
+                        <p><a class="portfolio-link" routerLink="/login">{{'register_page.loginLink' | translate}}</a></p>
                        
                     </div>           
                 </div>
@@ -78,7 +79,7 @@
             <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">El envio ha fallado, revise los campos</div></div>
             <!-- Submit Button-->
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar</button></div>
+            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'register_page.registerButton' | translate}}</button></div>
         </form>
        </div> 
         
@@ -95,13 +96,9 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Terminos y condiciones</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad saepe aperiam nihil architecto similique ducimus, suscipit id aspernatur dolorum, voluptas provident totam reiciendis earum repellendus voluptatum maiores eos at doloremque.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro blanditiis inventore ducimus, at ipsum, iusto eius molestias laboriosam iste commodi illo. Qui voluptatem doloribus aspernatur distinctio voluptatibus, illo recusandae facere.</p>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                 Aceptar
-                            </button>
+                            <h2 class="text-uppercase">{{'register_page.conditions_modal.title' | translate}}</h2>
+                            <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate" class="item-intro text-muted">{{paragraph}}</p>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">{{'register_page.conditions_modal.button' | translate}}</button>
                         </div>
                     </div>
                 </div>
@@ -109,4 +106,3 @@
         </div>
     </div>
 </div>
-

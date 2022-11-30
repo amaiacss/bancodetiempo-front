@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { CustomValidation } from 'src/app/pipes/customVal';
 
 import { UsersService } from 'src/app/services/users.service';
-import { CustomValidation } from '../../auth-navigation/pipes/customVal';
+
 
 @Component({
   selector: 'app-login',

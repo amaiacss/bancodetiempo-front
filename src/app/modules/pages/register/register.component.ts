@@ -52,4 +52,8 @@ export class RegisterComponent implements OnInit {
     this.conditions_accepted = !this.conditions_accepted
   }
 
+  register() {
+    alert('TO-DO, request Register')
+  }
+
 }

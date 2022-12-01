@@ -61,6 +61,7 @@
     <ul>
   </li>
 </ol>
+<span><i>***TO-DO, implementar endpoint Backend</i></span>
 
 ### HOME
 <p>Implementada traducción</p>
@@ -81,6 +82,8 @@
     
 ### REGISTER
 <p>Implementada traducción</p>
+<p>Enlace a login</p>
 <p>Se puede activar el check de condiciones y términos desde el modal</p>
-    <p>Implementando validaciones de formulario, y mensajes de error</p>
-<p>Work in progress...</p>
+<p>Implementando validaciones de formulario, y mensajes de error</p>
+<p>Botón de enviar datos inactivo hasta validar campos</p>
+<span><i>***TO-DO, implementar endpoint Backend</i></span>

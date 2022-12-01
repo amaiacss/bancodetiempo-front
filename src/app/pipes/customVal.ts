@@ -12,13 +12,12 @@ export class CustomValidation {
 
     static confirmPassword(password: string, matchingPass: string) {
         return (formGroup: FormGroup) => {
-          let control = formGroup.controls[password];
-          let matchingControl = formGroup.controls[matchingPass]
-          if (control.value !== matchingControl.value) {
-            matchingControl.setErrors({ confirmpassword: true });
-          } else {
-            matchingControl.setErrors(null);
+          let emailControl = formGroup.controls[password];
+          let emailMatchControl = formGroup.controls[matchingPass]
+          if (emailControl.value !== emailMatchControl.value) {
+            return {confirmpassword:true}
           }
+          return null
         };
       }
 }

@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <!-- Password input-->
                             <label for="password">{{'register_page.passwordLabel' | translate}}</label>
-                            <input formControlName="password" class="form-control" id="password" type="tel"
+                            <input formControlName="password" class="form-control" id="password" type="password"
                                 placeholder="{{'register_page.password_placeholder' | translate}}"
                             />
                             <div *ngIf="registerForm.get('password')?.dirty &&  registerForm.get('password')?.hasError('required')" class="text-center text-danger mb-3" >
@@ -33,10 +33,11 @@
                             <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
                             <input formControlName="matchingPass" class="form-control" id="passwordRepeat" type="tel"
                                 placeholder="{{'register_page.passVerify_placeholder' | translate}}"
+                            type="password"
                             />
                             <div *ngIf="registerForm.get('matchingPass')?.dirty &&  registerForm.get('matchingPass')?.hasError('required')" class="text-center text-danger mb-3">
                                 {{'register_page.required_error' | translate}}</div>
-                            <div *ngIf="registerForm.hasError('confirmpassword')" class="text-center text-danger mb-3">
+                            <div *ngIf="registerForm.get('matchingPass')?.dirty && registerForm.hasError('confirmpassword')" class="text-center text-danger mb-3">
                                 {{'register_page.passwordMatchError' | translate}}</div>
                         </div>
                         <div class="form-check">
@@ -79,8 +80,14 @@
                     <div class="text-center text-danger mb-3">{{'register_page.register_error' | translate}}</div>
                 </div>
                 <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
-                        type="submit">{{'register_page.registerButton' | translate}}</button></div>
+                <div class="text-center">
+                    <button 
+                    [disabled]="registerForm.invalid"
+                    (click)="register()" 
+                    class="btn btn-primary btn-xl text-uppercase" 
+                    id="submitButton"
+                    type="submit">{{'register_page.registerButton' | translate}}</button>
+                </div>
             </form>
         </div>
     </div>

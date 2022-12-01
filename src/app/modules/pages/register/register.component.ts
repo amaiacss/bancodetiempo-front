@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidation } from '../../auth-navigation/pipes/customVal';
+import { CustomValidation } from 'src/app/pipes/customVal';
+
 
 
 
@@ -12,7 +13,7 @@ import { CustomValidation } from '../../auth-navigation/pipes/customVal';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({})
-  conditions_accepted:boolean = false
+  conditions_accepted:boolean = true
 
   constructor(
     private translateService: TranslateService,
@@ -29,13 +30,18 @@ export class RegisterComponent implements OnInit {
   }
 
   buildForm() {
-    this.registerForm = this.formBuilder.group({
-      email: ['',{updateOn: 'change', validators:[Validators.required,Validators.email]}],
-      password: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
-      passwordVerify: ['',{updateOn:'change', validators:[Validators.required]}],
-      adult: [false,{validators:[Validators.requiredTrue]}],
-      terms: [this.conditions_accepted, {validators:[Validators.requiredTrue]}]
-    })
+    this.registerForm = this.formBuilder.group(
+      {
+        email: ['',{updateOn: 'change', validators:[Validators.required,Validators.email]}],
+        password: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
+        matchingPass: ['',{updateOn:'change', validators:[Validators.required]}],
+        adult: [true,{updateOn:'change',validators:[Validators.requiredTrue]}],
+        terms: [this.conditions_accepted, {updateOn:'change',validators:[Validators.requiredTrue]}]
+      },
+      {
+        validators: CustomValidation.confirmPassword("password", "matchingPass")
+      }
+    )
   }
 
   acceptTerms(){
@@ -44,6 +50,10 @@ export class RegisterComponent implements OnInit {
 
   toggleConditionsAccepted(){
     this.conditions_accepted = !this.conditions_accepted
+  }
+
+  register() {
+    alert('TO-DO, request Register')
   }
 
 }

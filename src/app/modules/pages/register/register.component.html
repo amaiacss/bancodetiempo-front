@@ -9,32 +9,35 @@
                         <div class="form-group">
                             <!-- Email input-->
                             <label for="email">{{'register_page.emailLabel' | translate}}</label>
-                            <input class="form-control" id="email" type="email"
+                            <input formControlName="email" class="form-control" id="email" type="email"
                                 placeholder="{{'register_page.email_placeholder' | translate}}"
                             />
-                            <div class="invalid-feedback">
+                            <div *ngIf="registerForm.get('email')?.dirty &&  registerForm.get('email')?.hasError('required')" class="text-center text-danger mb-3">
                                 {{'register_page.required_error' | translate}}</div>
-                            <div class="invalid-feedback">{{'register_page.invalidEmail'
+                            <div *ngIf="registerForm.get('email')?.dirty &&  registerForm.get('email')?.hasError('email')" class="text-center text-danger mb-3">{{'register_page.invalidEmail'
                                 | translate}}</div>
                         </div>
                         <div class="form-group">
                             <!-- Password input-->
                             <label for="password">{{'register_page.passwordLabel' | translate}}</label>
-                            <input class="form-control" id="password" type="tel"
+                            <input formControlName="password" class="form-control" id="password" type="password"
                                 placeholder="{{'register_page.password_placeholder' | translate}}"
                             />
-                            <div class="invalid-feedback" >
+                            <div *ngIf="registerForm.get('password')?.dirty &&  registerForm.get('password')?.hasError('required')" class="text-center text-danger mb-3" >
                                 {{'register_page.required_error' | translate}}</div>
-                            <div class="invalid-feedback">
+                            <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].invalid"  class="text-center text-danger mb-3">
                                 {{'register_page.passwordPatternError' | translate}}</div>
                         </div>
                         <div class="form-group ">
                             <!-- Password input-->
                             <label for="passwordRepeat">{{'register_page.passVerifyLabel' | translate}}</label>
-                            <input class="form-control" id="passwordRepeat" type="tel"
+                            <input formControlName="matchingPass" class="form-control" id="passwordRepeat" type="tel"
                                 placeholder="{{'register_page.passVerify_placeholder' | translate}}"
+                            type="password"
                             />
-                            <div class="invalid-feedback">
+                            <div *ngIf="registerForm.get('matchingPass')?.dirty &&  registerForm.get('matchingPass')?.hasError('required')" class="text-center text-danger mb-3">
+                                {{'register_page.required_error' | translate}}</div>
+                            <div *ngIf="registerForm.get('matchingPass')?.dirty && registerForm.hasError('confirmpassword')" class="text-center text-danger mb-3">
                                 {{'register_page.passwordMatchError' | translate}}</div>
                         </div>
                         <div class="form-check">
@@ -51,7 +54,7 @@
                                     data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText'
                                     | translate}}</a>
                             </label>
-                            <div *ngIf="registerForm.controls['terms'].invalid" class="text-center text-danger mb-3">
+                            <div *ngIf="!conditions_accepted" class="text-center text-danger mb-3">
                                 {{'register_page.conditions_checkError' | translate}}</div>
                         </div>
                         <div class="form-group ">
@@ -77,8 +80,14 @@
                     <div class="text-center text-danger mb-3">{{'register_page.register_error' | translate}}</div>
                 </div>
                 <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
-                        type="submit">{{'register_page.registerButton' | translate}}</button></div>
+                <div class="text-center">
+                    <button 
+                    [disabled]="registerForm.invalid"
+                    (click)="register()" 
+                    class="btn btn-primary btn-xl text-uppercase" 
+                    id="submitButton"
+                    type="submit">{{'register_page.registerButton' | translate}}</button>
+                </div>
             </form>
         </div>
     </div>

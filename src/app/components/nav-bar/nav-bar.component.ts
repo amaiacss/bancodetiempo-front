@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  userInfo: LoginResponse = { isLoged:false, userData:{}}
+  userInfo: {isLoged:boolean,userData:LoginResponse} = { isLoged:false, userData:{}}
 
   constructor(
     private translateService: TranslateService,
@@ -20,12 +20,16 @@ export class NavBarComponent implements OnInit {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
     });
+    this.usersService.getSessionData().subscribe({
+      next: response => {
+        this.userInfo = response
+      }
+    })
+    
   }
 
   ngOnInit(): void {
-    this.usersService.getSessionData().subscribe({
-      next: response => this.userInfo = response
-    })
+    
   }
 
   pickLanguage(e:any){
@@ -33,7 +37,7 @@ export class NavBarComponent implements OnInit {
   }
 
   goToHomePage(){
-    if(this.userInfo.userData.id) {
+    if(this.userInfo.userData?.id) {
       this.router.navigate([`/user/${this.userInfo.userData.id}`])
     }
     else{
@@ -41,17 +45,44 @@ export class NavBarComponent implements OnInit {
     }
   }
 
+  goToServices(){
+    if(this.userInfo.userData?.id) {
+      this.router.navigate([`/user/${this.userInfo.userData.id}`],{fragment:'services'})
+    }
+    else{
+      this.router.navigate([``],{fragment:'services'})
+    }
+  }
+
+  goToPortfolio(){
+    if(this.userInfo.userData?.id) {
+      this.router.navigate([`/user/${this.userInfo.userData.id}`],{fragment:'portfolio'})
+    }
+    else{
+      this.router.navigate([``],{fragment:'portfolio'})
+    }
+  }
+
+  goToParticipate(){
+    if(this.userInfo.userData?.id) {
+      this.router.navigate([`/user/${this.userInfo.userData.id}`],{fragment:'participate'})
+    }
+    else{
+      this.router.navigate([``],{fragment:'participate'})
+    }
+  }
+
   goToSearchPage(){
-    this.router.navigate([`/user/${this.userInfo.userData.id}/search`])
+    this.router.navigate([`/user/${this.userInfo.userData?.id}/search`])
   }
 
   goToPreferencesPage(){
-    this.router.navigate([`/user/${this.userInfo.userData.id}/preferences`])
+    this.router.navigate([`/user/${this.userInfo.userData?.id}/preferences`])
   }
 
-  goToProfilePage(profileId:number | undefined){
+  goToProfilePage(profileId:string | null | undefined){
     if (profileId !== undefined){
-      this.router.navigate([`/user/${this.userInfo.userData.id}/profile/${profileId}`])
+      this.router.navigate([`/user/${this.userInfo.userData?.id}/profile/${profileId}`])
     }
   }
 

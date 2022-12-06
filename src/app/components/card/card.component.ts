@@ -10,7 +10,7 @@ import { CardInfo } from 'src/app/models/activities';
 })
 export class CardComponent implements OnInit {
   @Input() isLoged!: boolean
-  @Input() userId!:number | undefined
+  @Input() userId!:string | undefined | null
   @Input() lastActivities: CardInfo[] = []
   constructor(
     private translateService: TranslateService,
@@ -22,7 +22,6 @@ export class CardComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.isLoged, this.userId)
   }
 
   goToProfile(id:number | undefined){

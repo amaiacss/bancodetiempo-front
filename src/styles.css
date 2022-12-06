@@ -238,6 +238,7 @@ sup {
 a {
   color: #ffc800;
   text-decoration: underline;
+  cursor: pointer;
 }
 a:hover {
   color: #cca000;

@@ -1,4 +1,6 @@
 # Banco del Tiempo - FRONT
+<h3>Importante</h3>
+<p>Para utilizar la app, es obligatorio <b>poner en marcha el servidor de el backend</b>. Las instrucciones las ha dejado Amaia en Slack.</p>
 
 ## Actualizar repositorio local
 <p>Si siempre trabajas sobre la misma rama (ej. Nerea, Itziar), cada vez que se haya actualizado la rama master:</p>

@@ -12,15 +12,14 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate() {
-    const routeId = this.route.snapshot.paramMap.get('id');
-    let userId:string = ''
+    let userId:string | undefined | null = null
     let isLoged:boolean = false
     this.usersService.getSessionData().subscribe(response => {
-      userId = response.userData.id?.toString() || ""
+      userId = localStorage.getItem('id')
       isLoged = response.isLoged
     })
 
-    if (userId!==undefined && isLoged && (routeId===null || userId === routeId) ) {
+    if (userId!==undefined) {
       return true
     }
     

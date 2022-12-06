@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { CardInfo } from 'src/app/models/activities';
 import { ActivitiesService } from 'src/app/services/activities.service';
@@ -11,23 +12,30 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HomeComponent implements OnInit {
   isLoged:boolean = false
-  userId:number | undefined = undefined
+  userId:string | undefined | null = undefined
   lastActivities:CardInfo[] = []
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
     private translateService: TranslateService,
+    private router: Router
     ) {
       this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
         this.translateService.use(event.lang);
       })
-     }
+      this.usersService.getSessionData().subscribe(response => {
+        this.userId = response.userData?.id || localStorage.getItem('id')
+        if(this.userId) {
+          this.isLoged = true
+          this.router.navigate([`/user/${this.userId}`])
+        }else{
+          this.isLoged = false
+          this.router.navigate(['/'])
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.usersService.getSessionData().subscribe(response => {
-      this.isLoged = response.isLoged
-      this.userId = response.userData.id
-    })
     this.lastActivities = this.activitiesService.getLastActivities()
   }
 

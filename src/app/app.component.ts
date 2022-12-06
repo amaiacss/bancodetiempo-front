@@ -9,15 +9,17 @@ import { UsersService } from './services/users.service';
 export class AppComponent implements OnInit {
   title = 'banc-tiempo';
 
-  constructor(private usersService: UsersService){}
+  constructor(private usersService: UsersService){
+    const userId = localStorage.getItem('id')
+    let user
+    if(userId !== null){  
+      this.usersService.findUserById(userId).subscribe(res=>{
+        user = res
+      })
+      this.usersService.login(userId)
+    }
+  }
 
   ngOnInit(){
-    if(localStorage.getItem('user-email')){
-      console.log('logueado ',localStorage.getItem('user-email'))
-      const user = this.usersService.findUserByEmail(localStorage.getItem('user-email'))
-      if(user){
-        this.usersService.login(user)
-      }
-    }
   }
 }

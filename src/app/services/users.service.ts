@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+
+import { catchError, map } from 'rxjs/operators'
+import { ErrorHandler, Injectable } from '@angular/core';
 import { Observable, BehaviorSubject} from 'rxjs';
 import { LoginResponse } from '../models/loginResponse';
 import { User } from '../models/user';
@@ -9,30 +12,53 @@ import { User } from '../models/user';
 })
 export class UsersService {
 
-  //Array para pruebas
-  users: User[] = [
-    {id: 1, email:"nvega@birt.eus", pass: "123456Aa"},
-    {id: 2, email:"iaguirreche@birt.eus", pass: "123456Aa"},
-    {id: 3, email:"acasas@birt.eus", pass: "123456Aa"},
-    {id: 4, email:"anruiz@birt.eus", pass: "123456Aa"}
-  ]
+  private url:string
+  private login_endpoint:string
+  private register_endpoint:string
+  private user_endpoint:string
 
-  private _sessionData = new BehaviorSubject<LoginResponse> ({
+  private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
     userData: {}
   })
   sessionData$ = this._sessionData
 
-  constructor() { }
-
-  getAllUsers(): User[] {
-    return this.users
+  constructor(
+    private http:HttpClient,
+    
+  ) { 
+    this.url="http://localhost:8080/api"
+    this.login_endpoint="/user/login"
+    this.register_endpoint = "/user/create"
+    this.user_endpoint="/user/find/"
   }
 
-  findUserByEmail(email:any): User | null {
-    const index = this.users.findIndex(user => user.email===email) 
-    if(index===-1) return null
-    return this.users[index]
+  findUserById(id:string): Observable<User | null> {
+    return this.http.get(this.url+this.user_endpoint+id)
+  }
+
+  getSessionData(): Observable<{isLoged:boolean,userData:LoginResponse}> {
+    return this.sessionData$.asObservable()
+  }
+
+  register(body:{"email":string,"pass":string}): Observable<any>{
+    return this.http.post(this.url+this.register_endpoint,body)
+  }
+
+  requestLogin(user:{email:string,password:string}): Observable<LoginResponse> {
+    const body = {"email":user.email, "pass":user.password}
+    return this.http.post(this.url+this.login_endpoint,body)
+  }
+
+  login(id: string) {
+    
+    this.sessionData$.next({
+      isLoged: true,
+      userData:{id:id}
+    })
+
+      localStorage.setItem('id',id)
+
   }
 
   logout() {
@@ -43,18 +69,8 @@ export class UsersService {
     localStorage.clear()
   }
 
-  getSessionData(): Observable<LoginResponse> {
-    return this.sessionData$.asObservable()
-  }
-
-  login(user:User) {
-    this.sessionData$.next({
-      isLoged: true,
-      userData:user
-    })
-    if(user.email){
-      localStorage.setItem('user-email',user.email)
-    }
-  }
-
 }
+function throwError(err: any): any {
+  throw new Error('Function not implemented.');
+}
+

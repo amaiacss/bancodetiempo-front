@@ -17,7 +17,7 @@
   <li>Crea la nueva rama: <b>git checkout -b <i>mirama</i></b></li>
 </ul>
 
-## Últimos cambios en capa de Lógica
+## Últimos cambios en capa frontent
 ### ngx-translate
 <p>Algunos componentes ya cargan la funcionalidad de traducción de página, para que funcione en desarrollo, hay que instalar el módulo ngx-translate</p>
 <ul>
@@ -46,22 +46,13 @@
 <ul>
   <li> POST: {"email": "string", "pass": "string"}
 </ul>
-<p>Que requiere respuesta para tres situaciones diferentes: </p>
+<p>Implementada petición LOGIN con servidor. Cuatro escenarios</p>
 <ol>
-  <li>Usuario <b>no registrado</b></li>
-  <image src="https://user-images.githubusercontent.com/77671360/203607224-210f1210-ea20-4f86-b483-4db1088e64dd.png" style="width:300px;"/>
-  <li>Usuario registrado, <b>contraseña incorrecta</b></li>
-  <image src="https://user-images.githubusercontent.com/77671360/203608549-68f10b1c-9ac4-46cc-a60b-aa99851fe455.png" style="width:300px;"/>
-  <li>Usuario registrado y contraseña correcta. El usuario se loguea, el front necesita <b>para redirigir a homepage</b> como mínimo la siguiente información:
-    <ul>
-      <li>id de usuario</li>
-      <image src="https://user-images.githubusercontent.com/77671360/203609706-d777479d-d577-4202-966d-cb54f4a76003.png"/>
-      <li>username o email de usuario <span><i>actualmente usamos email hasta que se confirmen los datos reales</i></span></li>
-      <image src="https://user-images.githubusercontent.com/77671360/203610412-d38f197d-76af-4b84-8943-28293b0d2411.png"/>
-    <ul>
-  </li>
+  <li>Cuenta <b>no verificada</b>. Se muestra un alert para que revise email</li>
+  <li>Usuario <b>no registrado</b>. El formulario muestra el error</li>
+  <li>Usuario registrado, <b>contraseña incorrecta</b>. El formulario muestra el error</li>
+  <li>Usuario registrado y contraseña correcta.
 </ol>
-<span><i>***TO-DO, implementar endpoint Backend</i></span>
 
 ### HOME
 <p>Implementada traducción</p>
@@ -86,4 +77,10 @@
 <p>Se puede activar el check de condiciones y términos desde el modal</p>
 <p>Implementando validaciones de formulario, y mensajes de error</p>
 <p>Botón de enviar datos inactivo hasta validar campos</p>
-<span><i>***TO-DO, implementar endpoint Backend</i></span>
+<p>Implementada petición de registro a servidor con endpoints del back</p>
+  <ul>
+    <li>La API nos devuelve siempre un código de error</li>
+    <li>Devuelve <b>error 400</b> si el usuario ya está registrado</li>
+    <li>Devuelve <b>error 400</b> si el ha habido un problema y no se ha podido enviar la petición</li>
+    <li>Devuelve <b>error 0</b> si el usuario se ha creado correctamente</li>
+  </ul>

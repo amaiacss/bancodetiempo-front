@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['',{updateOn: 'blur', validators:[Validators.email]}],
-      password: ['',{updateOn:'blur', validators:[CustomValidation.passwordPattern]}],
+      email: ['',{updateOn: 'change', validators:[Validators.email]}],
+      password: ['',{updateOn:'change', validators:[CustomValidation.passwordPattern]}],
     })
   }
 
@@ -50,22 +50,30 @@ export class LoginComponent implements OnInit {
     console.log(this.fieldTextType)
   }
 
-  validate() {
+  requestLogin() {
     if(this.loginForm.valid) {
       const data = this.loginForm.value
-      const user = this.usersService.findUserByEmail(data.email)
-      if(!user){
-        this.loginErrors.notRegistered=true
-        this.loginErrors.passwordIncorrect= false
-      }else if (user.pass!==data.password){
-        this.loginErrors.notRegistered=false
-        this.loginErrors.passwordIncorrect= true
-      }else {
-        this.loginErrors.notRegistered=false
-        this.loginErrors.passwordIncorrect= false
-        this.usersService.login(user)
-        this.router.navigate(['/user/',user.id])
-      }
+      this.usersService.requestLogin(data).subscribe(res => {
+        console.log(res)
+        if(res.pass===false){
+          this.loginErrors.notRegistered=false
+          this.loginErrors.passwordIncorrect= true
+        }
+        if(res.verificado==0){
+          alert('Usuario no verificado. Compruebe su email')
+        }
+        if(res.id===null){
+          this.loginErrors.notRegistered=true
+          this.loginErrors.passwordIncorrect= false
+        }
+        if(res.id && res.verificado==1){
+          this.loginErrors.notRegistered=false
+          this.loginErrors.passwordIncorrect= false
+          this.usersService.login(res.id)
+          console.log(res.id)
+          this.router.navigate(['/user/',res.id])
+        }
+      }) 
     }
   }
 }

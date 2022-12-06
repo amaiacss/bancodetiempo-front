@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from 'src/app/pipes/customVal';
+import { UsersService } from 'src/app/services/users.service';
+import { catchError, Observable, of } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 
 
@@ -14,10 +18,13 @@ import { CustomValidation } from 'src/app/pipes/customVal';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({})
   conditions_accepted:boolean = true
+  error: any
+  response: any
 
   constructor(
     private translateService: TranslateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UsersService
 
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -53,7 +60,30 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    alert('TO-DO, request Register')
+    const body = {
+      "email": this.registerForm.get('email')?.value,
+      "pass": this.registerForm.get('password')?.value
+    }
+
+    this.userService.register(body)
+      .pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
+        switch(error.status) {
+          case 0:
+            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.');
+            this.buildForm()
+            break;
+          case 400:
+            alert('Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.')
+        }
+        // after handling error, return a new observable 
+        // that doesn't emit any values and completes
+        return of();
+      }))
+      .subscribe(() => {
+          alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.')
+          this.buildForm()
+      });
   }
+
 
 }

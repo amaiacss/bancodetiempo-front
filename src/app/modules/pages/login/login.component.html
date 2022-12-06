@@ -57,7 +57,7 @@
                 </div>
                 <!-- Submit Button-->
                 <div class="text-center">
-                    <button [disabled]="loginForm.invalid" (click)="validate()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button>
+                    <button [disabled]="loginForm.invalid" (click)="requestLogin()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'login_page.loginButton' | translate}}</button>
                 </div>
             </form>
         </div>

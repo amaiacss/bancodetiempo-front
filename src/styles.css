@@ -11982,3 +11982,8 @@ section#perfilUsuario .section-heading {
 #buscador .page-section{
   padding: 1em ;
 }
+
+/*Estilos para terminos y condiciones modal*/
+#terminos p{
+  text-align: justify;
+}

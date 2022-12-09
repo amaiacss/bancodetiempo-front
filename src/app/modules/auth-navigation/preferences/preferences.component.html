@@ -100,3 +100,106 @@
     </div>
 
 </section>
+
+<!-- Modal cambiar contraseña popup-->
+<div class="portfolio-modal modal fade" id="cambiarpass" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body d-block  ">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">Cambiar contraseña</h2>
+                            <form id="cambiarPassForm">
+                                <div class="row justify-content-center align-items-stretch mb-5">
+                                    <div class="col-md-10">
+                                        
+                                        <div class="form-group">
+                                            <!-- Old Password input-->
+                                            <label for="oldPass">Contraseña antigua</label>
+                                            <input formControlName="password" class="form-control" id="password" type="password"
+                                                placeholder="Introduzca contraseña antigua"
+                                            />
+                                            <!--<div *ngIf="registerForm.get('password')?.dirty &&  registerForm.get('password')?.hasError('required')" class="text-center text-danger mb-3" >
+                                                {{'register_page.required_error' | translate}}</div>
+                                            <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].invalid"  class="text-center text-danger mb-3">
+                                                {{'register_page.passwordPatternError' | translate}}</div>-->
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- New Password input-->
+                                            <label for="newPass">Nueva contraseña</label>
+                                            <input formControlName="password" class="form-control" id="password" type="password"
+                                                placeholder="Introduzca la nueva contraseña"
+                                            />
+                                            <!--<div *ngIf="registerForm.get('password')?.dirty &&  registerForm.get('password')?.hasError('required')" class="text-center text-danger mb-3" >
+                                                {{'register_page.required_error' | translate}}</div>
+                                            <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].invalid"  class="text-center text-danger mb-3">
+                                                {{'register_page.passwordPatternError' | translate}}</div>-->
+                                        </div>
+                                        <div class="form-group ">
+                                            <!-- Repeat Password input-->
+                                            <label for="repeatNewPass">Repita contraseña</label>
+                                            <input formControlName="matchingPass" class="form-control" id="passwordRepeat" type="tel"
+                                                placeholder="Repita la contraseña" type="password" />
+
+                                           <!-- <div *ngIf="cambiarPassForm.get('matchingPass')?.dirty &&  cambiarPassForm.get('matchingPass')?.hasError('required')" class="text-center text-danger mb-3">
+                                                {{'register_page.required_error' | translate}}</div>
+                                            <div *ngIf="cambiarPassForm.get('matchingPass')?.dirty && cambiarPassForm.hasError('confirmpassword')" class="text-center text-danger mb-3">
+                                                {{'register_page.passwordMatchError' | translate}}</div>-->
+                                        </div>
+                                        <!--<div class="form-check">
+                                            <input formControlName="adult" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">{{'register_page.check_adult_label' |
+                                                translate}}</label>
+                                        </div>
+                                        <div *ngIf="registerForm.controls['adult'].invalid" class="text-center text-danger mb-3">
+                                            {{'register_page.adult_checkError' | translate}}</div>
+                                        <div class="form-check">
+                                            <input formControlName="terms" class="form-check-input" type="checkbox" value="" id="defaultCheck2" [checked]="conditions_accepted" (change)="toggleConditionsAccepted()">
+                                            <label class="form-check-label" for="defaultCheck2">
+                                                {{'register_page.check_conditions_pre' | translate}} <a class="portfolio-link"
+                                                    data-bs-toggle="modal" href="#terminos">{{'register_page.check_conditions_linkText'
+                                                    | translate}}</a>
+                                            </label>
+                                            <div *ngIf="!conditions_accepted" class="text-center text-danger mb-3">
+                                                {{'register_page.conditions_checkError' | translate}}</div>
+                                        </div>-->
+                                        
+                                    </div>
+                
+                                </div>
+                                <!-- Submit success message-->
+                
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center text-white mb-3">
+                                        <div class="fw-bolder">{{'register_page.register_success' | translate}}</div>
+                                    </div>
+                                    <div class="text-center"><a routerLink="/login" class="btn btn-primary btn-xl text-uppercase"
+                                            id="submitButton" type="submit">{{'register_page.login_button' | translate}}</a></div>
+                                </div>
+                                <!-- Submit error message-->
+                
+                                <div class="d-none" id="submitErrorMessage">
+                                    <div class="text-center text-danger mb-3">{{'register_page.register_error' | translate}}</div>
+                                </div>
+                                <!-- Submit Button-->
+                                <!--<div class="text-center">
+                                    <button 
+                                    [disabled]="registerForm.invalid"
+                                    (click)="register()" 
+                                    class="btn btn-primary btn-xl text-uppercase" 
+                                    id="submitButton"
+                                    type="submit">{{'register_page.registerButton' | translate}}</button>
+                                </div>-->
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

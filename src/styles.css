@@ -11958,7 +11958,7 @@ section#perfilUsuario .section-heading {
   transform: translateY(6rem);
 }
 
-/*Cambio de tamaño*/
+/*Cambio de tamaño para el modal de portfolio*/
 @media (max-width: 576px) {
   .cambio {
     display: block;

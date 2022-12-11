@@ -88,6 +88,7 @@
             <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
         </form>
     </div>
+</section>
 
 <!--Modal para el cambiode pass-->
 <div class="portfolio-modal modal fade" id="cambiarPass" tabindex="-1" role="dialog" aria-hidden="true">
@@ -96,13 +97,13 @@
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-10">
                         <div class="modal-body d-block">
-                            <!-- Project details-->
-                            <h2 class="text-uppercase">Cambiar contraseña</h2>
+                            <!-- Project details-->                            
                             <form id="cambiarPassForm" data-sb-form-api-token="API_TOKEN">
-                                <div class="row align-items-stretch mb-5">
-                                    <div class="col-md-6">
+                                <h2 class="text-uppercase mb-4">Cambiar contraseña</h2>
+                                <div class="row justify-content-center text-start mb-4">                                    
+                                    <div class="col-md-10 col-10">                                    
                                         <div class="form-group">
                                             <!-- Contraseña antigua-->
                                             <label for="passAntigua">Introduza la antigua contraseña:</label>
@@ -119,11 +120,9 @@
                                             <!-- Repite contraseña-->
                                             <label for="passRepeat">Repita la contraseña</label>
                                             <input class="form-control" id="passRepeat" type="password" placeholder="Repita contraseña" data-sb-validations="required,passRepeat" />
-                                            <div class="invalid-feedback" data-sb-feedback="passNueva:required">El cambo no puede estar vacio</div>                                            
-                                        </div>
-                                        
-                                    </div>
-                                    
+                                            <div class="invalid-feedback" data-sb-feedback="passRepeat:required">El cambo no puede estar vacio</div>                                            
+                                        </div>                                        
+                                    </div>                                    
                                 </div>
                                 <!-- Submit success message-->
                                 <!---->
@@ -143,7 +142,7 @@
                                 <!-- an error submitting the form-->
                                 <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                 <!-- Submit Button-->
-                                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Cambiar</button></div>
+                                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Cambiar</button></div>
                             </form>
                         </div>
                     </div>
@@ -153,4 +152,3 @@
     </div>
 </div>
 
-</section>

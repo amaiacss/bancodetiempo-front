@@ -5,32 +5,22 @@
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
-                <div class="media d-flex align-items-end profile-header"> 
+                <div class="media d-flex align-items-end profile-header w-75"> 
                     <div class="profile"><img src="assets/img/avatar.jpg" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                        <div >
-                            <a href="#" class="btn btn-secondary mb-2" >Subir imagen</a> <br>
-                                                              
-                        </div>                                
+                        <div>
+                            <a href="#" class="btn btn-secondary mb-2" >Subir imagen</a>                  
+                        </div>                         
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">Manuella Tarly</h4>
                         <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>San Farcisco</p>
-                    </div>                            
-                </div>                        
+                    </div>                                                  
+                </div>                 
             </div>
-        
-            <div class="bg-light p-4 d-flex justify-content-end ">   
-                
-                <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a>   
-                <!--<ul class="list-inline mb-0">                                            
-                    <li class="list-inline-item">
-                        <h4 class="font-weight-bold mb-3 d-block">Transacciones</h4>
-                        <h4 class="font-weight-bold mb-0 d-block text-muted"><i class="fa-solid fa-stopwatch me-2"></i>4 Horas</h4>                        
-                    </li>
-                </ul>      -->          
-            </div>
-           
-        </div>        
+            <div class="bg-light p-4 d-flex justify-content-end">              
+                <a href="#cambiarPass" data-bs-toggle="modal" class="btn btn-secondary mb-2">Cambiar contraseña</a>                
+            </div>           
+        </div>       
     </div>     
         <!-- * * * * * * * * * * * * * * *-->
         <!-- * * SB Forms Contact Form * *-->
@@ -98,5 +88,67 @@
             <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
         </form>
     </div>
-
 </section>
+
+<!--Modal para el cambiode pass-->
+<div class="portfolio-modal modal fade" id="cambiarPass" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-10">
+                        <div class="modal-body d-block">
+                            <!-- Project details-->                            
+                            <form id="cambiarPassForm" data-sb-form-api-token="API_TOKEN">
+                                <h2 class="text-uppercase mb-4">Cambiar contraseña</h2>
+                                <div class="row justify-content-center text-start mb-4">                                    
+                                    <div class="col-md-10 col-10">                                    
+                                        <div class="form-group">
+                                            <!-- Contraseña antigua-->
+                                            <label for="passAntigua">Introduza la antigua contraseña:</label>
+                                            <input class="form-control" id="passAntigua" type="password" placeholder="Contraseña antigua" data-sb-validations="required" />
+                                            <div class="invalid-feedback" data-sb-feedback="passAntigua:required">Contraseña antigua es obligatorio</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- Nueva contraseña-->
+                                            <label for="passNueva">Introduzca la nueva contraseña</label>
+                                            <input class="form-control" id="passNueva" type="password" placeholder="Nueva contraseña" data-sb-validations="required,passNueva" />
+                                            <div class="invalid-feedback" data-sb-feedback="passNueva:required">Nueva contraseña es obligatorio</div>                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- Repite contraseña-->
+                                            <label for="passRepeat">Repita la contraseña</label>
+                                            <input class="form-control" id="passRepeat" type="password" placeholder="Repita contraseña" data-sb-validations="required,passRepeat" />
+                                            <div class="invalid-feedback" data-sb-feedback="passRepeat:required">El cambo no puede estar vacio</div>                                            
+                                        </div>                                        
+                                    </div>                                    
+                                </div>
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center text-white mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <!-- Submit error message-->
+                                <!---->
+                                <!-- This is what your users will see when there is-->
+                                <!-- an error submitting the form-->
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                <!-- Submit Button-->
+                                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Cambiar</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

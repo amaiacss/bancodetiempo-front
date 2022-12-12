@@ -1,11 +1,11 @@
 <!-- Registro-->
 <section class="page-section" id="registro">
     <div class="container d-flex justify-content-center" id="registroContainer">
-        <div class="col-md-6">
+        <div class="col-md-8 col-sm-10  col-10">
             <form [formGroup]="registerForm" id="registerForm">
                 <h2 class="section-heading text-uppercase text-center">{{'register_page.title' | translate}}</h2>
                 <div class="row justify-content-center align-items-stretch mb-5">
-                    <div class="col-md-10">
+                    <div class="col-md-10 col-10">
                         <div class="form-group">
                             <!-- Email input-->
                             <label for="email">{{'register_page.emailLabel' | translate}}</label>
@@ -93,20 +93,20 @@
     </div>
 </section>
 
-<!-- Portfolio item 6 modal popup-->
+<!-- Portfolio Terminos y condiciones popup-->
 <div class="portfolio-modal modal fade" id="terminos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
             </div>
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <div class="col-lg-8">
-                        <div class="modal-body">
+                        <div class="modal-body d-block  ">
                             <!-- Project details-->
                             <h2 class="text-uppercase">{{'register_page.conditions_modal.title' | translate}}</h2>
                             <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate"
-                                class="item-intro text-muted">{{paragraph}}</p>
+                                class=" align-self-start item-intro text-muted ">{{paragraph}}</p>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                 type="button" (click)="acceptTerms()">{{'register_page.conditions_modal.button' | translate}}</button>
                         </div>

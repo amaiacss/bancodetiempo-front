@@ -11816,11 +11816,13 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 /*-----------------------Registro y Login utilizan los mismos estilos -------------------------*/
 
-section#registro .section-heading {
+section#registro .section-heading,
+#cambiarPassForm {
   color: #212529;  
 }
 
-section#registro form#registerForm {
+section#registro form#registerForm,
+#cambiarPassForm  {
  background-color: #F5F5F7;
  padding-top: 2em;
  padding-bottom: 2em;
@@ -11829,21 +11831,25 @@ section#registro form#registerForm {
  border-radius: 1em; 
 }
 
-section#registro form#registerForm .form-group  {
+section#registro form#registerForm .form-group,
+#cambiarPassForm .form-group   {
   margin-bottom: 1.5rem;
   box-shadow: 5px ;
  
 }
 
-section#registro form#registerForm label{
+section#registro form#registerForm label,
+#cambiarPassForm label {
   color: #212529;
   margin-bottom: 5px;
 }
 section#registro form#registerForm .form-group input,
-section#registro form#registerForm .form-group textarea{
+section#registro form#registerForm .form-group textarea,
+#cambiarPassForm .form-group input {
   padding: 1.25rem;
 } 
-section#registro form#registerForm .form-group input.form-control {
+section#registro form#registerForm .form-group input.form-control,
+#cambiarPassForm .form-group input.form-control  {
   height: auto;
 }
 section#registro form#registerForm .form-group-textarea {
@@ -11858,29 +11864,34 @@ section#registro form#registerForm p.help-block {
   margin: 0;
 }
 
-section#registro form#registerForm .form-control:focus {
+section#registro form#registerForm .form-control:focus,
+#cambiarPassForm .form-control:focus {
   border-color: #ffc800;
   box-shadow: none;
 }
-section#registro form#registerForm ::-webkit-input-placeholder {
+section#registro form#registerForm ::-webkit-input-placeholder,
+#cambiarPassForm ::-webkit-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #ced4da;
 }
 
-section#registro form#registerForm :-moz-placeholder {
+section#registro form#registerForm :-moz-placeholder,
+#cambiarPassForm :-moz-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #ced4da;
 }
 
-section#registro form#registerForm ::-moz-placeholder {
+section#registro form#registerForm ::-moz-placeholder,
+#cambiarPassForm ::-moz-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #ced4da;
 }
 
-section#registro form#registerForm :-ms-input-placeholder {
+section#registro form#registerForm :-ms-input-placeholder,
+#cambiarPassForm :-ms-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #ced4da;
@@ -11958,7 +11969,7 @@ section#perfilUsuario .section-heading {
   transform: translateY(6rem);
 }
 
-/*Cambio de tamaño*/
+/*Cambio de tamaño para el modal de portfolio*/
 @media (max-width: 576px) {
   .cambio {
     display: block;
@@ -11981,4 +11992,9 @@ section#perfilUsuario .section-heading {
 
 #buscador .page-section{
   padding: 1em ;
+}
+
+/*Estilos para terminos y condiciones modal*/
+#terminos p{
+  text-align: justify;
 }

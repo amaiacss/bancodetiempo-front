@@ -67,8 +67,13 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(body)
       .pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
+        console.log(error.status)
         switch(error.status) {
           case 0:
+            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.');
+            this.buildForm()
+            break;
+          case 200:
             alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.');
             this.buildForm()
             break;

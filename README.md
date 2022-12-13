@@ -1,6 +1,13 @@
 # Banco del Tiempo - FRONT
-<h3>Importante</h3>
-<p>Para utilizar la app, es obligatorio <b>poner en marcha el servidor de el backend</b>. Las instrucciones las ha dejado Amaia en Slack.</p>
+
+<h3><b>Desplegado front</b></h3>
+<p>La url que se puede utilizar (también para el CORS) ya que será la definitiva, es:</p>
+<a href="https://bt-app-eus.web.app/">https://bt-app-eus.web.app/</a>
+<br></br>
+<span><i>***En adelante, no será necesario para el back descargar este repositorio para las pruebas, ya que la url pública está enlazada para despliegue continuo</i></span>
+
+<strike><h3>Importante</h3></strike>
+<strike><p>Para utilizar la app, es obligatorio <b>poner en marcha el servidor de el backend</b>. Las instrucciones las ha dejado Amaia en Slack.</p></strike>
 
 ## Actualizar repositorio local
 <p>Si siempre trabajas sobre la misma rama (ej. Nerea, Itziar), cada vez que se haya actualizado la rama master:</p>

@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidation } from 'src/app/pipes/customVal';
 import { UsersService } from 'src/app/services/users.service';
 import { catchError, Observable, of } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -62,7 +61,8 @@ export class RegisterComponent implements OnInit {
   register() {
     const body = {
       "email": this.registerForm.get('email')?.value,
-      "pass": this.registerForm.get('password')?.value
+      "pass": this.registerForm.get('password')?.value,
+      "username": "username"
     }
 
     this.userService.register(body)

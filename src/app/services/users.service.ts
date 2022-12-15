@@ -41,7 +41,7 @@ export class UsersService {
     return this.sessionData$.asObservable()
   }
 
-  register(body:{"email":string,"pass":string}): Observable<any>{
+  register(body:{"email":string,"pass":string,"username":string}): Observable<any>{
     return this.http.post(this.url+this.register_endpoint,body)
   }
 

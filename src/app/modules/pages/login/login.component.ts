@@ -59,14 +59,14 @@ export class LoginComponent implements OnInit {
           this.loginErrors.notRegistered=false
           this.loginErrors.passwordIncorrect= true
         }
-        if(res.verificado==0){
+        if(res.verified==0){
           alert('Usuario no verificado. Compruebe su email')
         }
         if(res.id===null){
           this.loginErrors.notRegistered=true
           this.loginErrors.passwordIncorrect= false
         }
-        if(res.id && res.verificado==1){
+        if(res.id && res.verified==1){
           this.loginErrors.notRegistered=false
           this.loginErrors.passwordIncorrect= false
           this.usersService.login(res.id)

@@ -25,6 +25,8 @@
         "title": "Izen eman",
         "emailLabel": "Emaila",
         "email_placeholder": "Zure emaila idatzi",
+        "usernameLabel": "Erabiltzailearen",
+        "username_placeholder": "Erabiltzaile izena",
         "passwordLabel": "Pasahitza",
         "password_placeholder": "Gutxienez zortzi karaktere, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
         "passVerifyLabel": "Errepikatu pasahitza",

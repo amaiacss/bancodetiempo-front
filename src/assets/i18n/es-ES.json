@@ -26,6 +26,8 @@
         "title": "Regístrate",
         "emailLabel": "Email",
         "email_placeholder": "Introduzca su email",
+        "usernameLabel": "Usuario",
+        "username_placeholder": "Nombre de usuario",
         "passwordLabel": "Contraseña",
         "password_placeholder": "Debe tener un mínimo de 8 dígitos, al menos una mayúscula, una minúscula y un número.",
         "passVerifyLabel": "Confirme contraseña",

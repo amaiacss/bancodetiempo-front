@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['',{updateOn: 'change', validators:[Validators.email]}],
-      password: ['',{updateOn:'change', validators:[CustomValidation.passwordPattern]}],
+      email: ['superuser@omnipresente.soy',{updateOn: 'change', validators:[Validators.email]}],
+      password: ['Aa123456',{updateOn:'change', validators:[CustomValidation.passwordPattern]}],
     })
   }
 
@@ -51,6 +51,13 @@ export class LoginComponent implements OnInit {
   }
 
   requestLogin() {
+    //DEV USER
+    if (this.loginForm.get('email')?.value==='superuser@omnipresente.soy'){
+      this.usersService.logSuperUserIn()
+      this.router.navigate(['/user/','9000'])
+    }
+
+    //TO DO - CLEAN
     if(this.loginForm.valid) {
       const data = this.loginForm.value
       this.usersService.requestLogin(data).subscribe(res => {

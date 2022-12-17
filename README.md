@@ -1,5 +1,10 @@
 # Banco del Tiempo - FRONT
 
+## Search Page
+<p>Implementada traducción</p>
+<p>Los Select cargan desde la BBDD</p>
+<p>He dejado una card de prueba para facilitar la vista</p>
+
 ## Creado SUPERUSER para pruebas
 <p>Por defecto, el formulario login lleva los datos de un usuario de prueba que se logue esté creado o no, validado o no con todos los permisos.</p>
 <p>Se le asigna el <b>id 9000</b>, estaría bien crear en ese archivo .sql de datos ese usuario con email <b>superuser@omnipresente.soy</b> | contraseña <b>Aa123456</b> | id <b> 9000</b> y ya validado. ¡Gracias!</p>

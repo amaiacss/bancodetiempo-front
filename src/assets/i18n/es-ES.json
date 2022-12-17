@@ -92,5 +92,17 @@
             "paragraph": "Si quieres participar en esta iniciativa no dudes en registrarte, tan solo te llevara un minuto poder compartir tu tiempo Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error tempore totam dolor alias at amet nostrum. Accusamus corporis alias vel accusantium, dignissimos doloremque nulla quisquam eos ratione id recusandae illum?",
             "button": "Regístrate"
         }
+    },
+    "search_page": {
+        "header": "Encuentra lo que necesitas",
+        "search_text": "Realiza una búsqueda",
+        "result_text": "Resultados: ",
+        "filters": {
+            "category": "Categoría",
+            "province": "Provincia",
+            "city": "Población",
+            "text_input_placeholder": "Escribe"
+        },
+        "search_button": "Buscar"
     }
 }

@@ -13,7 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 // import { UserComponent } from '../auth-navigation/user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CardComponent } from 'src/app/components/card/card.component';
 // import { BuscadorComponent } from '../auth-navigation/buscador/buscador.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -28,13 +28,13 @@ export function createTranslateLoader(http: HttpClient) {
     // UserComponent,
     RegisterComponent,
     LoginComponent,
+    CardComponent
     // BuscadorComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     FormsModule,
-    SharedModule,
     ReactiveFormsModule,
     
     TranslateModule.forChild({

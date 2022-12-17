@@ -10,9 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SharedModule } from './shared/shared.module';
-import { PagesModule } from './modules/pages/pages.module';
-import { AuthNavigationModule } from './modules/auth-navigation/auth-navigation.module';
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -28,7 +25,6 @@ export function HttpLoaderFactory(http:HttpClient){
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
@@ -40,7 +36,7 @@ export function HttpLoaderFactory(http:HttpClient){
       }
     })
   ],
-  exports: [FormsModule,ReactiveFormsModule,SharedModule,PagesModule,AuthNavigationModule],
+  exports: [FormsModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

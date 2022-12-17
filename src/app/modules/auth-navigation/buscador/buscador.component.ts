@@ -14,8 +14,11 @@ export class BuscadorComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
   searchresult:CardInfo[] = []
-  searchMessage:string = 'Realiza una búsqueda'
+  searchMessage:any = ['search_page.search_text','']
 
+  filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<any>,text:string} = {provinces:[],cities:[],categories:[],text:''}
+  filters: {city?:number,category?:number,text?:string} = {}
+  
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -38,15 +41,29 @@ export class BuscadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activitiesService.getCategories().subscribe({
+      next: (categories) => {this.filterElements.categories = categories}
+    })
+    this.activitiesService.getProvinces().subscribe({
+      next: (provinces) => {this.filterElements.provinces = provinces; console.log(provinces)}
+    })
     this.searchresult = this.activitiesService.getFilteredSearch()
   }
 
   initSearch() {
-    this.searchMessage = `Resultados de tu busqueda: ${this.searchresult.length}`
+    this.searchMessage = ['search_page.result_text',this.searchresult.length]
   }
 
   goToProfile(id:number | undefined){
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
+  }
+
+  filterCitiesSelect(event:any){
+      const id = event.target.value
+      this.activitiesService.getCitiesByProvince(id).subscribe({
+        next: (cities) => {this.filterElements.cities = cities}
+      })
+
   }
 
 }

@@ -1,39 +1,30 @@
 <section class="page-section" id="buscador">
     <div class="container">
-        <h2 class="section-heading text-center text-uppercase mt-5">Encuentra lo que necesitas</h2>
-    
-
-
+        <h2 class="section-heading text-center text-uppercase mt-5">{{'search_page.header' | translate}}</h2>
         <section class="page-section">
             <div class="input-group  selector">
                 <!--<label class="input-group-text" for="inputGroupSelect01">Options</label>-->
                 <select class="form-select me-3" id="inputGroupSelect01">
-                    <option selected>Categorias</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected value="0">{{'search_page.filters.category' | translate}}</option>
+                    <option *ngFor="let category of filterElements.categories" value="{{category.id}}">{{category.name}}</option>
                 </select>
-                <select class="form-select me-3" id="inputGroupSelect02">
-                    <option selected>Provincia</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select (change)="filterCitiesSelect($event)" class="form-select me-3" id="inputGroupSelect02">
+                    <option selected value="0">{{'search_page.filters.province' | translate}}</option>
+                    <option *ngFor="let province of filterElements.provinces" value="{{province.code}}">{{province.name}}</option>
                 </select>
                 <select class="form-select me-3" id="inputGroupSelect03">
-                    <option selected>Población</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected value="0">{{'search_page.filters.city' | translate}}</option>
+                    <option *ngFor="let city of filterElements.cities" value="{{city.id}}">{{city.name}}</option>
                 </select>
             
                 <form class="form-inline d-flex space">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="{{'search_page.filters.text_input_placeholder' | translate}}" aria-label="Search">
+                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">{{'search_page.search_button' | translate}}</button>
                 </form>
             </div>
         </section>
         <section class="page-section">
-            <p>{{searchMessage}}</p>
+            <p>{{(searchMessage[0] | translate)}} {{searchMessage[1]}}</p>
             <div class="row" id="portfolio">
                 <!-- Resultados búsqueda -->
                 <!-- Card item -->
@@ -110,7 +101,7 @@
 
 
 
-                <!-- Card para pruebas diseño -->
+                <!-- Card para pruebas de diseño -->
                 <h3 style="color:red;margin-top:300px;">Card para pruebas de diseño</h3>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->

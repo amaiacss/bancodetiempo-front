@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
     passwordIncorrect: false
   }
   fieldTextType: boolean
+  verificado: boolean
+  noVerificado:boolean
+  warning:boolean
 
   constructor(
     private translateService: TranslateService,
@@ -32,9 +35,20 @@ export class LoginComponent implements OnInit {
     });
     this.buildForm()
     this.fieldTextType = false
+    this.verificado = false
+    this.noVerificado = false
+    this.warning = false
   }
 
   ngOnInit(): void {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.has('verified')) {
+      const verified = urlParams.get('verified')
+      if(verified == 'ok') this.verificado = true
+      if(verified == 'error44') this.warning = true
+      if(verified == 'error') this.noVerificado = true
+    }
     
   }
 

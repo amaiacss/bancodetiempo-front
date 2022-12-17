@@ -1,44 +1,112 @@
 <section class="page-section" id="buscador">
     <div class="container">
-        <h2 class="section-heading text-center text-uppercase mt-5">Encuentra lo que necesitas</h2>
-    
-
-
+        <h2 class="section-heading text-center text-uppercase mt-5">{{'search_page.header' | translate}}</h2>
         <section class="page-section">
             <div class="input-group  selector">
                 <!--<label class="input-group-text" for="inputGroupSelect01">Options</label>-->
-                <select class="form-select me-3" id="inputGroupSelect01">
-                    <option selected>Categorias</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select (change)="setCategoryFilter($event)" class="form-select me-3" id="inputGroupSelect01">
+                    <option selected value="0">{{'search_page.filters.category' | translate}}</option>
+                    <option *ngFor="let category of filterElements.categories" value="{{category.id}}">{{category.name}}</option>
                 </select>
-                <select class="form-select me-3" id="inputGroupSelect02">
-                    <option selected>Provincia</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select (change)="setProvinceFilter($event)" class="form-select me-3" id="inputGroupSelect02">
+                    <option selected value="0">{{'search_page.filters.province' | translate}}</option>
+                    <option *ngFor="let province of filterElements.provinces" value="{{province.code}}">{{province.name}}</option>
                 </select>
-                <select class="form-select me-3" id="inputGroupSelect03">
-                    <option selected>Población</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <select (change)="setCityFilter($event)" class="form-select me-3" id="inputGroupSelect03">
+                    <option selected value="0">{{'search_page.filters.city' | translate}}</option>
+                    <option *ngFor="let city of filterElements.cities" value="{{city.code}}">{{city.name}}</option>
                 </select>
             
                 <form class="form-inline d-flex space">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit">Search</button>
+                    <input (change)="setTextFilter($event)" class="form-control mr-sm-2" type="search" placeholder="{{'search_page.filters.text_input_placeholder' | translate}}" aria-label="Search">
+                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">{{'search_page.search_button' | translate}}</button>
                 </form>
-            
             </div>
         </section>
         <section class="page-section">
+            <p>{{(searchMessage[0] | translate)}} {{searchMessage[1]}}</p>
             <div class="row" id="portfolio">
+                <!-- Resultados búsqueda -->
+                <!-- Card item -->
+                <div *ngFor="let card of searchresult" class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{card.id}}">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{card.image_src}}" alt="{{card.title}} image" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="col-2 col-md-3" (click)="goToProfile(card.transmitter_id)">
+                                <a>
+                                    <img src="{{card.transmitter_thumbnail}}" alt="user thumbnail" class="img-fluid rounded-circle">
+                                </a>
+                            </div>
+                            <div id="portfolioUsuarios" class="col-10 col-md-9">
+                                <p class="portfolio-caption-heading" (click)="goToProfile(card.transmitter_id)">{{card.transmitter_name}}</p>
+                                <p class="portfolio-caption-subheading text-muted text">{{card.date}}</p>
+                                <a class="portfolio-caption-subheading text-muted text" data-bs-toggle="modal" href="#portfolioModal{{card.id}}">{{card.title}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Modal-->
+                <div *ngFor="let card of searchresult" class="portfolio-modal modal fade" id="portfolioModal{{card.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <h2 class="text-uppercase">{{card.title}}</h2>
+                                        <p class="item-intro text-muted">{{card.transmitter_location}}</p>
+                                        <div class="modal-body cambio">
+                                            <!-- Project details-->
+                                            <div class="col-lg-6 col-sm-12 ">
+                                                <img class="img-fluid d-block mx-auto" src="{{card.image_src}}" alt="{{card.title}} image" />
+                                                <p class="text-start">{{card.description}}</p>
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <ul class="list-inline">
+                                                    <li class="mb-4">
+                                                        <strong>{{'home_page.sect2.modal_transmitter_title' | translate}} </strong>
+                                                        <a href="">{{card.transmitter_name}}</a>
+                                                    </li>
+                                                    <li>
+                                                        <div class="col-4 mx-auto" data-bs-dismiss="modal" (click)="goToProfile(card.transmitter_id)">
+                                                            <img class="img-fluid rounded-circle " src="{{card.transmitter_thumbnail}}"
+                                                                alt="{{card.transmitter_name}} thumbnail" />
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <strong>{{'home_page.sect2.modal_category_title' | translate}} </strong>
+                                                        #{{card.category}}
+                                                    </li>
+                                                </ul>
+                                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                                    type="button">
+                                                    {{'home_page.sect2.modal_button' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Card para pruebas de diseño -->
+                <h3 style="color:red;margin-top:300px;">Card para pruebas de diseño</h3>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="/#portfolioModal1">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="/#modalPrueba">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -50,40 +118,52 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                <!-- Portfolio Modal-->
+                <div class="portfolio-modal modal fade" id="modalPrueba" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption d-block ">
-                            <h5 class="portfolio-caption-subheading text-muted text-center ">22-08-2022</h5>
-                            <h5 class="portfolio-caption-subheading text-muted text-center">Clases de conducir</h5>
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <h2 class="text-uppercase">Titulo</h2>
+                                        <p class="item-intro text-muted">Localidad</p>
+                                        <div class="modal-body cambio">
+                                            <!-- Project details-->
+                                            <div class="col-lg-6 col-sm-12 ">
+                                                <img class="img-fluid d-block mx-auto" src="img.jpg" alt="imagen prueba" />
+                                                <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <ul class="list-inline">
+                                                    <li class="mb-4">
+                                                        <strong>{{'home_page.sect2.modal_transmitter_title' | translate}} </strong>
+                                                        <a href="">Nombre</a>
+                                                    </li>
+                                                    <li>
+                                                        <div class="col-4 mx-auto" data-bs-dismiss="modal" (click)="goToProfile(9000)">
+                                                            <img class="img-fluid rounded-circle " src="imagen.jpg"
+                                                                alt="imagen prueba" />
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <strong>#categoria</strong>#categoria
+                                                    </li>
+                                                </ul>
+                                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                                    type="button">
+                                                    {{'home_page.sect2.modal_button' | translate}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption d-block">
-                            <h5 class="portfolio-caption-subheading text-muted text-center">20-08-2022</h5>
-                            <h5 class="portfolio-caption-subheading text-muted text-center">Cuidado de animales</h5>
-                        </div>
-                    </div>
-                </div>
+                </div>                
             </div>
-
         </section>
     </div>
 </section>

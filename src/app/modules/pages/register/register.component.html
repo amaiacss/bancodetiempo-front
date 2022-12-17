@@ -31,6 +31,15 @@
                                 | translate}}</div>
                         </div>
                         <div class="form-group">
+                            <!-- Username input-->
+                            <label for="email">{{'register_page.usernameLabel' | translate}}</label>
+                            <input formControlName="username" class="form-control" id="username" type="text"
+                                placeholder="{{'register_page.username_placeholder' | translate}}"
+                            />
+                            <div *ngIf="registerForm.get('username')?.dirty &&  registerForm.get('username')?.hasError('required')" class="text-center text-danger mb-3">
+                                {{'register_page.required_error' | translate}}</div>
+                        </div>
+                        <div class="form-group">
                             <!-- Password input-->
                             <label for="password">{{'register_page.passwordLabel' | translate}}</label>
                             <input formControlName="password" class="form-control" id="password" type="password"

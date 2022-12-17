@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         email: ['',{updateOn: 'change', validators:[Validators.required,Validators.email]}],
+        username: ['', {updateOn: 'change', validators:[Validators.required]}],
         password: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
         matchingPass: ['',{updateOn:'change', validators:[Validators.required]}],
         adult: [true,{updateOn:'change',validators:[Validators.requiredTrue]}],
@@ -62,21 +63,13 @@ export class RegisterComponent implements OnInit {
     const body = {
       "email": this.registerForm.get('email')?.value,
       "pass": this.registerForm.get('password')?.value,
-      "username": "username"
+      "username": this.registerForm.get('username')?.value || 'username'
     }
 
     this.userService.register(body)
       .pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
         console.log(error.status)
         switch(error.status) {
-          case 0:
-            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.');
-            this.buildForm()
-            break;
-          case 200:
-            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.');
-            this.buildForm()
-            break;
           case 400:
             alert('Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.')
         }

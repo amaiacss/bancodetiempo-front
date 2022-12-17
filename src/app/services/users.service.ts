@@ -52,11 +52,16 @@ export class UsersService {
   }
 
   login(id: string) {
-    
-    this.sessionData$.next({
-      isLoged: true,
-      userData:{id:id}
+
+    this.findUserById(id).subscribe({
+      next: (res) => {
+        this.sessionData$.next({
+          isLoged: true,
+          userData:res
+        })
+      }
     })
+    
 
       localStorage.setItem('id',id)
 

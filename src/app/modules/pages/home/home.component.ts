@@ -13,7 +13,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
-  lastActivities:CardInfo[] = []
+  activities:CardInfo[] = []
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.lastActivities = this.activitiesService.getLastActivities()
+    this.activities = this.activitiesService.getLastActivities()
   }
 
 }

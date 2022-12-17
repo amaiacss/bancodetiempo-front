@@ -25,6 +25,8 @@
         "title": "Izen eman",
         "emailLabel": "Emaila",
         "email_placeholder": "Zure emaila idatzi",
+        "usernameLabel": "Erabiltzailearen",
+        "username_placeholder": "Erabiltzaile izena",
         "passwordLabel": "Pasahitza",
         "password_placeholder": "Gutxienez zortzi karaktere, gutxienez letra larri bat, letra xehe bat eta zenbaki bat",
         "passVerifyLabel": "Errepikatu pasahitza",
@@ -89,5 +91,17 @@
             "paragraph": "Ekimen honetan parte hartu nahi baduzu, eman zazu izen gurekin, minutu bat besterik ez duzu beharko zure denbora partekatu ahal izateko",
             "button": "Izen eman"
         }
+    },
+    "search_page": {
+        "header": "Aurkitu behar duzuna",
+        "search_text": "Hasi bilatzen",
+        "result_text": "Emaitzak: ",
+        "filters": {
+            "category": "Kategoria",
+            "province": "Probintzia",
+            "city": "Herria",
+            "text_input_placeholder": "Idatzi"
+        },
+        "search_button": "Bilatu"
     }
 }

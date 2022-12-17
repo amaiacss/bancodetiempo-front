@@ -14,7 +14,7 @@
                 <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="nav-item" (click)="goToProfilePage(userInfo.userData?.id)"><a class="nav-link">@username</a></li>
+                        <li class="nav-item" (click)="goToProfilePage(userInfo.userData?.id)"><a class="nav-link">@{{userInfo.userData?.username || 'username'}}</a></li>
                         <li class="nav-item" (click)="goToPreferencesPage()"><a class="nav-link">{{'nav_bar.preferencesLink' | translate}}</a></li>
                         <li class="nav-item" (click)="logout()"><a class="nav-link">{{'nav_bar.logoutLink' | translate}}</a></li>
                     </ul>

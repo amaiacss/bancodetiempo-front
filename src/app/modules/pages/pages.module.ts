@@ -36,6 +36,7 @@ export function createTranslateLoader(http: HttpClient) {
     PagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
     TranslateModule.forChild({
       defaultLanguage: 'es-ES',
       loader: {

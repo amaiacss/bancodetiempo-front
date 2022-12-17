@@ -59,7 +59,8 @@ export class ActivitiesService {
     return this.http.get(this.url + this.citiesByProvince_endpoint + id)
   }
 
-  getFilteredSearch(): CardInfo[]{
+  getFilteredSearch(filters:{province?:string,city?:string,category?:string,text?:string}): CardInfo[]{
+    console.log(filters)
     return this.filteredSearch
   }
 }

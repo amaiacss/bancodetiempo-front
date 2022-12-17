@@ -17,7 +17,7 @@ export class BuscadorComponent implements OnInit {
   searchMessage:any = ['search_page.search_text','']
 
   filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<any>,text:string} = {provinces:[],cities:[],categories:[],text:''}
-  filters: {city?:number,category?:number,text?:string} = {}
+  filters: {province?:string,city?:string,category?:string,text?:string} = {}
   
   constructor(
     private usersService: UsersService,
@@ -47,10 +47,11 @@ export class BuscadorComponent implements OnInit {
     this.activitiesService.getProvinces().subscribe({
       next: (provinces) => {this.filterElements.provinces = provinces; console.log(provinces)}
     })
-    this.searchresult = this.activitiesService.getFilteredSearch()
+    this.searchresult = this.activitiesService.getFilteredSearch(this.filters)
   }
 
   initSearch() {
+    this.activitiesService.getFilteredSearch(this.filters)
     this.searchMessage = ['search_page.result_text',this.searchresult.length]
   }
 
@@ -58,12 +59,27 @@ export class BuscadorComponent implements OnInit {
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
 
-  filterCitiesSelect(event:any){
+  setProvinceFilter(event:any){
       const id = event.target.value
+      this.filters.province = id
       this.activitiesService.getCitiesByProvince(id).subscribe({
         next: (cities) => {this.filterElements.cities = cities}
       })
+  }
 
+  setCategoryFilter(event:any) {
+    const id = event.target.value
+    this.filters.category = id
+  }
+
+  setCityFilter(event:any) {
+    const id = event.target.value
+    this.filters.city = id
+  }
+
+  setTextFilter(event:any) {
+    const text = event.target.value
+    this.filters.text = text
   }
 
 }

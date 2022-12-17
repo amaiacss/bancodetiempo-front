@@ -4,21 +4,21 @@
         <section class="page-section">
             <div class="input-group  selector">
                 <!--<label class="input-group-text" for="inputGroupSelect01">Options</label>-->
-                <select class="form-select me-3" id="inputGroupSelect01">
+                <select (change)="setCategoryFilter($event)" class="form-select me-3" id="inputGroupSelect01">
                     <option selected value="0">{{'search_page.filters.category' | translate}}</option>
                     <option *ngFor="let category of filterElements.categories" value="{{category.id}}">{{category.name}}</option>
                 </select>
-                <select (change)="filterCitiesSelect($event)" class="form-select me-3" id="inputGroupSelect02">
+                <select (change)="setProvinceFilter($event)" class="form-select me-3" id="inputGroupSelect02">
                     <option selected value="0">{{'search_page.filters.province' | translate}}</option>
                     <option *ngFor="let province of filterElements.provinces" value="{{province.code}}">{{province.name}}</option>
                 </select>
-                <select class="form-select me-3" id="inputGroupSelect03">
+                <select (change)="setCityFilter($event)" class="form-select me-3" id="inputGroupSelect03">
                     <option selected value="0">{{'search_page.filters.city' | translate}}</option>
-                    <option *ngFor="let city of filterElements.cities" value="{{city.id}}">{{city.name}}</option>
+                    <option *ngFor="let city of filterElements.cities" value="{{city.code}}">{{city.name}}</option>
                 </select>
             
                 <form class="form-inline d-flex space">
-                    <input class="form-control mr-sm-2" type="search" placeholder="{{'search_page.filters.text_input_placeholder' | translate}}" aria-label="Search">
+                    <input (change)="setTextFilter($event)" class="form-control mr-sm-2" type="search" placeholder="{{'search_page.filters.text_input_placeholder' | translate}}" aria-label="Search">
                     <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">{{'search_page.search_button' | translate}}</button>
                 </form>
             </div>

@@ -68,10 +68,14 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(body)
       .pipe(catchError((error: any, caught: Observable<any>): Observable<any> => {
-        console.log(error.status)
+        console.log(`Error: ${error.status}`)
         switch(error.status) {
           case 400:
             alert('Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.')
+            break;
+          case 200: //manejando el error 200 como success
+            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.')
+            this.buildForm()
         }
         // after handling error, return a new observable 
         // that doesn't emit any values and completes

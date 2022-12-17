@@ -38,10 +38,15 @@ export class BuscadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchresult = this.activitiesService.getFilteredSearch()
   }
 
   initSearch() {
-    this.searchMessage = `Resultados de tu busqueda: 0`
+    this.searchMessage = `Resultados de tu busqueda: ${this.searchresult.length}`
+  }
+
+  goToProfile(id:number | undefined){
+    id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
 
 }

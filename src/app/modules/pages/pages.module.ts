@@ -27,15 +27,16 @@ export function createTranslateLoader(http: HttpClient) {
     // PreferencesComponent,
     // UserComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
     // BuscadorComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     SharedModule,
+    ReactiveFormsModule,
+    
     TranslateModule.forChild({
       defaultLanguage: 'es-ES',
       loader: {

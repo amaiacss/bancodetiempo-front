@@ -24,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
   ],
   exports: [
     CardComponent
-  ]
+  ],
+  providers: [CardComponent]
 })
 export class SharedModule { }

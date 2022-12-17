@@ -11,7 +11,7 @@ import { CardInfo } from 'src/app/models/activities';
 export class CardComponent implements OnInit {
   @Input() isLoged!: boolean
   @Input() userId!:string | undefined | null
-  @Input() lastActivities: CardInfo[] = []
+  @Input() activities: CardInfo[] = []
   constructor(
     private translateService: TranslateService,
     private router: Router

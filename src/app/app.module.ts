@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -36,7 +37,7 @@ export function HttpLoaderFactory(http:HttpClient){
       }
     })
   ],
-  exports: [FormsModule,ReactiveFormsModule],
+  exports: [FormsModule,ReactiveFormsModule,SharedModule],
   providers: [],
   bootstrap: [AppComponent]
 })

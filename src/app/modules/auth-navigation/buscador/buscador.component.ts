@@ -14,6 +14,7 @@ export class BuscadorComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
   searchresult:CardInfo[] = []
+  searchMessage:string = 'Realiza una búsqueda'
 
   constructor(
     private usersService: UsersService,
@@ -25,7 +26,6 @@ export class BuscadorComponent implements OnInit {
       this.translateService.use(event.lang);
     })
     this.usersService.getSessionData().subscribe(response => {
-      console.log(response)
       this.userId = response.userData?.id || localStorage.getItem('id')
       if(this.userId) {
         this.isLoged = true
@@ -38,6 +38,10 @@ export class BuscadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  initSearch() {
+    this.searchMessage = `Resultados de tu busqueda: 0`
   }
 
 }

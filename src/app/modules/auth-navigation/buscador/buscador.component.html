@@ -28,13 +28,18 @@
             
                 <form class="form-inline d-flex space">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">Search</button>
                 </form>
-            
             </div>
         </section>
         <section class="page-section">
+            <p>{{searchMessage}}</p>
             <div class="row" id="portfolio">
+                <!-- <app-card class="row" [activities]="searchResult" [isLoged]="isLoged" [userId]="userId"></app-card> -->
+
+
+
+
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->
                     <div class="portfolio-item">

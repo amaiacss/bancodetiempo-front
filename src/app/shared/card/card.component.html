@@ -1,5 +1,5 @@
 <!-- Portfolio item 1-->
-<div *ngFor="let card of lastActivities" class="col-lg-4 col-sm-6 mb-4">
+<div *ngFor="let card of activities" class="col-lg-4 col-sm-6 mb-4">
     <div class="portfolio-item">
         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{card.id}}">
             <div class="portfolio-hover">
@@ -23,7 +23,7 @@
 </div>
 
 <!-- Portfolio Modals-->
-<div *ngFor="let card of lastActivities" class="portfolio-modal modal fade" id="portfolioModal{{card.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+<div *ngFor="let card of activities" class="portfolio-modal modal fade" id="portfolioModal{{card.id}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />

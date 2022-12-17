@@ -1,6 +1,15 @@
 <section class="page-section" id="registro">
     <div class="container d-flex justify-content-center" id="registroContainer">
         <div class="col-lg-6 col-sm-12 col-12">
+            <div class="alert alert-success mt-5" role="alert" *ngIf="verificado">
+                <strong>Email verificado correctamente. Inicia sesión.</strong>
+            </div>
+            <div class="alert alert-danger mt-5" role="alert" *ngIf="noVerificado">
+                <strong>No se ha podido verificar tu email. Contacta con nosotros.</strong>
+            </div>
+            <div class="alert alert-warning mt-5" role="alert" *ngIf="warning">
+                <strong>El email ya ha sido verificado anteriormente. Puedes iniciar sesión.</strong>
+            </div>
             <form [formGroup]="loginForm" id="registerForm">
                 <h2 class="section-heading text-uppercase text-center mt-md-5 mb-md-4">{{'login_page.title' |
                     translate}}</h2>

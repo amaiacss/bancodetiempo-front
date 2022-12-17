@@ -28,6 +28,7 @@ export class UsersService {
     
   ) { 
     this.url="http://localhost:8080/api"
+    // this.url = "http://bancodetiempo.alwaysdata.net/api"
     this.login_endpoint="/user/login"
     this.register_endpoint = "/user/create"
     this.user_endpoint="/user/find/"
@@ -59,6 +60,15 @@ export class UsersService {
 
       localStorage.setItem('id',id)
 
+  }
+
+  logSuperUserIn(){ //DEV MODE
+    this.sessionData$.next({
+      isLoged: true,
+      userData:{id:'9000'}
+    })
+
+      localStorage.setItem('id','9000')
   }
 
   logout() {

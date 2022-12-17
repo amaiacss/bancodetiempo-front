@@ -1,7 +1,13 @@
 # Banco del Tiempo - FRONT
 
+## Creado SUPERUSER para pruebas
+<p>Por defecto, el formulario login lleva los datos de un usuario de prueba que se logue esté creado o no, validado o no con todos los permisos.</p>
+<p>Se le asigna el <b>id 9000</b>, estaría bien crear en ese archivo .sql de datos ese usuario con email <b>superuser@omnipresente.soy</b> | contraseña <b>Aa123456</b> | id <b> 9000</b> y ya validado. ¡Gracias!</p>
+<img src='https://user-images.githubusercontent.com/77671360/208103465-c7512d6b-7b47-4270-8e31-5699057b2a64.png' style='width:200px;'/>
+<img src='https://user-images.githubusercontent.com/77671360/208103536-f3348681-7997-400a-9301-6de05f7ac562.png' style='width:300px;'/>
+
 <h3><b>Desplegado front</b></h3>
-<p>La url que se puede visualizar el front desplegado es:</p>
+<p>La url en la que se puede visualizar el front desplegado es:</p>
 <a href="https://bt-app-eus.web.app/">https://bt-app-eus.web.app/</a>
 
 <h3>Importante <b>Front</b></h3>

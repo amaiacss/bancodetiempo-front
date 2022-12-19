@@ -1,5 +1,11 @@
 # Banco del Tiempo - FRONT
 
+## Profile page
+<p>Implementada traducción</p>
+<p>Preparada funcionalidad para carga dinámica <span><i> Dejo card para pruebas de diseño</i></span></p>
+<p>Agregada opción de cambio de avatar (sin persistencia BBDD)</p>
+<p>Enlace a página de edición de perfil</p>
+
 ## Search Page
 <p>Implementada traducción</p>
 <p>Los Select cargan desde la BBDD</p>

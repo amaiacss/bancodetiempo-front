@@ -11916,8 +11916,10 @@ section#newActivityPage form#newActivityForm label {
 
 section#perfil form#perfilForm .form-group input,
 section#perfil form#perfilForm .form-group textarea,
+section#perfil form#perfilForm .form-group select,
 section#newActivityPage form#newActivityForm .form-group input,
-section#newActivityPage form#newActivityForm .form-group textarea {
+section#newActivityPage form#newActivityForm .form-group textarea,
+section#newActivityPage form#newActivityForm .form-group select {
   padding: 1.25rem;
 }
 

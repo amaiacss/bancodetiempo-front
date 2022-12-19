@@ -103,5 +103,16 @@
             "text_input_placeholder": "Idatzi"
         },
         "search_button": "Bilatu"
+    },
+    "profile_page": {
+        "title": "Profila",
+        "edit_profile_btn": "Profila aldatu",
+        "balance": "Oreka",
+        "publications_tab": "Argitalpenak",
+        "interactions_tab": "Elkarrekintzak",
+        "publications_title": "Zure jarduerak",
+        "interactions_title": "Zure elkarrekintzak",
+        "new_activitie_span": "Jarduera berria",
+        "activities_text": "jarduera argitaratuak"
     }
 }

@@ -1,20 +1,20 @@
 <!-- PerfilUsuario Heather-->
 <section class="page-section" id="perfilUsuario">
     <div class="container">     
-        <h2 class="text-muted p-3">Mi cuenta</h2>
+        <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header"> 
                     <div class="profile"><img src="https://bootstrapious.com/i/snippets/sn-profile/teacher.jpg" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                         <div >
-                            <a href="#" class="btn btn-secondary mb-2">Editar perfil</a> 
+                            <a href="#" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
                             <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
                         </div>                                
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
-                        <h4 class="mt-0 mb-0">Manuella Tarly</h4>
-                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>San Farcisco</p>
+                        <h4 class="mt-0 mb-0">Name</h4>
+                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>Location</p>
                     </div>                            
                 </div>                        
             </div>
@@ -25,13 +25,13 @@
                 <ul class="list-inline mb-0">     
                                                
                     <li class="list-inline-item">
-                        <h4 class="font-weight-bold mb-2 d-block">Transacciones</h4>
+                        <h4 class="font-weight-bold mb-2 d-block">{{'profile_page.balance' | translate}}</h4>
                         <div class="d-flex align-items-center">
                             <span class="fa-stack fa-1x">
                                 <i class="fas fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
                             </span>  
-                            <h4 class="mb-0 text-muted text-center p-1">4 Horas</h4> 
+                            <h4 class="mb-0 text-muted text-center p-1">X Horas</h4> 
                         </div>
                         
                         
@@ -56,34 +56,19 @@
            
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">Publicaciones</button>
-                <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">Interacciones</button>
+                <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
+                <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
             </div>
         </nav>
                    
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active py-4 px-4" id="nav-publicaciones" role="tabpanel" aria-labelledby="nav-publicaciones-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Publicaciones</h5>
+                    <h5 class="mb-0">{{'profile_page.publications_title' | translate}}</h5>
                 </div>
-                <div class="btn-row"><span>Nueva actividad </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
+                <div class="btn-row"><span>{{'profile_page.new_activitie_span' | translate}} </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
+                <p></p>
                 <div class="row" id="portfolio">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 1-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="/#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt=".." />
-                            </a>
-                            <div class="portfolio-caption d-block">                                                              
-                                <h5 class="portfolio-caption-subheading text-muted text-center">20-08-2022</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">Cuidado de animales</h5>                               
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
@@ -99,29 +84,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption d-block">                                  
-                                <h5 class="portfolio-caption-subheading text-muted text-center">20-08-2022</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">Cuidado de animales</h5>                               
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>  
                                  
              <!--Interacciones-->           
             <div class="tab-pane fade py-4 px-4" id="nav-interacciones" role="tabpanel" aria-labelledby="nav-interacciones-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Interacciones</h5>
+                    <h5 class="mb-0">{{'profile_page.interactions_title' | translate}}</h5>
                 </div>
                 <div class="row">
                     <div class="col"> 
@@ -130,7 +99,29 @@
                     </div>
                     
                 </div>
-            </div>                        
+            </div>
+            
+
+
+            <h3 style="color:red;margin-top:300px;">Card para pruebas de diseño</h3>
+            <div class="row" id="portfolio">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 2-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption d-block ">
+                            <h5 class="portfolio-caption-subheading text-muted text-center ">22-08-2022</h5>
+                            <h5 class="portfolio-caption-subheading text-muted text-center">Clases de conducir</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>       
     </div>           
 </section>

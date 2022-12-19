@@ -73,6 +73,7 @@ export class UsersService {
       isLoged: true,
       userData:{id:'9000',username:'superuser'}
     })
+    localStorage.setItem('id','9000')
   }
 
   logout() {

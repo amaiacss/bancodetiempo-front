@@ -32,11 +32,11 @@ export class UserComponent implements OnInit {
       .subscribe(params => {
         this.selectedProfile = params["profile"]
     })
-    if(this.userId === this.selectedProfile){
-      this.canEdit = true
-    }else {
-      this.canEdit = false
-    }
+      if(this.userId === this.selectedProfile){
+        this.canEdit = true
+      }else {
+        this.canEdit = false
+      }
         this.router.navigate([`/user/${this.userId}/profile/${this.selectedProfile}`])
       }else{
         this.isLoged = false

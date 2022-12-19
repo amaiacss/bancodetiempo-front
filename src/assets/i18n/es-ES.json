@@ -104,5 +104,16 @@
             "text_input_placeholder": "Escribe"
         },
         "search_button": "Buscar"
+    },
+    "profile_page": {
+        "title": "Perfil",
+        "edit_profile_btn": "Editar Perfil",
+        "balance": "Saldo",
+        "publications_tab": "Publicaciones",
+        "interactions_tab": "Interacciones",
+        "publications_title": "Tus actividades",
+        "interactions_title": "Tus interacciones",
+        "new_activitie_span": "Nueva actividad",
+        "activities_text": "actividades publicadas"
     }
 }

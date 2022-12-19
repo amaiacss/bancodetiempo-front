@@ -6,11 +6,28 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header"> 
-                    <div class="profile"><img src="https://bootstrapious.com/i/snippets/sn-profile/teacher.jpg" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                        <div >
-                            <a href="#" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
-                            <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
-                        </div>                                
+                    <div class="profile">
+                        <div class="img-container">
+                            <img src="{{userThumbnail}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                            <svg *ngIf="canEdit" (click)="showThumbnails()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                            </svg>
+                        <div [ngClass]="{'thumbnailModal': true, 'showModal' : showModal === true, 'hide': showModal === false }" class="thumbnailModal showModal">
+                            <header>
+                                <h2>Choose Avatar</h2>
+                                <button (click)="closeModal()">X</button>
+                            </header>
+                            <div class="thumbnailContainer">
+                                <div *ngFor="let avatar of avatarUrls; let i = index" (click)="changeAvatar(i)">
+                                    <img src={{avatar}} alt="">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    <div *ngIf="canEdit">
+                        <a href="#" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
+                        <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
+                    </div>                                
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">Name</h4>
@@ -66,7 +83,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">{{'profile_page.publications_title' | translate}}</h5>
                 </div>
-                <div class="btn-row"><span>{{'profile_page.new_activitie_span' | translate}} </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
+                <div *ngIf="canEdit" class="btn-row"><span>{{'profile_page.new_activitie_span' | translate}} </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
                 <p>{{profileActivities.length}} {{'profile_page.activities_text' | translate}}</p>
                 <div class="row" id="portfolio">
                     <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">

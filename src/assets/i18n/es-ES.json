@@ -111,8 +111,8 @@
         "balance": "Saldo",
         "publications_tab": "Publicaciones",
         "interactions_tab": "Interacciones",
-        "publications_title": "Tus actividades",
-        "interactions_title": "Tus interacciones",
+        "publications_title": "Actividades publicadas",
+        "interactions_title": "Interacciones realizadas",
         "new_activitie_span": "Nueva actividad",
         "activities_text": "actividades publicadas"
     }

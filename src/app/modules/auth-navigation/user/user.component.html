@@ -67,10 +67,10 @@
                     <h5 class="mb-0">{{'profile_page.publications_title' | translate}}</h5>
                 </div>
                 <div class="btn-row"><span>{{'profile_page.new_activitie_span' | translate}} </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
-                <p></p>
+                <p>{{profileActivities.length}} {{'profile_page.activities_text' | translate}}</p>
                 <div class="row" id="portfolio">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
+                    <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <div class="portfolio-hover">
@@ -92,10 +92,10 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">{{'profile_page.interactions_title' | translate}}</h5>
                 </div>
+                <p>Result: {{profileInteractions.length}}</p>
                 <div class="row">
                     <div class="col"> 
-                        <p>Manuela ha conseguido 2 horas cuidando perros</p>
-                        <p>Mikel te ha solicitado ayuda con clases de conducir</p>
+                        <p *ngFor="let interaction of profileInteractions"></p>
                     </div>
                     
                 </div>

@@ -25,7 +25,7 @@
                         </div>
                       </div>
                     <div *ngIf="canEdit">
-                        <a href="#" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
+                        <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
                         <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
                     </div>                                
                     </div>                           

@@ -78,6 +78,10 @@ export class UserComponent implements OnInit {
     }
   }
 
+  gotToConfigurationPage() {
+    this.router.navigate([`/user/${this.userId}/preferences`])
+  }
+
   showThumbnails() {
     this.showModal = true
   }

@@ -53,17 +53,23 @@
                     </div>
                     <div class="form-group">
                         <!-- provincia input-->
-                        <label for="provincia">Provincia</label>
-                        <input class="form-select" id="provincia" type="text" placeholder="Provincia" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="provincia:required">A ubicacion is required.</div>
+                        <label for="province">Provincia</label>
+                        <select class="form-select" id="province" type="text" placeholder="Provincia *" data-sb-validations="required" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                        </select>
+                        <div class="invalid-feedback" data-sb-feedback="province:required">A ubicacion is required.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- población input-->
-                        <label for="poblacion">Población</label>
-                        <input class="form-select" id="poblacion" type="text" placeholder="Poblacion" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="poblacion:required">A ubicacion is required.</div>
+                        <label for="cities">Población</label>
+                        <select class="form-select" id="cities" type="text" placeholder="Población *" data-sb-validations="required" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                        </select>
+                        <div class="invalid-feedback" data-sb-feedback="cities:required"></div>
                     </div>
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->

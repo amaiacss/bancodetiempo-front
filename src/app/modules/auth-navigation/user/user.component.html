@@ -1,20 +1,37 @@
 <!-- PerfilUsuario Heather-->
 <section class="page-section" id="perfilUsuario">
     <div class="container">     
-        <h2 class="text-muted p-3">Mi cuenta</h2>
+        <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header"> 
-                    <div class="profile"><img src="https://bootstrapious.com/i/snippets/sn-profile/teacher.jpg" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                        <div >
-                            <a href="#" class="btn btn-secondary mb-2">Editar perfil</a> 
-                            <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
-                        </div>                                
+                    <div class="profile">
+                        <div class="img-container">
+                            <img src="{{userThumbnail}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                            <svg *ngIf="canEdit" (click)="showThumbnails()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                            </svg>
+                        <div [ngClass]="{'thumbnailModal': true, 'showModal' : showModal === true, 'hide': showModal === false }" class="thumbnailModal showModal">
+                            <header>
+                                <h2>Choose Avatar</h2>
+                                <button (click)="closeModal()">X</button>
+                            </header>
+                            <div class="thumbnailContainer">
+                                <div *ngFor="let avatar of avatarUrls; let i = index" (click)="changeAvatar(i)">
+                                    <img src={{avatar}} alt="">
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    <div *ngIf="canEdit">
+                        <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
+                        <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
+                    </div>                                
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
-                        <h4 class="mt-0 mb-0">Manuella Tarly</h4>
-                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>San Farcisco</p>
+                        <h4 class="mt-0 mb-0">Name</h4>
+                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>Location</p>
                     </div>                            
                 </div>                        
             </div>
@@ -25,13 +42,13 @@
                 <ul class="list-inline mb-0">     
                                                
                     <li class="list-inline-item">
-                        <h4 class="font-weight-bold mb-2 d-block">Transacciones</h4>
+                        <h4 class="font-weight-bold mb-2 d-block">{{'profile_page.balance' | translate}}</h4>
                         <div class="d-flex align-items-center">
                             <span class="fa-stack fa-1x">
                                 <i class="fas fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
                             </span>  
-                            <h4 class="mb-0 text-muted text-center p-1">4 Horas</h4> 
+                            <h4 class="mb-0 text-muted text-center p-1">X Horas</h4> 
                         </div>
                         
                         
@@ -56,35 +73,21 @@
            
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">Publicaciones</button>
-                <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">Interacciones</button>
+                <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
+                <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
             </div>
         </nav>
                    
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active py-4 px-4" id="nav-publicaciones" role="tabpanel" aria-labelledby="nav-publicaciones-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Publicaciones</h5>
+                    <h5 class="mb-0">{{'profile_page.publications_title' | translate}}</h5>
                 </div>
+                <div *ngIf="canEdit" class="btn-row"><span>{{'profile_page.new_activitie_span' | translate}} </span><button id="new-activity-btn" (click)="goToNewActivitiePage()">+</button></div>
+                <p>{{profileActivities.length}} {{'profile_page.activities_text' | translate}}</p>
                 <div class="row" id="portfolio">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 1-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="/#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt=".." />
-                            </a>
-                            <div class="portfolio-caption d-block">                                                              
-                                <h5 class="portfolio-caption-subheading text-muted text-center">20-08-2022</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">Cuidado de animales</h5>                               
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
+                    <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <div class="portfolio-hover">
@@ -98,38 +101,44 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption d-block">                                  
-                                <h5 class="portfolio-caption-subheading text-muted text-center">20-08-2022</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">Cuidado de animales</h5>                               
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>  
                                  
              <!--Interacciones-->           
             <div class="tab-pane fade py-4 px-4" id="nav-interacciones" role="tabpanel" aria-labelledby="nav-interacciones-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Interacciones</h5>
+                    <h5 class="mb-0">{{'profile_page.interactions_title' | translate}}</h5>
                 </div>
+                <p>Result: {{profileInteractions.length}}</p>
                 <div class="row">
                     <div class="col"> 
-                        <p>Manuela ha conseguido 2 horas cuidando perros</p>
-                        <p>Mikel te ha solicitado ayuda con clases de conducir</p>
+                        <p *ngFor="let interaction of profileInteractions"></p>
                     </div>
                     
                 </div>
-            </div>                        
+            </div>
+            
+
+
+            <h3 style="color:red;margin-top:300px;">Card para pruebas de diseño</h3>
+            <div class="row" id="portfolio">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 2-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                        </a>
+                        <div class="portfolio-caption d-block ">
+                            <h5 class="portfolio-caption-subheading text-muted text-center ">22-08-2022</h5>
+                            <h5 class="portfolio-caption-subheading text-muted text-center">Clases de conducir</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>       
     </div>           
 </section>

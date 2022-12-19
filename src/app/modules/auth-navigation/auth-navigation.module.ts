@@ -9,7 +9,7 @@ import { AuthNavigationRoutingModule } from './auth-navigation-routing.module';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { UserComponent } from './user/user.component';
-import { RegisterAdComponent } from './register-ad/register-ad.component';
+import { NewActivityComponent } from './new-activity/new-activity.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n', '.json');
@@ -21,7 +21,7 @@ export function createTranslateLoader(http: HttpClient) {
     BuscadorComponent,
     PreferencesComponent,
     UserComponent,
-    RegisterAdComponent
+    NewActivityComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,84 @@
+.btn-row {
+    padding-block: 5px;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+button#new-activity-btn {
+    background: none; 
+    border: none;
+    background-color:#ffc800;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:2rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 0;
+}
+
+div.img-container {
+    position:relative;
+}
+
+svg.bi.bi-pen{
+    position:absolute;
+    width:30px;
+    height:30px;
+    top:5px;
+    right:5px;
+    z-index:1;
+    cursor:pointer;
+}
+
+.hide {
+    display:none;
+}
+
+.showModal {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top:0;
+    width: 80vw;
+    background-color:white;
+}
+
+.showModal > header {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 5px;
+}
+
+.showModal > header > button {
+    display:flex;
+    justify-content:center;
+    background: none;
+    border: none;
+    color: grey;
+    font-family: arial, sans-serif;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.thumbnailContainer {
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows:5rem;
+    grid-template-columns: repeat(auto-fill,minmax(10rem,1fr));
+    overflow-y:scroll !important;
+    background-color:rgba(0, 0, 255, 0.292);
+    padding:10px;
+}
+
+.thumbnailContainer>div>img{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+}

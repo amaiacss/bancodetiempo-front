@@ -32,6 +32,9 @@ export class ActivitiesService {
     // {id:6, image_src: 'assets/img/portfolio/1.jpg',transmitter_thumbnail:'assets/img/team/1.jpg',transmitter_name:'Juan Palomo',transmitter_id:5,date:'20-08-2022',transmitter_location: 'Tolosa',title:'Veterinario',description:'Descripción del anuncio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!', category:'Salud'}
   ]
 
+  private profileActivities: CardInfo[] = []
+  private profileInteractions: [] = []
+
   constructor(
     private http:HttpClient
   ) { 
@@ -45,6 +48,14 @@ export class ActivitiesService {
 
   getLastActivities(): CardInfo[] {
     return this.lastActivities
+  }
+
+  getProfileActivities(userId:string): CardInfo[] {
+    return this.profileActivities
+  }
+
+  getProfileInteractions(userId:string) {
+    return this.profileInteractions
   }
 
   getCategories(): Observable<any>{

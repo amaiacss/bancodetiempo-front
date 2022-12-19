@@ -68,12 +68,11 @@ export class UsersService {
   }
 
   logSuperUserIn(){ //DEV MODE
+
     this.sessionData$.next({
       isLoged: true,
-      userData:{id:'9000'}
+      userData:{id:'9000',username:'superuser'}
     })
-
-      localStorage.setItem('id','9000')
   }
 
   logout() {

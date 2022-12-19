@@ -1,0 +1,23 @@
+.btn-row {
+    padding-block: 5px;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+button#new-activity-btn {
+    background: none; 
+    border: none;
+    background-color:#ffc800;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:2rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 0;
+}

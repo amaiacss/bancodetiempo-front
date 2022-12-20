@@ -16,7 +16,7 @@ export class BuscadorComponent implements OnInit {
   searchresult:CardInfo[] = []
   searchMessage:any = ['search_page.search_text','']
 
-  filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<any>,text:string} = {provinces:[],cities:[],categories:[],text:''}
+  filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<{id:string,name:string}>,text:string} = {provinces:[],cities:[],categories:[],text:''}
   filters: {province?:string,city?:string,category?:string,text?:string} = {}
   
   constructor(
@@ -27,6 +27,7 @@ export class BuscadorComponent implements OnInit {
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
+      this.loadCategoriesSelect(event.lang)
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
@@ -38,14 +39,13 @@ export class BuscadorComponent implements OnInit {
         this.router.navigate(['/'])
       }
     })
+    
   }
 
   ngOnInit(): void {
-    this.activitiesService.getCategories().subscribe({
-      next: (categories) => {this.filterElements.categories = categories}
-    })
+    
     this.activitiesService.getProvinces().subscribe({
-      next: (provinces) => {this.filterElements.provinces = provinces; console.log(provinces)}
+      next: (provinces) => {this.filterElements.provinces = provinces;}
     })
     this.searchresult = this.activitiesService.getFilteredSearch(this.filters)
   }
@@ -65,6 +65,28 @@ export class BuscadorComponent implements OnInit {
       this.activitiesService.getCitiesByProvince(id).subscribe({
         next: (cities) => {this.filterElements.cities = cities}
       })
+  }
+
+  loadCategoriesSelect(lang:string){
+    console.log('switched to', lang)
+    this.activitiesService.getCategories().subscribe({
+      next: (categories:[{id:string,name_es:string,name_eu:string}]) => {
+        switch(lang){
+          case 'es-ES':
+            this.filterElements.categories = []
+            categories.forEach(category => {
+              this.filterElements.categories.push({id:category.id,name:category.name_es})
+            })
+            break;
+          case 'eus-EUS':
+            this.filterElements.categories = []
+            categories.forEach(category => {
+              this.filterElements.categories.push({id:category.id,name:category.name_eu})
+            })
+            break;
+        }
+      }
+    })
   }
 
   setCategoryFilter(event:any) {

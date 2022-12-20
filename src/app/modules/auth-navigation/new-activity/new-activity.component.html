@@ -1,1 +1,68 @@
-<p style="margin-top:100px;">register-ad works!</p>
+<!-- PerfilEditado-->
+<section class="page-section bg-light"  id="newActivityPage">
+    <div class="container">     
+        <h2 class="text-muted p-3">Registrar actividad</h2>
+        <!--CABECERA DE USUARIO-->
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-5 bg-dark">
+                <div class="media d-flex align-items-end profile-header w-75"> 
+                    <div class="profile"><img src="assets/img/avatar.jpg" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                                                
+                    </div>                           
+                    <div class="media-body mb-5 ms-3 text-white align-items-center">
+                        <h4 class="mt-0 mb-0">Manuella Tarly</h4>
+                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>San Farcisco</p>
+                    </div>                                                  
+                </div>                 
+            </div>
+            <div class="bg-light p-4 d-flex aling-items-center justify-content-end ">             
+                <ul class="list-inline mb-0">                                               
+                    <li class="list-inline-item">
+                        <h4 class="font-weight-bold mb-2 d-block">{{'profile_page.balance' | translate}}</h4>
+                        <div class="d-flex align-items-center">
+                            <span class="fa-stack fa-1x">
+                                <i class="fas fa-circle fa-stack-2x text-secondary"></i>
+                                <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
+                            </span>  
+                            <h4 class="mb-0 text-muted text-center p-1">X Horas</h4> 
+                        </div>
+                    </li>
+                </ul>                
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <form id="newActivityForm" data-sb-form-api-token="API_TOKEN">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <!-- Titulo input-->
+                        <label for="tittle">Titulo</label>
+                        <input class="form-control" id="tittle" type="text" placeholder="Título *" data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="tittle:required">El campo título es obligatorio</div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Categoria input-->
+                        <label for="category">Categoria</label>
+                        <select class="form-select" id="category" type="text" placeholder="Categoría *" data-sb-validations="required" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                        </select>
+                        <div class="invalid-feedback" data-sb-feedback="category:required">Debe seleccionar una categoría</div>
+                    </div>
+                    <div class="form-group form-group-textarea ">
+                        <!-- Descripción input-->
+                        <label for="description">Descripción</label>
+                        <textarea class="form-control" id="description" placeholder="Descripción *" data-sb-validations="required"></textarea>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">El campo descripción no puede estar vacio</div>
+                    </div>
+                </div>                
+            </div>
+            
+        </form>
+        <!-- Submit Button-->
+        <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase mt-5" id="submitButton" type="submit">Publicar actividad</button></div>
+    </div>
+</section>

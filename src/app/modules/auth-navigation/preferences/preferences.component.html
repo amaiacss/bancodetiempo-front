@@ -1,7 +1,7 @@
 <!-- PerfilEditado-->
 <section class="page-section bg-light" id="perfil">
     <div class="container">     
-    <h2 class="text-muted p-3">Editar perfil</h2>
+        <h2 class="text-muted p-3">Editar perfil</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
@@ -29,7 +29,7 @@
         <!-- To make this form functional, sign up at-->
         <!-- https://startbootstrap.com/solution/contact-forms-->
         <!-- to get an API token!-->
-        <div class="container mt-5 ">
+    <div class="container mt-5 ">
         <form id="perfilForm" data-sb-form-api-token="API_TOKEN">
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
@@ -52,13 +52,25 @@
                         
                     </div>
                     <div class="form-group">
-                        <!-- ubicación input-->
-                        <label for="ubicacion">Ubicación</label>
-                        <input class="form-control" id="ubicacion" type="text" placeholder="Ubicación *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="ubicacion:required">A ubicacion is required.</div>
+                        <!-- provincia input-->
+                        <label for="province">Provincia</label>
+                        <select class="form-select" id="province" type="text" placeholder="Provincia *" data-sb-validations="required" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                        </select>
+                        <div class="invalid-feedback" data-sb-feedback="province:required">A ubicacion is required.</div>
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- población input-->
+                        <label for="cities">Población</label>
+                        <select class="form-select" id="cities" type="text" placeholder="Población *" data-sb-validations="required" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                        </select>
+                        <div class="invalid-feedback" data-sb-feedback="cities:required"></div>
+                    </div>
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
                         <label for="descripcion">Descripción</label>

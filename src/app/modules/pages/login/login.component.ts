@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   requestLogin() {
     //DEV USER
     if (this.loginForm.get('email')?.value==='superuser@omnipresente.soy'){
-      this.usersService.logSuperUserIn()
+      this.usersService.login('9000')
       this.router.navigate(['/user/','9000'])
     }
 

@@ -33,7 +33,9 @@ export class NavBarComponent implements OnInit {
   }
 
   pickLanguage(e:any){
+    console.log(e.target.value)
     this.translateService.use(e.target.value)
+    localStorage.setItem('lang',e.target.value)
   }
 
   goToHomePage(){

@@ -55,7 +55,7 @@
     </div>
 </section>
 <!--Seccion de registro de usuario-->
-<section class="page-section">
+<section *nfIf="!isLogged" class="page-section">
     <div class="container" id="participate">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">{{'home_page.sect3.title' | translate}}</h2>            

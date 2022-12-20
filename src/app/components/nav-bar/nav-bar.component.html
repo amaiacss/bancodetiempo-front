@@ -9,7 +9,7 @@
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">                
                 <li class="nav-item"><a class="nav-link" (click)="goToServices()">{{'nav_bar.servicesLink' | translate}}</a></li>
                 <li class="nav-item"><a class="nav-link" (click)="goToPortfolio()">{{'nav_bar.portfolioLink' | translate}}</a></li>
-                <li class="nav-item"><a class="nav-link" (click)="goToParticipate()">{{'nav_bar.participateLink' | translate}}</a></li>
+                <li *ngIf="!userInfo.isLoged" class="nav-item"><a class="nav-link" (click)="goToParticipate()">{{'nav_bar.participateLink' | translate}}</a></li>
                 <li *ngIf="userInfo.isLoged" class="nav-item" (click)="goToSearchPage()"><a class="nav-link">{{'nav_bar.searchLink' | translate}}</a></li>                  
                 <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-user"></i></a>

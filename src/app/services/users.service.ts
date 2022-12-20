@@ -19,6 +19,7 @@ export class UsersService {
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
+    lang: 'es-ES',
     userData: {}
   })
   sessionData$ = this._sessionData
@@ -38,7 +39,9 @@ export class UsersService {
     return this.http.get(this.url+this.user_endpoint+id)
   }
 
-  getSessionData(): Observable<{isLoged:boolean,userData:LoginResponse}> {
+  getSessionData(): Observable<{
+    lang: string;isLoged:boolean,userData:LoginResponse
+}> {
     return this.sessionData$.asObservable()
   }
 
@@ -51,34 +54,27 @@ export class UsersService {
     return this.http.post(this.url+this.login_endpoint,body)
   }
 
-  login(id: string) {
-
-    this.findUserById(id).subscribe({
-      next: (res) => {
-        this.sessionData$.next({
-          isLoged: true,
-          userData:res
-        })
+  login(id: string) { 
+    localStorage.setItem('id',id)
+      if(!localStorage.getItem('lang')){
+        localStorage.setItem('lang','es-ES')
       }
-    })
-    
 
-      localStorage.setItem('id',id)
-
-  }
-
-  logSuperUserIn(){ //DEV MODE
-
-    this.sessionData$.next({
-      isLoged: true,
-      userData:{id:'9000',username:'superuser'}
-    })
-    localStorage.setItem('id','9000')
+      this.findUserById(id).subscribe({
+        next: (res) => {
+          this.sessionData$.next({
+            isLoged: true,
+            lang: localStorage.getItem('lang'),
+            userData:res
+          })
+        }
+      })
   }
 
   logout() {
     this.sessionData$.next({
       isLoged: false,
+      lang:'es-ES',
       userData: {}
     })
     localStorage.clear()

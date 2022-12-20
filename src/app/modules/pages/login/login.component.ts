@@ -19,9 +19,13 @@ export class LoginComponent implements OnInit {
     passwordIncorrect: false
   }
   fieldTextType: boolean
-  verificado: boolean
-  noVerificado:boolean
-  warning:boolean
+
+  alerts = {
+    success:'',
+    warning:'',
+    error:''
+  }
+
 
   constructor(
     private translateService: TranslateService,
@@ -35,20 +39,10 @@ export class LoginComponent implements OnInit {
     });
     this.buildForm()
     this.fieldTextType = false
-    this.verificado = false
-    this.noVerificado = false
-    this.warning = false
   }
 
   ngOnInit(): void {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    if(urlParams.has('verified')) {
-      const verified = urlParams.get('verified')
-      if(verified == 'ok') this.verificado = true
-      if(verified == 'error44') this.warning = true
-      if(verified == 'error') this.noVerificado = true
-    }
+    this.checkRedirection()
     
   }
 
@@ -65,13 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   requestLogin() {
-    //DEV USER
-    if (this.loginForm.get('email')?.value==='superuser@omnipresente.soy'){
-      this.usersService.logSuperUserIn()
-      this.router.navigate(['/user/','9000'])
-    }
-
-    //TO DO - CLEAN
+    this.clearAlerts()
     if(this.loginForm.valid) {
       const data = this.loginForm.value
       this.usersService.requestLogin(data).subscribe(res => {
@@ -81,7 +69,7 @@ export class LoginComponent implements OnInit {
           this.loginErrors.passwordIncorrect= true
         }
         if(res.verified==0){
-          alert('Usuario no verificado. Compruebe su email')
+          this.alerts.warning = 'Usuario no verificado. Compruebe su email'
         }
         if(res.id===null){
           this.loginErrors.notRegistered=true
@@ -95,6 +83,26 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/user/',res.id])
         }
       }) 
+    }
+  }
+
+  checkRedirection() {
+    this.clearAlerts()
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.has('verified')) {
+      const verified = urlParams.get('verified')
+      if(verified == 'ok') this.alerts.success = 'Email verificado correctamente. Inicia sesión.'
+      if(verified == 'error44') this.alerts.warning = 'El email ya ha sido verificado anteriormente. Puedes iniciar sesión.'
+      if(verified == 'error') this.alerts.error = 'No se ha podido verificar tu email. Contacta con nosotros.'
+    }
+  }
+
+  clearAlerts(){
+    this.alerts = {
+      success:'',
+      warning:'',
+      error:''
     }
   }
 }

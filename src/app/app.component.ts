@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { UsersService } from './services/users.service';
 
 @Component({
@@ -9,20 +10,22 @@ import { UsersService } from './services/users.service';
 export class AppComponent implements OnInit {
   title = 'banc-tiempo';
 
-  constructor(private usersService: UsersService){
+  constructor(
+    private usersService: UsersService,
+    private translateService: TranslateService,
+    ){
     const userId = localStorage.getItem('id')
-    console.log(userId)
     let user
-    if(userId == '9000'){
-      this.usersService.logSuperUserIn()
-    }
-    else if(userId !== null){  
+    if(userId !== null){  
       this.usersService.findUserById(userId).subscribe(res=>{
         user = res
       })
       this.usersService.login(userId)
       this.usersService.getSessionData().subscribe({
-        next: (data)=> {console.log(data)}
+        next: (data)=> {
+          console.log(data)
+          this.translateService.use(data.lang)
+        }
       })
     }
   }

@@ -15,7 +15,7 @@
                 <div class="media d-flex align-items-end profile-header"> 
                     <div class="profile">
                         <div class="img-container">
-                            <img src="./assets/img/user-icons/generic_user.png" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                            <img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                            
                       </div>
                     <div *ngIf="canEdit">
@@ -24,9 +24,10 @@
                     </div>                                
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
-                        <h4 class="mt-0 mb-0">Name</h4>
-                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>Location</p>
-                    </div>                            
+                        <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
+                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
+                        
+                    </div>                    
                 </div>                        
             </div>
         
@@ -42,7 +43,7 @@
                                 <i class="fas fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
                             </span>  
-                            <h4 *ngIf="fullProfile" class="mb-0 text-muted text-center p-1">X Horas</h4> 
+                            <h4 *ngIf="fullProfile" class="mb-0 text-muted text-center p-1">{{profileContent.credit}} Horas</h4> 
                         </div>
                         
                         

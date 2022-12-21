@@ -20,6 +20,11 @@ export class RegisterComponent implements OnInit {
   error: any
   response: any
 
+  alerts = {
+    success:'',
+    error:''
+  }
+
   constructor(
     private translateService: TranslateService,
     private formBuilder: FormBuilder,
@@ -60,6 +65,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.clearAlerts()
     const body = {
       "email": this.registerForm.get('email')?.value,
       "pass": this.registerForm.get('password')?.value,
@@ -71,10 +77,10 @@ export class RegisterComponent implements OnInit {
         console.log(`Error: ${error.status}`)
         switch(error.status) {
           case 400:
-            alert('Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.')
+            this.alerts.error = 'Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.'
             break;
           case 200: //manejando el error 200 como success
-            alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.')
+            this.alerts.success = '¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.'
             this.buildForm()
         }
         // after handling error, return a new observable 
@@ -82,9 +88,16 @@ export class RegisterComponent implements OnInit {
         return of();
       }))
       .subscribe(() => {
-          alert('¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.')
-          this.buildForm()
+        this.alerts.success = '¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.'
+        this.buildForm()
       });
+  }
+
+  clearAlerts(){
+    this.alerts = {
+      success:'',
+      error:''
+    }
   }
 
 

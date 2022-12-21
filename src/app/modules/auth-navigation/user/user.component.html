@@ -1,5 +1,12 @@
 <!-- PerfilUsuario Heather-->
 <section class="page-section" id="perfilUsuario">
+    <div *ngIf="!fullProfile && canEdit" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg> 
+        <strong style="margin-right:20px;">¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad</strong>
+        <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
+    </div>
     <div class="container">     
         <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
         <!-- Profile widget -->
@@ -8,21 +15,8 @@
                 <div class="media d-flex align-items-end profile-header"> 
                     <div class="profile">
                         <div class="img-container">
-                            <img src="{{userThumbnail}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                            <svg *ngIf="canEdit" (click)="showThumbnails()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                            </svg>
-                        <div [ngClass]="{'thumbnailModal': true, 'showModal' : showModal === true, 'hide': showModal === false }" class="thumbnailModal showModal">
-                            <header>
-                                <h2>Choose Avatar</h2>
-                                <button (click)="closeModal()">X</button>
-                            </header>
-                            <div class="thumbnailContainer">
-                                <div *ngFor="let avatar of avatarUrls; let i = index" (click)="changeAvatar(i)">
-                                    <img src={{avatar}} alt="">
-                                </div>
-                            </div>
-                        </div>
+                            <img src="./assets/img/user-icons/generic_user.png" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                           
                       </div>
                     <div *ngIf="canEdit">
                         <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
@@ -48,11 +42,11 @@
                                 <i class="fas fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
                             </span>  
-                            <h4 class="mb-0 text-muted text-center p-1">X Horas</h4> 
+                            <h4 *ngIf="fullProfile" class="mb-0 text-muted text-center p-1">X Horas</h4> 
                         </div>
                         
                         
-                        <div class="mt-2 text-center ">
+                        <div *ngIf="fullProfile && canEdit" class="mb-mt-2 text-center ">
                             <a (click)="goToNewActivitiePage()" class="btn btn-secondary ">{{'profile_page.new_activitie_span' | translate}}</a>                                                              
                         </div> 
                     </li>

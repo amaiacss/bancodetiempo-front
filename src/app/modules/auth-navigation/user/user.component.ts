@@ -16,13 +16,11 @@ export class UserComponent implements OnInit {
 
   selectedProfile:string = ''
   canEdit:boolean = false
+  fullProfile:boolean = false
 
   profileActivities:CardInfo[] = []
   profileInteractions: [] = []
 
-  userThumbnail:string = './assets/img/user-icons/generic_user.png'
-  showModal:boolean = false
-  avatarUrls: string[] = []
 
   constructor(
     private translateService: TranslateService,
@@ -36,6 +34,7 @@ export class UserComponent implements OnInit {
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
+      this.fullProfile = response.fullProfile || localStorage.getItem('fullProfile')==='true'
       if(this.userId) {
         this.isLoged = true
         this.route.params
@@ -59,16 +58,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.avatarUrls = [
-      './assets/img/user-icons/generic_user.png',
-      './assets/img/user-icons/man.png',
-      './assets/img/user-icons/man(1).png',
-      './assets/img/user-icons/man(2).png',
-      './assets/img/user-icons/manager.png',
-      './assets/img/user-icons/woman.png',
-      './assets/img/user-icons/woman(1).png',
-      './assets/img/user-icons/woman(2).png'
-    ]
   }   
 
   goToNewActivitiePage(): void{
@@ -82,17 +71,5 @@ export class UserComponent implements OnInit {
     this.router.navigate([`/user/${this.userId}/preferences`])
   }
 
-  showThumbnails() {
-    this.showModal = true
-  }
-
-  closeModal() {
-    this.showModal = false
-  }
-
-  changeAvatar(index:number){
-    this.userThumbnail = this.avatarUrls[index]
-    this.showModal = false;
-  }
 
 }

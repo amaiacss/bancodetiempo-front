@@ -16,13 +16,12 @@ export class UserComponent implements OnInit {
 
   selectedProfile:string = ''
   canEdit:boolean = false
+  fullProfile:boolean = false
 
+  profileContent:any = {}
   profileActivities:CardInfo[] = []
   profileInteractions: [] = []
 
-  userThumbnail:string = './assets/img/user-icons/generic_user.png'
-  showModal:boolean = false
-  avatarUrls: string[] = []
 
   constructor(
     private translateService: TranslateService,
@@ -36,21 +35,26 @@ export class UserComponent implements OnInit {
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
+      this.fullProfile = response.fullProfile || localStorage.getItem('fullProfile')==='true'
+      // Controlar que el usuario que navega está logueado
       if(this.userId) {
         this.isLoged = true
         this.route.params
       .subscribe(params => {
         this.selectedProfile = params["profile"]
+        this.loadData()
         this.profileActivities = this.activitiesService.getProfileActivities(this.selectedProfile)
         this.profileInteractions = this.activitiesService.getProfileInteractions(this.selectedProfile)
     })
+    // Verifica si el usuario logueado está en su propio perfil
       if(this.userId === this.selectedProfile){
         this.canEdit = true
       }else {
         this.canEdit = false
       }
+    //Controla que el usuario no pueda falsear su identidad mediante url
         this.router.navigate([`/user/${this.userId}/profile/${this.selectedProfile}`])
-      }else{
+      }else{  //USUARIO NO LOGUEADO
         this.isLoged = false
         alert('No tiene permisos')
         this.router.navigate(['/'])
@@ -59,16 +63,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.avatarUrls = [
-      './assets/img/user-icons/generic_user.png',
-      './assets/img/user-icons/man.png',
-      './assets/img/user-icons/man(1).png',
-      './assets/img/user-icons/man(2).png',
-      './assets/img/user-icons/manager.png',
-      './assets/img/user-icons/woman.png',
-      './assets/img/user-icons/woman(1).png',
-      './assets/img/user-icons/woman(2).png'
-    ]
   }   
 
   goToNewActivitiePage(): void{
@@ -82,17 +76,13 @@ export class UserComponent implements OnInit {
     this.router.navigate([`/user/${this.userId}/preferences`])
   }
 
-  showThumbnails() {
-    this.showModal = true
-  }
-
-  closeModal() {
-    this.showModal = false
-  }
-
-  changeAvatar(index:number){
-    this.userThumbnail = this.avatarUrls[index]
-    this.showModal = false;
+  loadData(){
+    this.usersService.getUserProfile(this.selectedProfile).subscribe({
+      next: (data) => {
+        this.profileContent = data[0]
+        console.log(this.profileContent)
+      }
+    })
   }
 
 }

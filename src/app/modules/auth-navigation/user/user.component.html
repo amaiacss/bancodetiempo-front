@@ -11,13 +11,14 @@
         <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 bg-dark">
+           
+            <div class="px-4 pt-0 pb-4 bg-dark">   
+                      <!-----------------Poner descripcion de usuario sobre este div------------------------------>
                 <div class="media d-flex align-items-end profile-header"> 
                     <div class="profile">
                         <div class="img-container">
-                            <img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                           
-                      </div>
+                            <img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">                           
+                        </div>
                     <div *ngIf="canEdit">
                         <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
                         <!-- <a href="#" class="btn btn-secondary mb-2">Cambiar Contraseña</a> -->                                     
@@ -26,8 +27,10 @@
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
                         <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
-                        
-                    </div>                    
+                    </div> 
+
+                    
+                                                      
                 </div>                        
             </div>
         
@@ -47,7 +50,7 @@
                         </div>
                         
                         
-                        <div *ngIf="fullProfile && canEdit" class="mb-mt-2 text-center ">
+                        <div *ngIf="fullProfile && canEdit" class="mb-2 mt-2 text-center ">
                             <a (click)="goToNewActivitiePage()" class="btn btn-secondary ">{{'profile_page.new_activitie_span' | translate}}</a>                                                              
                         </div> 
                     </li>
@@ -63,13 +66,14 @@
 
 
 <section  class="page-section">
-    
+
     <div class="container">
            
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
                 <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
+                <button class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">Solicitudes</button>
             </div>
         </nav>
                    
@@ -96,10 +100,10 @@
                         </div>
                     </div>
                 </div>
-            </div>  
-                                 
+            </div> 
+
              <!--Interacciones-->           
-            <div class="tab-pane fade py-4 px-4" id="nav-interacciones" role="tabpanel" aria-labelledby="nav-interacciones-tab" tabindex="0">
+             <div class="tab-pane fade py-4 px-4" id="nav-interacciones" role="tabpanel" aria-labelledby="nav-interacciones-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">{{'profile_page.interactions_title' | translate}}</h5>
                 </div>
@@ -111,6 +115,36 @@
                     
                 </div>
             </div>
+            
+             <!--Solicitudes-->           
+             <div class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Pagína de solicitudes</h5>
+                </div>
+                
+                <div class="row">
+                    <ul>
+                        <li class="d-flex justify-content-between">
+                            <p>Has recibido una solicitud sobre tu actividad <strong>Titulo de actividad</strong></p>
+                            <div class="">
+                                <button class="btn btn-primary px-3">Aceptar</button>
+                                <button class="btn btn-primary me-3 ms-3 px-3">Rechazar</button>
+                                <button class="btn btn-primary px-3">Finalizar</button>
+                            </div>                            
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <p>Has enviado una solicitud sobre la actividad <strong>Titulo de actividad</strong></p>
+                            <div class="">
+                                <button class="btn btn-primary px-3">Rechazada</button>  
+                                <button class="btn btn-primary me-3 ms-3 px-3">En espera</button>                                                           
+                                <button class="btn btn-primary px-3">Finalizar</button>
+                            </div>                            
+                        </li>
+                    </ul>                    
+                </div>
+            </div>
+                                 
+            
             
 
 

@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { catchError, map } from 'rxjs/operators'
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject} from 'rxjs';
 import { LoginResponse } from '../models/loginResponse';
 import { User } from '../models/user';
@@ -19,6 +18,7 @@ export class UsersService {
   private profile_endpoint:string
   private profile_update_endpoint:string
   private create_profile_endpoint: string
+  private update_pass_endpoint:string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -40,6 +40,7 @@ export class UsersService {
     this.profile_endpoint = "/profile/find/"
     this.profile_update_endpoint = "/profile/update"
     this.create_profile_endpoint = "/profile/create"
+    this.update_pass_endpoint = "/user/updatepass"
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -56,6 +57,10 @@ export class UsersService {
 
   createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string}): Observable<any>{
     return this.http.post(this.url+this.create_profile_endpoint,body)
+  }
+
+  updatePassword(body:{id:number,pass:string,pass1:string,pass2:string}): Observable<any> {
+    return this.http.put(this.url+this.update_pass_endpoint,body)
   }
 
 

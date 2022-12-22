@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidation } from 'src/app/pipes/customVal';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ActivitiesService } from 'src/app/services/activities.service';
@@ -14,8 +15,6 @@ export class PreferencesComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
 
-  registerForm: FormGroup = new FormGroup({})
-  
   fullProfile:boolean = false
 
   inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string,picture:string} = {
@@ -32,6 +31,8 @@ export class PreferencesComponent implements OnInit {
 
   location:{provinces:Array<{code:string,name:string}>,cities:Array<{code:string,name:string}>}={provinces:[],cities:[]}
 
+  passwordForm: FormGroup = new FormGroup({})
+
   alerts = {
     success:'',
     error:''
@@ -39,6 +40,7 @@ export class PreferencesComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
+    private formBuilder: FormBuilder,
     private activitiesService: ActivitiesService,
     private usersService: UsersService,
     private router: Router,
@@ -54,7 +56,7 @@ export class PreferencesComponent implements OnInit {
       if(this.userId) {
         this.isLoged = true
         this.loadData(this.userId || '0')
-        // this.buildForm()
+        this.buildForm()
         //Controla que el usuario no pueda falsear su identidad mediante url
         this.router.navigate([`/user/${this.userId}/preferences`])
         
@@ -182,4 +184,38 @@ export class PreferencesComponent implements OnInit {
     }
   }
 
+  updatePassword(){
+    this.clearAlerts()
+    const body = {
+      "id": Number(this.userId),
+      "pass": this.passwordForm.get('pass')?.value,
+      "pass1": this.passwordForm.get('pass1')?.value,
+      "pass2": this.passwordForm.get('pass2')?.value
+    }
+
+    this.usersService.updatePassword(body).subscribe({
+      next: (res) => {
+        if (res.ok === false){
+          this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'
+        }else {
+          this.alerts.success = 'Contraseña cambiada con éxito'
+        }
+      },
+      error: () => {this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'}
+      })
+  }
+
+  buildForm() {
+    this.clearAlerts()
+    this.passwordForm = this.formBuilder.group(
+      {
+        pass: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
+        pass1: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
+        pass2: ['',{updateOn:'change', validators:[Validators.required]}]
+      },
+      {
+        validators: CustomValidation.confirmPassword("pass1", "pass2")
+      }
+    )
+  }
 }

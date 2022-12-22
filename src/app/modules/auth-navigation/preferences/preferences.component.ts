@@ -18,14 +18,15 @@ export class PreferencesComponent implements OnInit {
   
   fullProfile:boolean = false
 
-  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string} = {
+  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string,picture:string} = {
     firstName:'',
     lastName:'',
     email:'',
     phone:'',
     province_code:'',
     city_code:'',
-    aboutMe:''
+    aboutMe:'',
+    picture:'./assets/img/user-icons/generic_user.png'
   }
   profileContent:any = {}
 
@@ -77,15 +78,18 @@ export class PreferencesComponent implements OnInit {
   loadData(id:string){
     this.usersService.getUserProfile(id).subscribe({
       next: (data) => {
-        this.profileContent = data[0]
-        this.inputData.firstName = this.profileContent.firstName
-        this.inputData.lastName = this.profileContent.lastName
-        this.inputData.phone = this.profileContent.phone
-        this.inputData.aboutMe = this.profileContent.aboutMe
-        if(this.profileContent.province_code){
-          this.inputData.province_code = this.profileContent.province_code
-          this.inputData.city_code = this.profileContent.city_code
-          this.setProvinceFilter(this.inputData.province_code)
+        if(data.length){
+          this.profileContent = data[0]
+          this.inputData.firstName = this.profileContent.firstName
+          this.inputData.lastName = this.profileContent.lastName
+          this.inputData.phone = this.profileContent.phone
+          this.inputData.aboutMe = this.profileContent.aboutMe
+          if(this.profileContent.province_code){
+            this.inputData.province_code = this.profileContent.province_code
+            this.inputData.city_code = this.profileContent.city_code
+            this.setProvinceFilter(this.inputData.province_code)
+          }
+  
         }
         // console.log(this.profileContent)
       }
@@ -139,6 +143,30 @@ export class PreferencesComponent implements OnInit {
       this.usersService.updateUserProfile(body).subscribe({
         next: () => {
           return this.alerts.success = "Los datos se han guardado correctamente"
+        },
+        error: () => {
+          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+        }
+      })
+    }
+  }
+
+  createProfile(){
+    this.clearAlerts()
+    if (this.allInputsCompleted()){
+      const body = {
+        id:this.userId || '0',
+        firstName:this.inputData.firstName,
+        lastName:this.inputData.lastName,
+        phone:this.inputData.phone,
+        locationCode:this.inputData.city_code,
+        aboutMe:this.inputData.aboutMe
+      }
+      this.usersService.createUserProfile(body).subscribe({
+        next: () => {
+          localStorage.setItem('fullProfile', 'true')
+          this.fullProfile = true
+          return this.alerts.success = "Tu perfil se ha creado correctamente."
         },
         error: () => {
           return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."

@@ -6,12 +6,12 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
-                    <div class="profile"><img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                    <div class="profile"><img src="{{inputData.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                         <div *ngIf="fullProfile">
                             <a href="#" class="btn btn-secondary mb-2" >Subir imagen</a>                  
                         </div>                         
                     </div>                           
-                    <div class="media-body mb-5 ms-3 text-white align-items-center">
+                    <div *ngIf="profileContent.city" class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
                         <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
                     </div>                                                  
@@ -117,7 +117,7 @@
             </div>
             <!-- Submit Button-->
             <div *ngIf="fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" (click)="updateProfile()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
-            <div *ngIf="!fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Crear Perfil</button></div>
+            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Crear Perfil</button></div>
         </form>
     </div>
 </section>

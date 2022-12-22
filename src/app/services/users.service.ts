@@ -18,6 +18,7 @@ export class UsersService {
   private user_endpoint:string
   private profile_endpoint:string
   private profile_update_endpoint:string
+  private create_profile_endpoint: string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -38,6 +39,7 @@ export class UsersService {
     this.user_endpoint="/user/find/"
     this.profile_endpoint = "/profile/find/"
     this.profile_update_endpoint = "/profile/update"
+    this.create_profile_endpoint = "/profile/create"
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -50,6 +52,10 @@ export class UsersService {
 
   updateUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,province_code:string,city_code:string,aboutMe:string}): Observable<any>{
     return this.http.put(this.url+this.profile_update_endpoint,body)
+  }
+
+  createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string}): Observable<any>{
+    return this.http.post(this.url+this.create_profile_endpoint,body)
   }
 
 
@@ -77,10 +83,10 @@ export class UsersService {
     this.getUserProfile(id).subscribe({
       next: (data) => {
         if(data.length){
-          console.log(true,data)
+          console.log(true,'fullProfile')
           localStorage.setItem('fullProfile', 'true')
         }else {
-          console.log(false,data)
+          console.log(false,'fullProfile')
           localStorage.setItem('fullProfile', 'false')
         }
       }

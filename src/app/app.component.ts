@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
       this.usersService.login(userId)
       this.usersService.getSessionData().subscribe({
         next: (data)=> {
-          console.log(data)
           this.translateService.use(data.lang)
         }
       })

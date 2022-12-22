@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidation } from 'src/app/pipes/customVal';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ActivitiesService } from 'src/app/services/activities.service';
@@ -14,17 +15,32 @@ export class PreferencesComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
 
-  registerForm: FormGroup = new FormGroup({})
-  
   fullProfile:boolean = false
 
-  userData:any
+  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string,picture:string} = {
+    firstName:'',
+    lastName:'',
+    email:'',
+    phone:'',
+    province_code:'',
+    city_code:'',
+    aboutMe:'',
+    picture:'./assets/img/user-icons/generic_user.png'
+  }
   profileContent:any = {}
 
   location:{provinces:Array<{code:string,name:string}>,cities:Array<{code:string,name:string}>}={provinces:[],cities:[]}
 
+  passwordForm: FormGroup = new FormGroup({})
+
+  alerts = {
+    success:'',
+    error:''
+  }
+
   constructor(
     private translateService: TranslateService,
+    private formBuilder: FormBuilder,
     private activitiesService: ActivitiesService,
     private usersService: UsersService,
     private router: Router,
@@ -40,7 +56,7 @@ export class PreferencesComponent implements OnInit {
       if(this.userId) {
         this.isLoged = true
         this.loadData(this.userId || '0')
-        // this.buildForm()
+        this.buildForm()
         //Controla que el usuario no pueda falsear su identidad mediante url
         this.router.navigate([`/user/${this.userId}/preferences`])
         
@@ -64,15 +80,26 @@ export class PreferencesComponent implements OnInit {
   loadData(id:string){
     this.usersService.getUserProfile(id).subscribe({
       next: (data) => {
-        this.profileContent = data[0]
-        if(this.profileContent.province_code){
-          this.setProvinceFilter(this.profileContent.province_code)
+        if(data.length){
+          this.profileContent = data[0]
+          this.inputData.firstName = this.profileContent.firstName
+          this.inputData.lastName = this.profileContent.lastName
+          this.inputData.phone = this.profileContent.phone
+          this.inputData.aboutMe = this.profileContent.aboutMe
+          if(this.profileContent.province_code){
+            this.inputData.province_code = this.profileContent.province_code
+            this.inputData.city_code = this.profileContent.city_code
+            this.setProvinceFilter(this.inputData.province_code)
+          }
+  
         }
-        console.log(this.profileContent)
+        // console.log(this.profileContent)
       }
     })
     this.usersService.findUserById(id).subscribe({
-      next: (data) => {this.userData = data}
+      next: (data) => {
+        this.inputData.email = data?.email || ''
+      }
     })
   }
 
@@ -82,11 +109,113 @@ export class PreferencesComponent implements OnInit {
       id = data
     }else{
       id = data.target.value
+      this.inputData.city_code = '0'
     }
     this.activitiesService.getCitiesByProvince(id).subscribe({
-      next: (cities) => {this.location.cities = cities}
+      next: (cities) => {
+        this.location.cities = cities
+      }
     })
   }
 
+  allInputsCompleted():boolean {
+    return (
+      this.inputData.firstName.length>0 &&
+      this.inputData.lastName.length>0 &&
+      this.inputData.email.length>0 &&
+      this.inputData.phone.length>0 &&
+      this.inputData.province_code.length>0 &&
+      this.inputData.city_code.length>0 &&
+      this.inputData.aboutMe.length>0
+    )
+  }
 
+  updateProfile(){
+    this.clearAlerts()
+    if (this.allInputsCompleted()){
+      const body = {
+        id:this.userId || '0',
+        firstName:this.inputData.firstName,
+        lastName:this.inputData.lastName,
+        phone:this.inputData.phone,
+        province_code:this.inputData.province_code,
+        city_code:this.inputData.city_code,
+        aboutMe:this.inputData.aboutMe
+      }
+      this.usersService.updateUserProfile(body).subscribe({
+        next: () => {
+          return this.alerts.success = "Los datos se han guardado correctamente"
+        },
+        error: () => {
+          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+        }
+      })
+    }
+  }
+
+  createProfile(){
+    this.clearAlerts()
+    if (this.allInputsCompleted()){
+      const body = {
+        id:this.userId || '0',
+        firstName:this.inputData.firstName,
+        lastName:this.inputData.lastName,
+        phone:this.inputData.phone,
+        locationCode:this.inputData.city_code,
+        aboutMe:this.inputData.aboutMe
+      }
+      this.usersService.createUserProfile(body).subscribe({
+        next: () => {
+          localStorage.setItem('fullProfile', 'true')
+          this.fullProfile = true
+          return this.alerts.success = "Tu perfil se ha creado correctamente."
+        },
+        error: () => {
+          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+        }
+      })
+    }
+  }
+
+  clearAlerts(){
+    this.alerts = {
+      success:'',
+      error:''
+    }
+  }
+
+  updatePassword(){
+    this.clearAlerts()
+    const body = {
+      "id": Number(this.userId),
+      "pass": this.passwordForm.get('pass')?.value,
+      "pass1": this.passwordForm.get('pass1')?.value,
+      "pass2": this.passwordForm.get('pass2')?.value
+    }
+
+    this.usersService.updatePassword(body).subscribe({
+      next: (res) => {
+        if (res.ok === false){
+          this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'
+        }else {
+          this.alerts.success = 'Contraseña cambiada con éxito'
+        }
+      },
+      error: () => {this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'}
+      })
+  }
+
+  buildForm() {
+    this.clearAlerts()
+    this.passwordForm = this.formBuilder.group(
+      {
+        pass: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
+        pass1: ['',{updateOn:'change', validators:[Validators.required,CustomValidation.passwordPattern]}],
+        pass2: ['',{updateOn:'change', validators:[Validators.required]}]
+      },
+      {
+        validators: CustomValidation.confirmPassword("pass1", "pass2")
+      }
+    )
+  }
 }

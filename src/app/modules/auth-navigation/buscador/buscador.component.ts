@@ -13,12 +13,24 @@ import { UsersService } from 'src/app/services/users.service';
 export class BuscadorComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
-  searchresult:CardInfo[] = []
   searchMessage:any = ['search_page.search_text','']
 
   filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<{id:string,name:string}>,text:string} = {provinces:[],cities:[],categories:[],text:''}
   filters: {province?:string,city?:string,category?:string,text?:string} = {}
   
+  searchresult:Array<{
+    id: string,
+    title: string,
+    idUser: string,
+    dateActivity: string,
+    category_es: string,
+    category_eu: string,
+    picture: string,
+    firstName: string,
+    city: string,
+    province: string,
+    url: string
+  }> = []
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -47,15 +59,33 @@ export class BuscadorComponent implements OnInit {
     this.activitiesService.getProvinces().subscribe({
       next: (provinces) => {this.filterElements.provinces = provinces;}
     })
-    this.searchresult = this.activitiesService.getFilteredSearch(this.filters)
   }
 
   initSearch() {
-    this.activitiesService.getFilteredSearch(this.filters)
-    this.searchMessage = ['search_page.result_text',this.searchresult.length]
+    const body:{city?:string,province?:string,category?:number,search?:string} = {}
+    if (this.filters.city && Number(this.filters.city)>0) {
+      body['city'] = this.filters.city
+    }else if (this.filters.province && Number(this.filters.province)>0) {
+      body['province'] = this.filters.province
+    }
+    if (this.filters.category && Number(this.filters.category)>0){
+      body['category'] = Number(this.filters.category)
+    }
+    if (this.filters.text && this.filters.text.length) {
+      body['search'] = this.filters.text
+    }
+    
+    this.activitiesService.getFilteredSearch(body).subscribe({
+      next: (res) => {
+        this.searchresult = res.data
+        this.searchMessage = ['search_page.result_text',res.data.length]
+      }
+    })
+    
   }
 
-  goToProfile(id:number | undefined){
+  goToProfile(id:number | string){
+    console.log(`/user/${this.userId}/profile/${id}`)
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
 

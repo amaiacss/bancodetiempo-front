@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { catchError, map } from 'rxjs/operators'
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject} from 'rxjs';
 import { LoginResponse } from '../models/loginResponse';
 import { User } from '../models/user';
@@ -17,6 +16,9 @@ export class UsersService {
   private register_endpoint:string
   private user_endpoint:string
   private profile_endpoint:string
+  private profile_update_endpoint:string
+  private create_profile_endpoint: string
+  private update_pass_endpoint:string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -36,6 +38,9 @@ export class UsersService {
     this.register_endpoint = "/user/create"
     this.user_endpoint="/user/find/"
     this.profile_endpoint = "/profile/find/"
+    this.profile_update_endpoint = "/profile/update"
+    this.create_profile_endpoint = "/profile/create"
+    this.update_pass_endpoint = "/user/updatepass"
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -44,6 +49,18 @@ export class UsersService {
 
   getUserProfile(id:string): Observable<any>{
     return this.http.get(this.url+this.profile_endpoint+id)
+  }
+
+  updateUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,province_code:string,city_code:string,aboutMe:string}): Observable<any>{
+    return this.http.put(this.url+this.profile_update_endpoint,body)
+  }
+
+  createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string}): Observable<any>{
+    return this.http.post(this.url+this.create_profile_endpoint,body)
+  }
+
+  updatePassword(body:{id:number,pass:string,pass1:string,pass2:string}): Observable<any> {
+    return this.http.put(this.url+this.update_pass_endpoint,body)
   }
 
 
@@ -71,10 +88,10 @@ export class UsersService {
     this.getUserProfile(id).subscribe({
       next: (data) => {
         if(data.length){
-          console.log(true,data)
+          console.log(true,'fullProfile')
           localStorage.setItem('fullProfile', 'true')
         }else {
-          console.log(false,data)
+          console.log(false,'fullProfile')
           localStorage.setItem('fullProfile', 'false')
         }
       }

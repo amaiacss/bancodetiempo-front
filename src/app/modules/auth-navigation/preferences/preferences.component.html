@@ -6,19 +6,19 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
-                    <div class="profile"><img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                    <div class="profile"><img src="{{inputData.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                         <div *ngIf="fullProfile">
                             <a href="#" class="btn btn-secondary mb-2" >Subir imagen</a>                  
                         </div>                         
                     </div>                           
-                    <div class="media-body mb-5 ms-3 text-white align-items-center">
+                    <div *ngIf="profileContent.city" class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
                         <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
                     </div>                                                  
                 </div>                 
             </div>
             <div class="bg-light p-4 d-flex justify-content-end">              
-                <a href="#cambiarPass" data-bs-toggle="modal" class="btn btn-secondary mb-2">Cambiar contraseña</a>                
+                <a href="#cambiarPass" data-bs-toggle="modal" class="btn btn-secondary mb-2" (click)="buildForm()">Cambiar contraseña</a>                
             </div>           
         </div>       
     </div>     
@@ -36,25 +36,25 @@
                     <div class="form-group">
                         <!-- Name input-->
                         <label for="nombre">Nombre</label>
-                        <input name="firstName" [(ngModel)]="profileContent.firstName" class="form-control" id="name" type="text" placeholder="Nombre *"/>
+                        <input name="firstName" [(ngModel)]="inputData.firstName" class="form-control" id="name" type="text" placeholder="Nombre *"/>
                         <div class="invalid-feedback">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Name input-->
                         <label for="nombre">Apellido</label>
-                        <input name="lastName" [(ngModel)]="profileContent.lastName" class="form-control" id="name" type="text" placeholder="Apellido *" data-sb-validations="required" />
+                        <input name="lastName" [(ngModel)]="inputData.lastName" class="form-control" id="name" type="text" placeholder="Apellido *" data-sb-validations="required" />
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
                         <label for="email">Email</label><!--Aquí el campo mail es no editable-->
-                        <input name="email" [(ngModel)]="userData.email" class="form-control" id="email" type="email" placeholder="email de usuario *"  readonly="readonly" />
+                        <input name="email" [(ngModel)]="inputData.email" class="form-control" id="email" type="email" placeholder="email de usuario *"  readonly="readonly" />
                         
                     </div>
                     <div class="form-group">
                         <!-- teléfono input-->
                         <label for="phone">Teléfono</label>
-                        <input name="phone" [(ngModel)]="profileContent.phone"  class="form-control" id="phone" type="text" placeholder="Teléfono" />
+                        <input name="phone" [(ngModel)]="inputData.phone"  class="form-control" id="phone" type="text" placeholder="Teléfono" />
                         
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <!-- provincia input-->
                         <label for="province">Provincia</label>
-                        <select name="province" [(ngModel)]="profileContent.province_code" (change)="setProvinceFilter($event)" class="form-select" id="province" type="text" placeholder="Provincia *" data-sb-validations="required" >
+                        <select name="province" [(ngModel)]="inputData.province_code" (change)="setProvinceFilter($event)" class="form-select" id="province" type="text" placeholder="Provincia *" data-sb-validations="required" >
                             <option value="0" selected>Selecciona</option>
                             <option *ngFor="let province of location.provinces" value="{{province.code}}">{{province.name}}</option>
                         </select>
@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <!-- población input-->
                         <label for="cities">Población</label>
-                        <select name="city" [(ngModel)]="profileContent.city_code" class="form-select" id="cities" type="text" placeholder="Población *" data-sb-validations="required" >
+                        <select name="city" [(ngModel)]="inputData.city_code" class="form-select" id="cities" type="text" placeholder="Población *" data-sb-validations="required" >
                             <option selected>Selecciona</option>
                             <option *ngFor="let city of location.cities" value="{{city.code}}">{{city.name}}</option>
                         </select>
@@ -80,7 +80,7 @@
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
                         <label for="descripcion">Descripción</label>
-                        <textarea name="aboutMe" [(ngModel)]="profileContent.aboutMe" class="form-control" id="message" placeholder="Descripcion" data-sb-validations="required"></textarea>
+                        <textarea name="aboutMe" [(ngModel)]="inputData.aboutMe" class="form-control" id="message" placeholder="Descripcion" data-sb-validations="required"></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
                 </div>
@@ -102,9 +102,22 @@
             <!-- This is what your users will see when there is-->
             <!-- an error submitting the form-->
             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+            <!-- Server alerts -->
+            <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <strong>{{alerts.success}}</strong>
+            </div>
+            <div *ngIf="alerts.error.length" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg> 
+                <strong>{{alerts.error}}</strong>
+            </div>
             <!-- Submit Button-->
-            <div *ngIf="fullProfile" class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
-            <div *ngIf="!fullProfile" class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Crear Perfil</button></div>
+            <div *ngIf="fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" (click)="updateProfile()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
+            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Crear Perfil</button></div>
         </form>
     </div>
 </section>
@@ -119,49 +132,48 @@
                     <div class="col-lg-8 col-md-8 col-sm-10 col-10">
                         <div class="modal-body d-block">
                             <!-- Project details-->                            
-                            <form id="cambiarPassForm" data-sb-form-api-token="API_TOKEN">
+                            <form [formGroup]="passwordForm" id="cambiarPassForm">
                                 <h2 class="text-uppercase mb-4">Cambiar contraseña</h2>
                                 <div class="row justify-content-center text-start mb-4">                                    
                                     <div class="col-md-10 col-10">                                    
                                         <div class="form-group">
                                             <!-- Contraseña antigua-->
                                             <label for="passAntigua">Introduza la antigua contraseña:</label>
-                                            <input class="form-control" id="passAntigua" type="password" placeholder="Contraseña antigua" data-sb-validations="required" />
-                                            <div class="invalid-feedback" data-sb-feedback="passAntigua:required">Contraseña antigua es obligatorio</div>
+                                            <input formControlName="pass" class="form-control" id="passAntigua" type="password" placeholder="Contraseña antigua" data-sb-validations="required" />
+                                            <div  *ngIf="passwordForm.get('pass')?.dirty &&  passwordForm.get('pass')?.hasError('required')" class="text-center text-danger mb-3" >
+                                                Contraseña antigua es obligatorio
+                                            </div>
+                                        </div>
+                                        <div *ngIf="passwordForm.controls['pass'].dirty && passwordForm.controls['pass'].invalid"  class="text-center text-danger mb-3">
+                                            {{'register_page.passwordPatternError' | translate}}
                                         </div>
                                         <div class="form-group">
                                             <!-- Nueva contraseña-->
                                             <label for="passNueva">Introduzca la nueva contraseña</label>
-                                            <input class="form-control" id="passNueva" type="password" placeholder="Nueva contraseña" data-sb-validations="required,passNueva" />
-                                            <div class="invalid-feedback" data-sb-feedback="passNueva:required">Nueva contraseña es obligatorio</div>                                            
+                                            <input formControlName="pass1" class="form-control" id="passNueva" type="password" placeholder="Nueva contraseña" data-sb-validations="required,passNueva" />
+                                            <div  *ngIf="passwordForm.get('pass1')?.dirty &&  passwordForm.get('pass1')?.hasError('required')" class="text-center text-danger mb-3" >
+                                                Nueva Contraseña es obligatorio
+                                            </div>
                                         </div>
+                                        <div *ngIf="passwordForm.controls['pass1'].dirty && passwordForm.controls['pass1'].invalid"  class="text-center text-danger mb-3">
+                                            {{'register_page.passwordPatternError' | translate}}
+                                        </div>                                           
+                                    
                                         <div class="form-group">
                                             <!-- Repite contraseña-->
                                             <label for="passRepeat">Repita la contraseña</label>
-                                            <input class="form-control" id="passRepeat" type="password" placeholder="Repita contraseña" data-sb-validations="required,passRepeat" />
-                                            <div class="invalid-feedback" data-sb-feedback="passRepeat:required">El cambo no puede estar vacio</div>                                            
-                                        </div>                                        
-                                    </div>                                    
+                                            <input formControlName="pass2" class="form-control" id="passRepeat" type="password" placeholder="Repita contraseña" data-sb-validations="required,passRepeat" />
+                                            <div *ngIf="passwordForm.get('pass2')?.dirty &&  passwordForm.get('pass2')?.hasError('required')" class="text-center text-danger mb-3">
+                                                {{'register_page.required_error' | translate}}
+                                            </div>
+                                            <div *ngIf="passwordForm.get('pass2')?.dirty && passwordForm.hasError('confirmpassword')" class="text-center text-danger mb-3">
+                                                {{'register_page.passwordMatchError' | translate}}
+                                            </div>                                            
+                                        </div> 
+                                    </div>                                                                     
                                 </div>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center text-white mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        To activate this form, sign up at
-                                        <br />
-                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                 <!-- Submit Button-->
-                                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Cambiar</button></div>
+                                <div class="text-center"><button (click)="updatePassword()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" data-bs-dismiss="modal">Cambiar</button></div>
                             </form>
                         </div>
                     </div>

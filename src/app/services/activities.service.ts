@@ -12,6 +12,7 @@ export class ActivitiesService {
   private one_category_endpoint:string
   private provinces_endpoint:string
   private citiesByProvince_endpoint:string
+  private filterd_search_endpoint:string
 
 
   private lastActivities: CardInfo[] = [
@@ -44,6 +45,7 @@ export class ActivitiesService {
     this.one_category_endpoint = "/category/find/"
     this.provinces_endpoint = "/province/findall"
     this.citiesByProvince_endpoint = "/city/findByProvince/"
+    this.filterd_search_endpoint = '/activity/findall'
   }
 
   getLastActivities(): CardInfo[] {
@@ -70,8 +72,8 @@ export class ActivitiesService {
     return this.http.get(this.url + this.citiesByProvince_endpoint + id)
   }
 
-  getFilteredSearch(filters:{province?:string,city?:string,category?:string,text?:string}): CardInfo[]{
+  getFilteredSearch(filters:{province?:string,city?:string,category?:number,text?:string}): Observable<any>{
     console.log(filters)
-    return this.filteredSearch
+    return this.http.get(this.url+this.filterd_search_endpoint,{params:filters})
   }
 }

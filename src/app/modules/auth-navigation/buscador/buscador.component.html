@@ -4,22 +4,22 @@
         <section class="page-section">
             <div class="input-group  selector">
                 <!--<label class="input-group-text" for="inputGroupSelect01">Options</label>-->
-                <select (change)="setCategoryFilter($event)" class="form-select me-3" id="inputGroupSelect01">
+                <select (change)="setCategoryFilter($event)" class="form-select " id="inputGroupSelect01">
                     <option selected value="0">{{'search_page.filters.category' | translate}}</option>
                     <option *ngFor="let category of filterElements.categories" value="{{category.id}}">{{category.name}}</option>
                 </select>
-                <select (change)="setProvinceFilter($event)" class="form-select me-3" id="inputGroupSelect02">
+                <select (change)="setProvinceFilter($event)" class="form-select " id="inputGroupSelect02">
                     <option selected value="0">{{'search_page.filters.province' | translate}}</option>
                     <option *ngFor="let province of filterElements.provinces" value="{{province.code}}">{{province.name}}</option>
                 </select>
-                <select (change)="setCityFilter($event)" class="form-select me-3" id="inputGroupSelect03">
+                <select (change)="setCityFilter($event)" class="form-select " id="inputGroupSelect03">
                     <option selected value="0">{{'search_page.filters.city' | translate}}</option>
                     <option *ngFor="let city of filterElements.cities" value="{{city.code}}">{{city.name}}</option>
                 </select>
             
                 <form class="form-inline d-flex space">
                     <input (change)="setTextFilter($event)" class="form-control mr-sm-2" type="search" placeholder="{{'search_page.filters.text_input_placeholder' | translate}}" aria-label="Search">
-                    <button class="btn btn-primary  ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">{{'search_page.search_button' | translate}}</button>
+                    <button class="btn btn-primary ms-3 my-2 my-sm-0" type="submit" (click)="initSearch()">{{'search_page.search_button' | translate}}</button>
                 </form>
             </div>
         </section>
@@ -31,7 +31,7 @@
                 <div *ngFor="let card of searchresult" class="col-lg-4 col-sm-6 mb-4">
                     
                     <!-- Portfolio item 1-->
-                    <div class="portfolio-item shadow-sm bg-light pt-2">
+                    <div class="portfolio-item shadow-sm cardItem pt-2">
                         <h5 class="mt-3 text-center ">{{card.title}}</h5>
                         <h5 class="text-muted text-center">{{card.category_es}}</h5>  
                         <h6 class="text-center pb-2">{{card.dateActivity}}</h6> 
@@ -40,19 +40,15 @@
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="{{card.picture}}" alt=".." />
-                        </a>                           
-                        <!--<h5 class="mt-3 text-center ">Cuidado de animales</h5>
-                        <h5 class="text-muted text-center">Categoria</h5>  
-                        <h6 class="text-center">20-08-2022</h6>    --> 
-                                            
+                        </a>                                                                 
                         <div class="portfolio-caption d-flex align-items-center justify-content-center pt-3 pb-3 bg-light">                                              
                             <div class="col-2 col-md-3 me-4">
                                 <a>
                                     <img (click)="goToProfile(card.idUser)" src="./assets/img/user-icons/generic_user.png" class="img-fluid rounded-circle shadow-sm">
                                 </a>
                             </div>
-                            <div>                                                                                      
-                                <h6 (click)="goToProfile(card.idUser)">{{card.firstName}} Apellido</h6>
+                        <div>                                                                                      
+                            <h6 (click)="goToProfile(card.idUser)">{{card.firstName}} Apellido</h6>
                                 <div class="d-flex"> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt me-1" viewBox="0 0 16 16">
                                         <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
@@ -61,8 +57,7 @@
                                     <h6 class="text-muted me-1">{{card.city}}, {{card.province}}</h6> 
                                 </div>                                                
                             </div>                                      
-                        </div>
-                        
+                        </div>                        
                     </div>
                     
                     <!-- Portfolio Modal-->

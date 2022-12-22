@@ -18,10 +18,23 @@ export class PreferencesComponent implements OnInit {
   
   fullProfile:boolean = false
 
-  userData:any
+  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string} = {
+    firstName:'',
+    lastName:'',
+    email:'',
+    phone:'',
+    province_code:'',
+    city_code:'',
+    aboutMe:''
+  }
   profileContent:any = {}
 
   location:{provinces:Array<{code:string,name:string}>,cities:Array<{code:string,name:string}>}={provinces:[],cities:[]}
+
+  alerts = {
+    success:'',
+    error:''
+  }
 
   constructor(
     private translateService: TranslateService,
@@ -65,14 +78,22 @@ export class PreferencesComponent implements OnInit {
     this.usersService.getUserProfile(id).subscribe({
       next: (data) => {
         this.profileContent = data[0]
+        this.inputData.firstName = this.profileContent.firstName
+        this.inputData.lastName = this.profileContent.lastName
+        this.inputData.phone = this.profileContent.phone
+        this.inputData.aboutMe = this.profileContent.aboutMe
         if(this.profileContent.province_code){
-          this.setProvinceFilter(this.profileContent.province_code)
+          this.inputData.province_code = this.profileContent.province_code
+          this.inputData.city_code = this.profileContent.city_code
+          this.setProvinceFilter(this.inputData.province_code)
         }
-        console.log(this.profileContent)
+        // console.log(this.profileContent)
       }
     })
     this.usersService.findUserById(id).subscribe({
-      next: (data) => {this.userData = data}
+      next: (data) => {
+        this.inputData.email = data?.email || ''
+      }
     })
   }
 
@@ -82,11 +103,55 @@ export class PreferencesComponent implements OnInit {
       id = data
     }else{
       id = data.target.value
+      this.inputData.city_code = '0'
     }
     this.activitiesService.getCitiesByProvince(id).subscribe({
-      next: (cities) => {this.location.cities = cities}
+      next: (cities) => {
+        this.location.cities = cities
+      }
     })
   }
 
+  allInputsCompleted():boolean {
+    return (
+      this.inputData.firstName.length>0 &&
+      this.inputData.lastName.length>0 &&
+      this.inputData.email.length>0 &&
+      this.inputData.phone.length>0 &&
+      this.inputData.province_code.length>0 &&
+      this.inputData.city_code.length>0 &&
+      this.inputData.aboutMe.length>0
+    )
+  }
+
+  updateProfile(){
+    this.clearAlerts()
+    if (this.allInputsCompleted()){
+      const body = {
+        id:this.userId || '0',
+        firstName:this.inputData.firstName,
+        lastName:this.inputData.lastName,
+        phone:this.inputData.phone,
+        province_code:this.inputData.province_code,
+        city_code:this.inputData.city_code,
+        aboutMe:this.inputData.aboutMe
+      }
+      this.usersService.updateUserProfile(body).subscribe({
+        next: () => {
+          return this.alerts.success = "Los datos se han guardado correctamente"
+        },
+        error: () => {
+          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+        }
+      })
+    }
+  }
+
+  clearAlerts(){
+    this.alerts = {
+      success:'',
+      error:''
+    }
+  }
 
 }

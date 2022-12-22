@@ -17,6 +17,7 @@ export class UsersService {
   private register_endpoint:string
   private user_endpoint:string
   private profile_endpoint:string
+  private profile_update_endpoint:string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -36,6 +37,7 @@ export class UsersService {
     this.register_endpoint = "/user/create"
     this.user_endpoint="/user/find/"
     this.profile_endpoint = "/profile/find/"
+    this.profile_update_endpoint = "/profile/update"
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -44,6 +46,10 @@ export class UsersService {
 
   getUserProfile(id:string): Observable<any>{
     return this.http.get(this.url+this.profile_endpoint+id)
+  }
+
+  updateUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,province_code:string,city_code:string,aboutMe:string}): Observable<any>{
+    return this.http.put(this.url+this.profile_update_endpoint,body)
   }
 
 

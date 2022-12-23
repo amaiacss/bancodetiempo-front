@@ -90,17 +90,53 @@
                     <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modal{{activitie.id}}">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                                <img class="img-fluid" src="{{activitie.picture}}" alt="..." />
                             </a>
                             <div class="portfolio-caption d-block ">
-                                <h5 class="portfolio-caption-subheading text-muted text-center ">22-08-2022</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">Clases de conducir</h5>
+                                <h5 class="portfolio-caption-subheading text-muted text-center ">{{activitie.dateActivity}}</h5>
+                                <h5 class="portfolio-caption-subheading text-muted text-center">{{activitie.title}}</h5>
                             </div>
                         </div>
+                                            <!-- Portfolio Modal-->
+                    <div class="portfolio-modal modal fade" id="modal{{activitie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+                                </div>
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8">
+                                            <h2 class="text-uppercase">{{activitie.title}}</h2>
+                                            <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
+                                            <div class="modal-body cambio">
+                                                <!-- Project details-->
+                                                <div class="col-lg-6 col-sm-12 ">
+                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />
+                                                    <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12">
+                                                    <ul class="list-inline">
+                                                        
+                                                        <li>
+                                                            <strong>Categoria:</strong>#{{activitie.category_es}}
+                                                        </li>
+                                                    </ul>
+                                                    <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                                        type="button">
+                                                        {{'home_page.sect2.modal_button' | translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
                     </div>
                 </div>
             </div> 

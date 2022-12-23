@@ -72,8 +72,8 @@ export class ActivitiesService {
     return this.http.get(this.url + this.citiesByProvince_endpoint + id)
   }
 
-  getFilteredSearch(filters:{province?:string,city?:string,category?:number,text?:string}): Observable<any>{
+  getFilteredSearch(filters:{idUser?:string,province?:string,city?:string,category?:number,text?:string}): Observable<any>{
     console.log(filters)
-    return this.http.get(this.url+this.filterd_search_endpoint,{params:filters})
+    return this.http.post(this.url+this.filterd_search_endpoint,filters)
   }
 }

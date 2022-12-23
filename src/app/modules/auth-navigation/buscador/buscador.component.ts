@@ -55,10 +55,12 @@ export class BuscadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.activitiesService.getProvinces().subscribe({
       next: (provinces) => {this.filterElements.provinces = provinces;}
     })
+
+    this.loadCategoriesSelect(localStorage.getItem('lang') || 'es-ES')
+
   }
 
   initSearch() {

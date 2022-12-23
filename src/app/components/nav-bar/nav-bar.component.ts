@@ -88,6 +88,10 @@ export class NavBarComponent implements OnInit {
     }
   }
 
+  goToLoginPage(){
+    this.router.navigate(['/login'])
+  }
+
   logout() {
     this.usersService.logout()
     this.router.navigate([''])

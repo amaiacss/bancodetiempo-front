@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   fullProfile:boolean = false
 
   profileContent:any = {}
-  profileActivities:CardInfo[] = []
+  profileActivities:any = []
   profileInteractions: [] = []
 
 
@@ -63,6 +63,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUsersActivities()
   }   
 
   goToNewActivitiePage(): void{
@@ -83,6 +84,18 @@ export class UserComponent implements OnInit {
         console.log(this.profileContent)
       }
     })
+  }
+
+  getUsersActivities(){
+    if(this.userId){
+      this.activitiesService.getFilteredSearch({idUser:this.selectedProfile}).subscribe({
+        next: (res) => {
+          console.log(res.data)
+          this.profileActivities = res.data
+        },
+        error: () => {this.profileActivities = []}
+      })
+    }
   }
 
 }

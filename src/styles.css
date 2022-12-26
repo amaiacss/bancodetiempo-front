@@ -12052,3 +12052,59 @@ section#perfilUsuario .section-heading {
 .cardItem {
   background-color: #f2f2f2;
 }
+
+/*---Estilos responsive para userRequests en user.html---*/
+
+@media (max-width:576px) {
+ 
+  .userRequests ul li{
+    flex-direction: column;    
+  }
+
+  .userRequests ul li div {    
+    width: 100%; 
+    margin-bottom: 1rem;     
+  }
+
+  .userRequests ul li div:nth-child(2){   
+   flex-direction: column;        
+  }
+
+  .userRequests ul li div button{
+    margin-right: 1rem;  
+    margin-left: 1rem;    
+    margin-bottom: 1rem;       
+   }
+
+  .userRequests ul li div p {    
+    margin-bottom: unset;      
+  }
+
+  .userRequests ul li div.justify-content-end{
+    justify-content:center !important;    
+  }
+ 
+}
+
+@media (max-width:992px) {
+ 
+  .userRequests ul li{
+    flex-direction: column;
+    
+  }
+  .userRequests ul li div {    
+    width: 100%; 
+    margin-bottom: 1rem;     
+  }
+  .userRequests ul li div p {
+    margin-bottom: unset;      
+  }
+
+  .userRequests ul li div.justify-content-end{
+    justify-content:center !important;    
+  }
+ 
+}
+
+
+

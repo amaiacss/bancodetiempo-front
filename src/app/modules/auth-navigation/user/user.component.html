@@ -89,16 +89,16 @@
                 <div class="row" id="portfolio">
                     <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item-->
-                        <div class="portfolio-item">
+                        <div class="portfolio-item shadow-sm  pt-2 ">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#modal{{activitie.id}}">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img class="img-fluid" src="{{activitie.picture}}" alt="..." />
                             </a>
-                            <div class="portfolio-caption d-block ">
-                                <h5 class="portfolio-caption-subheading text-muted text-center ">{{activitie.dateActivity}}</h5>
-                                <h5 class="portfolio-caption-subheading text-muted text-center">{{activitie.title}}</h5>
+                            <div class="portfolio-caption bg-light py-3 d-block">
+                                <h5 class="mt-3 text-center">{{activitie.title}}</h5>
+                                <h5 class="text-center pb-2 ">{{activitie.dateActivity}}</h5>                                
                             </div>
                         </div>
                                             <!-- Portfolio Modal-->
@@ -195,7 +195,7 @@
             <div class="row" id="portfolio">
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
+                    <div class="portfolio-item shadow-sm cardItem pt-2">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>

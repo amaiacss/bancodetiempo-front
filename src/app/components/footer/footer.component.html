@@ -5,10 +5,75 @@
             <div class="col-lg-4 text-lg-start">Copyright &copy; Banco del Tiempo 2022</div>
             
             <div class="col-lg-4 text-lg-end">
-                <a class="link-dark text-decoration-none me-3" href="#!">Terminos y privacidad</a>
-                <a class="link-dark text-decoration-none me-3" href="#!">Preguntas frecuentes</a>
+                <a class="link-dark text-decoration-none me-3" data-bs-toggle="modal" href="#terminos">Terminos y privacidad</a>
+                <a class="link-dark text-decoration-none me-3" data-bs-toggle="modal" href="#faqs">Preguntas frecuentes</a>
                 <a class="link-dark text-decoration-none " routerLink="/contacto" href="#!">Contacto</a>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- Terminos y condiciones popup-->
+<div class="portfolio-modal modal fade" id="terminos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center" >
+                    <div class="col-lg-8">
+                        <div class="modal-body d-block  ">
+                            <!-- Project details-->  <!--COMENTADO PARA PODER COMPILAR, FALTA IMPLEMENTAR-->
+                            <!--<h2 class="text-uppercase">{{'register_page.conditions_modal.title' | translate}}</h2>
+                             <p *ngFor="let paragraph of 'register_page.conditions_modal.paragraphs' | translate"
+                                class=" align-self-start item-intro text-muted ">{{paragraph}}</p>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
+                                type="button" (click)="acceptTerms()">{{'register_page.conditions_modal.button' | translate}}</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preguntas y respuestas FAQS modal -->
+
+<div class="portfolio-modal modal fade" id="faqs" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center" >
+                    <div class="col-lg-8">
+                        <div class="modal-body d-block  ">
+                            <!-- Project details-->  
+                            <h2 class="text-uppercase">FAQS</h2>
+                            <p class="align-self-start item-intro text-muted">Preguntas frecuentes</p>
+                            <ul class="text-start">
+                                <li class="fw-bolder">
+                                    ¿Qué es banco del tiempo?
+                                </li>
+                                <p>El banco del tiempo es una red social que permite a sus miembros intercambiar servicios y habilidades sin usar dinero. Los miembros pueden ofrecer sus habilidades y servicios a cambio de creditos acumulados en horas, que luego pueden utilizar para obtener servicios de otros miembros.</p>
+                                
+                                <li class="fw-bolder">
+                                    ¿Cómo funciona un banco del tiempo?
+                                </li>
+                                <p>Los miembros se registran en el banco del tiempo y luego pueden ofrecer sus habilidades y servicios a cambio de horas. Otros miembros pueden ver estas ofertas y solicitar los servicios de un miembro a cambio de horas. Las horas se acumula en la cuenta de cada miembro y se pueden utilizar para obtener servicios de otros miembros.</p>
+                                                            
+                                <li class="fw-bolder">
+                                    ¿Cuáles son las reglas para usar un banco del tiempo?
+                                </li>
+                                    <p>Los miembros deben ofrecer servicios de calidad y cumplir con sus compromisos de trueque.
+                                        Los miembros deben respetar las políticas del banco del tiempo y las leyes locales.
+                                        Los miembros deben usar créditos para obtener servicios, no dinero.</p>
+                                
+                            </ul>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <section class="page-section" id="buscador">
-    <div class="container">
+    <div class="container ">
         <h2 class="section-heading text-center text-uppercase mt-5">{{'search_page.header' | translate}}</h2>
         <section class="page-section">
             <div class="input-group  selector">
@@ -23,9 +23,9 @@
                 </form>
             </div>
         </section>
-        <section class="page-section">
+        <section class="page-section searchResults">
             <p>{{(searchMessage[0] | translate)}} {{searchMessage[1]}}</p>
-            <div class="row" id="portfolio">
+            <div class="row " id="portfolio">
                 <!-- Resultados búsqueda -->
                 <!-- Card item -->
                 <div *ngFor="let card of searchresult" class="col-lg-4 col-sm-6 mb-4">
@@ -41,7 +41,7 @@
                             </div>
                             <img class="img-fluid" src="{{card.picture}}" alt=".." />
                         </a>                                                                 
-                        <div class="portfolio-caption d-flex align-items-center justify-content-center pt-3 pb-3 bg-light">                                              
+                        <div class="portfolio-caption align-items-center justify-content-center pt-3 pb-3">                                              
                             <div class="col-2 col-md-3 me-4">
                                 <a>
                                     <img (click)="goToProfile(card.idUser)" src="./assets/img/user-icons/generic_user.png" class="img-fluid rounded-circle shadow-sm">

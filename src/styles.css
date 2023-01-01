@@ -11512,7 +11512,7 @@ header.masthead .masthead-heading {
 #portfolio .portfolio-item .portfolio-caption {
   padding: 1.5rem;
   /*text-align: center;*/
-  background-color: #fff;
+  background-color: /*#fff*/#F5F5F7;
   display: flex;
 }
 
@@ -12012,6 +12012,11 @@ section#perfilUsuario .section-heading {
   padding: 1em ;
 }
 
+.searchResults{
+  min-height: 50vh;
+}
+
+
 @media (max-width:768px) {
 
   .selector .form-select {
@@ -12050,7 +12055,8 @@ section#perfilUsuario .section-heading {
 
 /*---BG color para la cardItem---*/
 .cardItem {
-  background-color: #f2f2f2;
+  
+  background-color: #F5F5F7;
 }
 
 /*---Estilos responsive para userRequests en user.html---*/

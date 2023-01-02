@@ -13,7 +13,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
            
             <div class="px-4 pt-0 pb-4 bg-dark">   
-                      <!-----------------Poner descripcion de usuario sobre este div------------------------------>
+                      <!-----------------Div para la descripción de usuario------------------------------>
                       <div class="userDescription ">
                         <blockquote>{{profileContent.aboutMe}}</blockquote>
                       </div>
@@ -89,7 +89,7 @@
                 <div class="row" id="portfolio">
                     <div *ngFor="let activitie of profileActivities" class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item-->
-                        <div class="portfolio-item shadow-sm  pt-2 ">
+                        <div class="portfolio-item shadow rounded  ">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#modal{{activitie.id}}">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -98,10 +98,11 @@
                             </a>
                             <div class="portfolio-caption py-3 d-block">
                                 <h5 class="mt-3 text-center">{{activitie.title}}</h5>
-                                <h5 class="text-center text-secondary pb-2 ">{{activitie.dateActivity}}</h5>                                
+                                <h5 class="text-muted text-center">{{activitie.category_es}}</h5>
+                                <h6 class="text-center pb-2 ">{{activitie.dateActivity}}</h6>                                
                             </div>
                         </div>
-                                            <!-- Portfolio Modal-->
+                    <!-- Portfolio Modal-->
                     <div class="portfolio-modal modal fade" id="modal{{activitie.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -112,15 +113,16 @@
                                         <div class="col-lg-8">
                                             <h2 class="text-uppercase">{{activitie.title}}</h2>
                                             <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
-                                            <div class="modal-body cambio">
+                                            <p><strong>Categoría:</strong> #{{activitie.category_es}} </p>
+                                            <div class="modal-body aling-items-center cambio">
+                                            
                                                 <!-- Project details-->
-                                                <div class="col-lg-6 col-sm-12 ">
-                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />
-                                                    <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                                <div class="col-lg-6 col-sm-12 me-3">
+                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />                                                    
                                                 </div>
-                                                <div class="col-lg-6 col-sm-12">
-                                                    <ul class="list-inline">
-                                                        
+                                                <div class="col-lg-6 col-sm-12 ms-3">
+                                                    <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                                    <!--<ul class="list-inline"> COMENTADO PARA ESTE MODAL NO SERÍA NECESARIO                                                        
                                                         <li>
                                                             <strong>Categoria:</strong>#{{activitie.category_es}}
                                                         </li>
@@ -128,7 +130,7 @@
                                                     <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
                                                         type="button">
                                                         {{'home_page.sect2.modal_button' | translate}}
-                                                    </button>
+                                                    </button>-->
                                                 </div>
                                             </div>
                                         </div>

@@ -138,5 +138,10 @@
             "title": "¿Cuáles son las reglas para usar un banco del tiempo?",
             "text": "Los miembros deben ofrecer servicios de calidad y cumplir con sus compromisos de trueque. Los miembros deben respetar las políticas del banco del tiempo y las leyes locales. Los miembros deben usar horas para obtener servicios, no dinero."
         }
+    },
+    "footer_links": {
+        "terms": "Terminos y privacidad",
+        "FAQS": "Preguntas frecuentes",
+        "contact": "Contacto"
     }
 }

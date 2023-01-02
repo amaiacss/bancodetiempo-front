@@ -137,5 +137,10 @@
             "title": "Zeintzuk dira denbora bankua erabiltzeko arauak?",
             "text": "Kideek kalitatezko zerbitzuak eskaini eta truke-konpromisoak bete behar dituzte. Kideek denbora bankuaren politikak eta tokiko legeak bete behar dituzte. Kideek orduak erabili behar dituzte zerbitzuak lortzeko, ez dirua."
         }
+    },
+    "footer_links": {
+        "terms": "Baldintzak eta pribatutasuna",
+        "FAQS": "Ohiko galderak",
+        "contact": "Harremanetan jarri"
     }
 }

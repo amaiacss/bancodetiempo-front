@@ -114,5 +114,28 @@
         "interactions_title": "Burututako elkarrekintzak",
         "new_activitie_span": "Jarduera berria",
         "activities_text": "jarduera argitaratuak"
+    },
+    "FAQS": {
+        "title": "Ohiko galderak",
+        "what": {
+            "title": "Zer da denbora bankua?",
+            "text": "Denbora Bankua bere kideek dirurik erabili gabe zerbitzuak eta trebetasunak trukatzeko aukera ematen duen sare sozial bat da. Kideek beren gaitasunak eta zerbitzuak eskain ditzakete metatutako orduen kredituen truke, eta gero beste kide batzuen zerbitzuak lortzeko erabil ditzakete."
+        },
+        "how": {
+            "title": "Nola funtzionatzen du denbora bankua?",
+            "text": "Kideek denbora bankuan izena ematen dute eta orduan euren trebetasunak eta zerbitzuak eskain ditzakete orduen truke. Beste kideek eskaintza hauek ikusi eta kide baten zerbitzuak eska ditzakete ordu batzuen truke. Orduak pilatzen dira kide bakoitzaren kontuan eta beste kide batzuen zerbitzuak lortzeko erabil daitezke."
+        },
+        "benefits": {
+            "title": "Zeintzuk dira denbora bankuan sartzearen abantailak?",
+            "text": "Denbora banku batean sartuz gero, zerbitzu eta gaitasun askotara sar zaitezke dirurik ordaindu beharrik gabe. Gainera, jende berria ezagutu eta gaitasun berriak garatu ditzakezu."
+        },
+        "examples": {
+            "title": "Zeintzuk dira denbora-kredituen truke eskain ditzazkedan zerbitzu eta trebetasunen adibide batzuk?",
+            "text": "Denbora-kredituen truke eskain ditzakezun zerbitzu eta trebetasunen adibide batzuk hauek dira: hizkuntzen irakaskuntza, etxetresna elektrikoen konponketa, lorezaintza, umeen zaintza, diseinu grafikoa, etab."
+        },
+        "rules": {
+            "title": "Zeintzuk dira denbora bankua erabiltzeko arauak?",
+            "text": "Kideek kalitatezko zerbitzuak eskaini eta truke-konpromisoak bete behar dituzte. Kideek denbora bankuaren politikak eta tokiko legeak bete behar dituzte. Kideek orduak erabili behar dituzte zerbitzuak lortzeko, ez dirua."
+        }
     }
 }

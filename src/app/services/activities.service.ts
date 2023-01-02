@@ -50,7 +50,7 @@ export class ActivitiesService {
     this.create_activity_endpoint = '/activity/create'
   }
 
-  createActivity(body:{}): Observable<any>{
+  createActivity(body:{"title":string,"description":string,"idCategory":number,"idUser":number}): Observable<any>{
     console.log(body)
     return this.http.post(this.url+this.create_activity_endpoint,body)
   }

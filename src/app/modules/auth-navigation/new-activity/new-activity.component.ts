@@ -98,6 +98,10 @@ export class NewActivityComponent implements OnInit {
     this.router.navigate([`/user/${this.userId}/preferences`])
   }
 
+  goToProfilePage() {
+    this.router.navigate([`/user/${this.userId}/profile/${this.userId}`])
+  }
+
   selectCategory(event:any){
     const value = event.target.value
     this.inputs.selectedCategory = value
@@ -111,10 +115,10 @@ export class NewActivityComponent implements OnInit {
   createCategory(){
     this.clearAlerts()
     const body = {
-      title: this.inputs.title,
-      description: this.inputs.description,
-      idCategory: Number(this.inputs.selectedCategory),
-      idUser: Number(this.userId)
+      "title": this.inputs.title,
+      "description": this.inputs.description,
+      "idCategory": Number(this.inputs.selectedCategory),
+      "idUser": Number(this.userId)
     }
     this.activitiesService.createActivity(body).subscribe({
       next: () => {
@@ -126,7 +130,9 @@ export class NewActivityComponent implements OnInit {
         }
         this.alerts.success = 'Actividad creada correctamente!'
       },
-      error: () => {this.alerts.error = '¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.'}
+      error: (err) => {
+        this.alerts.error = '¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.'
+      }
     })
   }
 

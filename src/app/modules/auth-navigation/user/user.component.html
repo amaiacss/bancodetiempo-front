@@ -118,10 +118,11 @@
                                             
                                                 <!-- Project details-->
                                                 <div class="col-lg-6 col-sm-12 me-3">
-                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />                                                    
+                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />   
+                                                    <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>                                                 
                                                 </div>
                                                 <div class="col-lg-6 col-sm-12 ms-3">
-                                                    <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                                    
                                                     <ul class="list-inline">                
                                                         <li>
                                                             <strong>{{'profile_page.category' | translate}}:</strong>#{{activitie.category_es}}
@@ -183,14 +184,57 @@
                             </div>
                             <div class="col-md-6 d-flex justify-content-end">
                                 <button class="col-md-3 btn btn btn-primary  mx-3">{{'profile_page.in_request.cancel' | translate}}</button>                                                          
-                                <button class="col-md-3 btn btn-primary">{{'profile_page.in_request.finish' | translate}}</button>
+                                <button class="col-md-3 btn btn-primary" data-bs-toggle="modal" href="#assingHours">{{'profile_page.in_request.finish' | translate}}</button>
                             </div>                            
                         </li>
                     </ul>                    
                 </div>
             </div>
                                  
-            
+
+<!-- Modal para asignar las horas en el botón Finalizar -->
+
+<div class="portfolio-modal modal fade" id="assingHours" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center" >
+                    <div class="col-lg-8">
+                        <div class="modal-body d-block  ">
+                            <!-- Project details-->  
+                            <h2 class="text-uppercase mb-4">Enviar tiempo</h2>
+                            <p class="align-self-start item-intro text-muted">Añade el tiempo al usuario con el que colaboraste para que las sume a su bolsa de horas</p>
+
+                            <div class="input-group mb-3 w-50 mx-auto">
+                                <input type="number" class="form-control" placeholder="Añade el número de horas" aria-label="hours input" aria-describedby="button-addon2">
+                                <button class="btn btn-primary text-uppercase fw-bold" type="button" id="button-addon2">Enviar tiempo</button>
+                            </div> 
+                            
+                            <!--ESTOS ALERTS LOS HE PUESTO PARA QUE EXISTA COMO UNA RESPUESTA AL USUARIO, SI NO OS PARECE QUITAMOS-->
+                           
+                                <div class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg>
+                                    <strong>El tiempo se ha enviado correctamente.</strong>
+                                </div>  
+                                <div  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg> 
+                                    <strong>Algo ha fallado. Intentalo de nuevo mas tarde.</strong>
+                                </div>                      
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
             
 
 

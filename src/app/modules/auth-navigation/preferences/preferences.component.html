@@ -1,14 +1,14 @@
 <!-- PerfilEditado-->
 <section class="page-section bg-light" id="perfil">
     <div class="container">     
-        <h2 class="text-muted p-3">Editar perfil</h2>
+        <h2 class="text-muted p-3">{{'preferences_page.edit_profile_btn' | translate}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
                     <div class="profile"><img src="{{inputData.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                         <div *ngIf="fullProfile">
-                            <a href="#" class="btn btn-secondary mb-2" >Subir imagen</a>                  
+                            <a href="#" class="btn btn-secondary mb-2" >{{'preferences_page.upload_image_btn' | translate}}</a>                  
                         </div>                         
                     </div>                           
                     <div *ngIf="profileContent.city" class="media-body mb-5 ms-3 text-white align-items-center">
@@ -18,7 +18,7 @@
                 </div>                 
             </div>
             <div class="bg-light p-4 d-flex justify-content-end">              
-                <a href="#cambiarPass" data-bs-toggle="modal" class="btn btn-secondary mb-2" (click)="buildForm()">Cambiar contraseña</a>                
+                <a href="#cambiarPass" data-bs-toggle="modal" class="btn btn-secondary mb-2" (click)="buildForm()">{{'preferences_page.change_pass_btn' | translate}}</a>                
             </div>           
         </div>       
     </div>     
@@ -35,43 +35,43 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- Name input-->
-                        <label for="nombre">Nombre</label>
-                        <input name="firstName" [(ngModel)]="inputData.firstName" class="form-control" id="name" type="text" placeholder="Nombre *"/>
-                        <div class="invalid-feedback">A name is required.</div>
+                        <label for="nombre">{{'preferences_page.name_inp' | translate}}</label>
+                        <input name="firstName" [(ngModel)]="inputData.firstName" class="form-control" id="name" type="text" placeholder="{{'preferences_page.name_inp' | translate}} *"/>
+                        <div class="invalid-feedback">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                     <div class="form-group">
                         <!-- Name input-->
-                        <label for="nombre">Apellido</label>
-                        <input name="lastName" [(ngModel)]="inputData.lastName" class="form-control" id="name" type="text" placeholder="Apellido *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <label for="nombre">{{'preferences_page.subname_inp' | translate}}</label>
+                        <input name="lastName" [(ngModel)]="inputData.lastName" class="form-control" id="name" type="text" placeholder="{{'preferences_page.subname_inp' | translate}} *" data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="name:required">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
-                        <label for="email">Email</label><!--Aquí el campo mail es no editable-->
-                        <input name="email" [(ngModel)]="inputData.email" class="form-control" id="email" type="email" placeholder="email de usuario *"  readonly="readonly" />
+                        <label for="email">{{'preferences_page.email_inp' | translate}}</label><!--Aquí el campo mail es no editable-->
+                        <input name="email" [(ngModel)]="inputData.email" class="form-control" id="email" type="email" placeholder="{{'preferences_page.email_inp' | translate}} *"  readonly="readonly" />
                         
                     </div>
                     <div class="form-group">
                         <!-- teléfono input-->
-                        <label for="phone">Teléfono</label>
-                        <input name="phone" [(ngModel)]="inputData.phone"  class="form-control" id="phone" type="text" placeholder="Teléfono" />
+                        <label for="phone">{{'preferences_page.phone_inp' | translate}}</label>
+                        <input name="phone" [(ngModel)]="inputData.phone"  class="form-control" id="phone" type="text" placeholder="{{'preferences_page.phone_inp' | translate}} *" />
                         
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- provincia input-->
-                        <label for="province">Provincia</label>
-                        <select name="province" [(ngModel)]="inputData.province_code" (change)="setProvinceFilter($event)" class="form-select" id="province" type="text" placeholder="Provincia *" data-sb-validations="required" >
+                        <label for="province">{{'preferences_page.province_inp' | translate}}</label>
+                        <select name="province" [(ngModel)]="inputData.province_code" (change)="setProvinceFilter($event)" class="form-select" id="province" type="text"  data-sb-validations="required" >
                             <option value="0" selected>Selecciona</option>
                             <option *ngFor="let province of location.provinces" value="{{province.code}}">{{province.name}}</option>
                         </select>
-                        <div class="invalid-feedback" data-sb-feedback="province:required">A ubicacion is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="province:required">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                     <div class="form-group">
                         <!-- población input-->
-                        <label for="cities">Población</label>
-                        <select name="city" [(ngModel)]="inputData.city_code" class="form-select" id="cities" type="text" placeholder="Población *" data-sb-validations="required" >
+                        <label for="cities">{{'preferences_page.city_inp' | translate}}</label>
+                        <select name="city" [(ngModel)]="inputData.city_code" class="form-select" id="cities" type="text" data-sb-validations="required" >
                             <option selected>Selecciona</option>
                             <option *ngFor="let city of location.cities" value="{{city.code}}">{{city.name}}</option>
                         </select>
@@ -79,9 +79,9 @@
                     </div>
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
-                        <label for="descripcion">Descripción</label>
-                        <textarea name="aboutMe" [(ngModel)]="inputData.aboutMe" class="form-control" id="message" placeholder="Descripcion" data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                        <label for="descripcion">{{'preferences_page.description_inp' | translate}}</label>
+                        <textarea name="aboutMe" [(ngModel)]="inputData.aboutMe" class="form-control" id="message" placeholder="{{'preferences_page.description_inp' | translate}} *" data-sb-validations="required"></textarea>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                 </div>
             </div>
@@ -116,8 +116,8 @@
                 <strong>{{alerts.error}}</strong>
             </div>
             <!-- Submit Button-->
-            <div *ngIf="fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" (click)="updateProfile()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Guardar cambios</button></div>
-            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Crear Perfil</button></div>
+            <div *ngIf="fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" (click)="updateProfile()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'preferences_page.save_btn' | translate}}</button></div>
+            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'preferences_page.create_btn' | translate}}</button></div>
         </form>
     </div>
 </section>

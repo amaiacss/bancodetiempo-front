@@ -51,7 +51,8 @@ export class UsersService {
     return this.http.get(this.url+this.profile_endpoint+id)
   }
 
-  updateUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,province_code:string,city_code:string,aboutMe:string}): Observable<any>{
+  updateUserProfile(body:{"id":string,"firstName":string,"lastName":string,"phone":string,"locationCode":string,"aboutMe":string}): Observable<any>{
+    console.log(body)
     return this.http.put(this.url+this.profile_update_endpoint,body)
   }
 

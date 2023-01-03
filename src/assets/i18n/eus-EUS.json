@@ -108,12 +108,52 @@
         "title": "Profila",
         "edit_profile_btn": "Profila aldatu",
         "balance": "Oreka",
+        "hours": "Ordu",
+        "category": "Kategoría",
         "publications_tab": "Argitalpenak",
         "interactions_tab": "Elkarrekintzak",
+        "requests_tab": "Eskaerak",
         "publications_title": "Argitaratutako jarduerak",
         "interactions_title": "Burututako elkarrekintzak",
+        "requests_title": "Eskaera orria",
         "new_activitie_span": "Jarduera berria",
-        "activities_text": "jarduera argitaratuak"
+        "activities_text": "jarduera argitaratuak",
+        "out_request": {
+            "text": "eskatu dizu",
+            "state": "Egoera",
+            "accept": "Onartu",
+            "reject": "Deuseztatu",
+            "finish": "Amaitu"
+        },
+        "in_request": {
+            "text": "zure eskaera jaso du",
+            "state": "Egoera",
+            "cancel": "Deuseztatu",
+            "finish": "Amaitu"
+        }
+    },
+    "preferences_page": {
+        "edit_profile_btn": "Profila Aldatu",
+        "upload_image_btn": "Irudia igo",
+        "change_pass_btn": "Pasahitza Aldatu",
+        "required_err": "Eremu guztiak derrigorrezkoak dira",
+        "name_inp": "Izena",
+        "subname_inp": "Abizena",
+        "email_inp": "Emaila",
+        "phone_inp": "Telefonoa",
+        "province_inp": "Probintzia",
+        "city_inp": "Lurraldea",
+        "description_inp": "Deskripzioa",
+        "save_btn": "Aldaketak Gorde",
+        "create_btn": "Profila Sortu"
+    },
+    "new_activity_page": {
+        "title": "Jarduera argitaratu",
+        "title_inp": "Izenburua",
+        "category_inp": "Kategoria",
+        "description_inp": "Deskripzioa",
+        "go_to_profile_btn": "Profila Ikusi",
+        "publish_activity_btn": "Jarduera Argitaratu"
     },
     "FAQS": {
         "title": "Ohiko galderak",
@@ -142,5 +182,8 @@
         "terms": "Baldintzak eta pribatutasuna",
         "FAQS": "Ohiko galderak",
         "contact": "Harremanetan jarri"
+    },
+    "alerts": {
+        "profile_false": "Ez al duzu zure profila osatu? Zeren zain zaude? Lortu orain funtzionalitate guztiak"
     }
 }

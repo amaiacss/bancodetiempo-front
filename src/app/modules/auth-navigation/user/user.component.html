@@ -4,7 +4,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </svg> 
-        <strong style="margin-right:20px;">¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad</strong>
+        <strong style="margin-right:20px;">{{'alerts.profile_false' | translate}}</strong>
         <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
     </div>
     <div class="container">     
@@ -49,7 +49,7 @@
                                 <i class="fas fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="far fa-hourglass fa-stack-1x fa-inverse"></i>                                                                              
                             </span>  
-                            <h4 *ngIf="fullProfile" class="mb-0 text-muted text-center p-1">{{profileContent.credit}} Horas</h4> 
+                            <h4 *ngIf="fullProfile" class="mb-0 text-muted text-center p-1">{{profileContent.credit}} {{'profile_page.hours' | translate}}</h4>
                         </div>
                         
                         
@@ -76,7 +76,7 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
                 <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
-                <button class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">Solicitudes</button>
+                <button class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">{{'profile_page.requests_tab' | translate}}</button>
             </div>
         </nav>
                    
@@ -113,7 +113,7 @@
                                         <div class="col-lg-8">
                                             <h2 class="text-uppercase">{{activitie.title}}</h2>
                                             <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
-                                            <p><strong>Categoría:</strong> #{{activitie.category_es}} </p>
+                                            <p><strong>{{'profile_page.category' | translate}}:</strong> #{{activitie.category_es}} </p>
                                             <div class="modal-body aling-items-center cambio">
                                             
                                                 <!-- Project details-->
@@ -124,7 +124,7 @@
                                                     <p class="text-start">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
                                                     <ul class="list-inline">                
                                                         <li>
-                                                            <strong>Categoria:</strong>#{{activitie.category_es}}
+                                                            <strong>{{'profile_page.category' | translate}}:</strong>#{{activitie.category_es}}
                                                         </li>
                                                     </ul>
                                                     <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal"
@@ -160,29 +160,30 @@
              <!--Solicitudes-->           
              <div class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Pagína de solicitudes</h5>
+                    <h5 class="mb-0">{{'profile_page.requests_title'}}</h5>
                 </div>
                 
                 <div class="row userRequests">
                     <ul>
                         <li class="d-flex justify-content-between align-items-center">
                             <div class="col-md-6">
-                                <p>Has recibido una solicitud sobre tu actividad <strong>Titulo de actividad</strong></p>
+                                <p><strong>TO-DO ->@nosekien</strong> {{'profile_page.out_request.text' | translate}} <strong> TO-DO -> Titulo de actividad</strong></p>
+                                <p>{{'profile_page.out_request.state' | translate}}: <strong>TO-DO->Aceptada</strong></p>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end">
-                                <button class="col-md-3 btn btn-primary">Aceptar</button>
-                                <button class="col-md-3 btn btn-primary mx-3 ">Rechazar</button>
-                                <button class="col-md-3 btn btn-primary">Finalizar</button>
+                                <button class="col-md-3 btn btn-primary">{{'profile_page.out_request.accept' | translate}}</button>
+                                <button class="col-md-3 btn btn-primary mx-3 ">{{'profile_page.out_request.reject' | translate}}</button>
+                                <button class="col-md-3 btn btn-primary">{{'profile_page.out_request.finish' | translate}}</button>
                             </div>                            
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <div class="col-md-6">
-                                <p>Has enviado una solicitud sobre la actividad <strong>Titulo de actividad</strong></p>
+                                <p><strong>TO-DO -> @nosekin </strong>{{'profile_page.in_request.text' | translate}}:  <strong>TO-DO -> Titulo de actividad</strong></p>
+                                <p>{{'profile_page.in_request.state' | translate}}: <strong>TO-DO->Aceptada</strong></p>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end">
-                                <button class="col-md-3 btn btn btn-primary ">Rechazada</button>  
-                                <button class="col-md-3 btn btn-primary mx-3">En espera</button>                                                           
-                                <button class="col-md-3 btn btn-primary">Finalizar</button>
+                                <button class="col-md-3 btn btn btn-primary  mx-3">{{'profile_page.in_request.cancel' | translate}}</button>                                                          
+                                <button class="col-md-3 btn btn-primary">{{'profile_page.in_request.finish' | translate}}</button>
                             </div>                            
                         </li>
                     </ul>                    

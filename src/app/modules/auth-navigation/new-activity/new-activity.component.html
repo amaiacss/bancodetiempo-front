@@ -5,10 +5,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg> 
-            <strong style="margin-right:20px;">¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad</strong>
+            <strong style="margin-right:20px;">{{'alerts.profile_false' | translate}}</strong>
             <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
         </div>    
-        <h2 class="text-muted p-3">Registrar actividad</h2>
+        <h2 class="text-muted p-3">{{'new_activity_page.title' | translate}}</h2>
         <!--CABECERA DE USUARIO-->
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
@@ -46,20 +46,20 @@
                 <div class="col-md-8">
                     <div class="form-group">
                         <!-- Titulo input-->
-                        <label for="tittle">Titulo</label>
-                        <input name="title" [(ngModel)]="inputs.title" class="form-control" id="tittle" type="text" placeholder="Título *" />
+                        <label for="tittle">{{'new_activity_page.title_inp' | translate}}</label>
+                        <input name="title" [(ngModel)]="inputs.title" class="form-control" id="tittle" type="text" placeholder="{{'new_activity_page.title_inp' | translate}} *" />
                     </div>
                     <div class="form-group">
                         <!-- Categoria input-->
-                        <label for="category">Categoria</label>
-                        <select (change)="selectCategory($event)" class="form-select" id="category" type="text" placeholder="Categoría *" data-sb-validations="required" >
+                        <label for="category">{{'new_activity_page.category_inp' | translate}}</label>
+                        <select (change)="selectCategory($event)" class="form-select" id="category" type="text"  data-sb-validations="required" >
                             <option *ngFor="let category of inputs.categories" value="{{category.id}}">{{category.name}}</option>
                         </select>
                     </div>
                     <div class="form-group form-group-textarea ">
                         <!-- Descripción input-->
-                        <label for="description">Descripción</label>
-                        <textarea name="description" [(ngModel)]="inputs.description" class="form-control" id="description" placeholder="Descripción *" data-sb-validations="required"></textarea>
+                        <label for="description">{{'new_activity_page.description_inp' | translate}}</label>
+                        <textarea name="description" [(ngModel)]="inputs.description" class="form-control" id="description" placeholder="{{'new_activity_page.description_inp' | translate}} *" data-sb-validations="required"></textarea>
                     </div>
                 </div>                
             </div>
@@ -77,9 +77,9 @@
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg> 
             <strong style="margin-right:20px;">{{alerts.success}}</strong>
-            <button class="btn btn-success" (click)="goToProfilePage()">Ver perfil</button>
+            <button class="btn btn-success" (click)="goToProfilePage()">{{'new_activity_page.go_to_profile_btn' | translate}}</button>
         </div>
         <!-- Submit Button-->
-        <div class="text-center"><button [disabled]="!allInputsCompleted()" (click)="createCategory()" class="btn btn-primary btn-xl text-uppercase mt-5" id="submitButton" type="submit">Publicar actividad</button></div>
+        <div class="text-center"><button [disabled]="!allInputsCompleted()" (click)="createCategory()" class="btn btn-primary btn-xl text-uppercase mt-5" id="submitButton" type="submit">{{'new_activity_page.publish_activity_btn' | translate}}</button></div>
     </div>
 </section>

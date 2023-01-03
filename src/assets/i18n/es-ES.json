@@ -109,12 +109,52 @@
         "title": "Perfil",
         "edit_profile_btn": "Editar Perfil",
         "balance": "Saldo",
+        "hours": "Horas",
+        "category": "Categoría",
         "publications_tab": "Publicaciones",
         "interactions_tab": "Interacciones",
+        "requests_tab": "Solicitudes",
         "publications_title": "Actividades publicadas",
         "interactions_title": "Interacciones realizadas",
+        "requests_title": "Pagína de solicitudes",
         "new_activitie_span": "Nueva actividad",
-        "activities_text": "actividades publicadas"
+        "activities_text": "actividades publicadas",
+        "out_request": {
+            "text": "te ha solicitado",
+            "state": "Estado",
+            "accept": "Aceptar",
+            "reject": "Rechazar",
+            "finish": "Finalizar"
+        },
+        "in_request": {
+            "text": "ha recibido tu solicitud",
+            "state": "Estado",
+            "cancel": "Cancelar",
+            "finish": "Finalizar"
+        }
+    },
+    "preferences_page": {
+        "edit_profile_btn": "Editar Perfil",
+        "upload_image_btn": "Subir imagen",
+        "change_pass_btn": "Cambiar contraseña",
+        "required_err": "Todos los campos son obligatorios",
+        "name_inp": "Nombre",
+        "subname_inp": "Apellido",
+        "email_inp": "Email",
+        "phone_inp": "Teléfono",
+        "province_inp": "Provincia",
+        "city_inp": "Población",
+        "description_inp": "Descripción",
+        "save_btn": "Guardar Cambios",
+        "create_btn": "Crear Perfil"
+    },
+    "new_activity_page": {
+        "title": "Registrar actividad",
+        "title_inp": "Título",
+        "category_inp": "Categoría",
+        "description_inp": "Descripción",
+        "go_to_profile_btn": "Ver perfil",
+        "publish_activity_btn": "Publicar Actividad"
     },
     "FAQS": {
         "title": "Preguntas frecuentes",
@@ -143,5 +183,8 @@
         "terms": "Terminos y privacidad",
         "FAQS": "Preguntas frecuentes",
         "contact": "Contacto"
+    },
+    "alerts": {
+        "profile_false": "¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad"
     }
 }

@@ -134,13 +134,12 @@ export class PreferencesComponent implements OnInit {
     this.clearAlerts()
     if (this.allInputsCompleted()){
       const body = {
-        id:this.userId || '0',
-        firstName:this.inputData.firstName,
-        lastName:this.inputData.lastName,
-        phone:this.inputData.phone,
-        province_code:this.inputData.province_code,
-        city_code:this.inputData.city_code,
-        aboutMe:this.inputData.aboutMe
+        "id":this.userId || '0',
+        "firstName":this.inputData.firstName,
+        "lastName":this.inputData.lastName,
+        "phone":this.inputData.phone,
+        "locationCode":this.inputData.city_code,
+        "aboutMe":this.inputData.aboutMe
       }
       this.usersService.updateUserProfile(body).subscribe({
         next: () => {

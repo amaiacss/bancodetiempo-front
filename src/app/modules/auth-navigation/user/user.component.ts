@@ -22,6 +22,11 @@ export class UserComponent implements OnInit {
   profileActivities:any = []
   profileInteractions: [] = []
 
+  alerts = {
+    success: '',
+    error: ''
+  }
+
 
   constructor(
     private translateService: TranslateService,
@@ -77,6 +82,12 @@ export class UserComponent implements OnInit {
     this.router.navigate([`/user/${this.userId}/preferences`])
   }
 
+  goToProfile(id:number | string | null | undefined){
+    this.clearAlerts()
+    console.log(`/user/${this.userId}/profile/${id}`)
+    id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
+  }
+
   loadData(){
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
@@ -96,6 +107,17 @@ export class UserComponent implements OnInit {
         error: () => {this.profileActivities = []}
       })
     }
+  }
+
+  sendRequest(activityId:string){
+    this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
+      next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
+      error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
+    })
+  }
+
+  clearAlerts(){
+    this.alerts = {success:'',error:''}
   }
 
 }

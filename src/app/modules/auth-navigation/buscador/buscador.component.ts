@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { CardInfo } from 'src/app/models/activities';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-buscador',
-  templateUrl: './buscador.component.html',
-  styleUrls: ['./buscador.component.css']
+  templateUrl: './buscador.component.html'
 })
 export class BuscadorComponent implements OnInit {
   isLoged:boolean = false
@@ -31,6 +29,11 @@ export class BuscadorComponent implements OnInit {
     province: string,
     url: string
   }> = []
+
+  alerts = {
+    success: '',
+    error: ''
+  }
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -79,14 +82,15 @@ export class BuscadorComponent implements OnInit {
     
     this.activitiesService.getFilteredSearch(body).subscribe({
       next: (res) => {
-        this.searchresult = res.data
+        this.searchresult = res.data.filter((activity: { idUser: string | null | undefined; }) => activity.idUser!==this.userId)
         this.searchMessage = ['search_page.result_text',res.data.length]
       }
     })
     
   }
 
-  goToProfile(id:number | string){
+  goToProfile(id:number | string | null | undefined){
+    this.clearAlerts()
     console.log(`/user/${this.userId}/profile/${id}`)
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
@@ -143,6 +147,17 @@ export class BuscadorComponent implements OnInit {
     //   "idCategory": 2,
     //   "idUser": 9000
     // }
+  }
+
+  sendRequest(activityId:string){
+    this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
+      next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
+      error: ()=> {alert("ups!")}
+    })
+  }
+
+  clearAlerts(){
+    this.alerts = {success:'',error:''}
   }
 
 }

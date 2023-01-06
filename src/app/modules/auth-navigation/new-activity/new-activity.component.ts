@@ -6,8 +6,7 @@ import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-new-activity',
-  templateUrl: './new-activity.component.html',
-  styleUrls: ['./new-activity.component.css']
+  templateUrl: './new-activity.component.html'
 })
 export class NewActivityComponent implements OnInit {
   isLoged:boolean = false

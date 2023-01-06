@@ -8,8 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-preferences',
-  templateUrl: './preferences.component.html',
-  styleUrls: ['./preferences.component.css']
+  templateUrl: './preferences.component.html'
 })
 export class PreferencesComponent implements OnInit {
   isLoged:boolean = false

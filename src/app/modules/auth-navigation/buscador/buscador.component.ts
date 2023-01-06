@@ -29,6 +29,11 @@ export class BuscadorComponent implements OnInit {
     province: string,
     url: string
   }> = []
+
+  alerts = {
+    success: '',
+    error: ''
+  }
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -84,7 +89,8 @@ export class BuscadorComponent implements OnInit {
     
   }
 
-  goToProfile(id:number | string){
+  goToProfile(id:number | string | null | undefined){
+    this.clearAlerts()
     console.log(`/user/${this.userId}/profile/${id}`)
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
@@ -141,6 +147,17 @@ export class BuscadorComponent implements OnInit {
     //   "idCategory": 2,
     //   "idUser": 9000
     // }
+  }
+
+  sendRequest(activityId:string){
+    this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
+      next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
+      error: ()=> {alert("ups!")}
+    })
+  }
+
+  clearAlerts(){
+    this.alerts = {success:'',error:''}
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { CardInfo } from 'src/app/models/activities';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -78,7 +77,7 @@ export class BuscadorComponent implements OnInit {
     
     this.activitiesService.getFilteredSearch(body).subscribe({
       next: (res) => {
-        this.searchresult = res.data
+        this.searchresult = res.data.filter((activity: { idUser: string | null | undefined; }) => activity.idUser!==this.userId)
         this.searchMessage = ['search_page.result_text',res.data.length]
       }
     })

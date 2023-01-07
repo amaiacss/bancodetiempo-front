@@ -12054,10 +12054,14 @@ section#perfilUsuario .section-heading {
 .userDescription blockquote:after  { content: close-quote; }
 
 /*---BG color para la cardItem---*/
-.cardItem {
-  
+.cardItem {  
   background-color: #F5F5F7;
 }
+
+.cardHover:hover {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+}
+
 
 /*---Estilos responsive para userRequests en user.html---*/
 
@@ -12111,6 +12115,5 @@ section#perfilUsuario .section-heading {
   }
  
 }
-
 
 

@@ -12041,7 +12041,7 @@ section#perfilUsuario .section-heading {
   width: 40%;
   float: right;
   position: relative;  
-  top: 65px;
+  top: 50px;
 }
 
 .userDescription blockquote{
@@ -12050,8 +12050,27 @@ section#perfilUsuario .section-heading {
   text-align: justify;
   quotes: "«" "»";
 }
-.userDescription blockquote:before { content: open-quote; }
-.userDescription blockquote:after  { content: close-quote; }
+.userDescription blockquote:before,
+.userDescriptionCh blockquote:before { content: open-quote; }
+
+.userDescription blockquote:after,
+.userDescriptionCh blockquote:after  { content: close-quote; }
+
+.userDescriptionCh {
+  display: none;
+}
+
+@media (max-width:992px) {
+  .userDescription {
+    display: none;    
+  }
+
+  .userDescriptionCh {
+    display: block;
+    font-style: italic;
+  }
+}
+
 
 /*---BG color para la cardItem---*/
 .cardItem {  

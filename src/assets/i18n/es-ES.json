@@ -119,18 +119,28 @@
         "requests_title": "Pagína de solicitudes",
         "new_activitie_span": "Nueva actividad",
         "activities_text": "actividades publicadas",
-        "out_request": {
+        "in_request": {
             "text": "te ha solicitado",
             "state": "Estado",
             "accept": "Aceptar",
             "reject": "Rechazar",
             "finish": "Finalizar"
         },
-        "in_request": {
+        "out_request": {
             "text": "ha recibido tu solicitud",
             "state": "Estado",
             "cancel": "Cancelar",
             "finish": "Finalizar"
+        },
+        "historical_request": {
+            "out": "Tiempo ofrecido",
+            "in": "Tiempo recibido"
+        },
+        "finish_modal": {
+            "title": "¿Actividad finalizada?",
+            "text": "Indica el número de horas que ha durado el intercambio",
+            "placeholder": "Horas",
+            "btn": "Confirmar y finalizar"
         }
     },
     "preferences_page": {

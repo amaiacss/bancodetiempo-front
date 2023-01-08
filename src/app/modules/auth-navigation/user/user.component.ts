@@ -17,10 +17,15 @@ export class UserComponent implements OnInit {
   selectedProfile:string = ''
   canEdit:boolean = false
   fullProfile:boolean = false
+  selectedLanguage = 'ES'
 
   profileContent:any = {}
   profileActivities:any = []
-  profileInteractions: [] = []
+  requestHistorical: {incoming:any,outgoing:any} = {incoming:[],outgoing:[]}
+  outgoingRequests:[] = []
+  incomingRequests:any = []
+
+  interactionHours = 0
 
   alerts = {
     success: '',
@@ -37,6 +42,7 @@ export class UserComponent implements OnInit {
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
+      this.selectedLanguage = event.lang
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
@@ -49,7 +55,49 @@ export class UserComponent implements OnInit {
         this.selectedProfile = params["profile"]
         this.loadData()
         this.profileActivities = this.activitiesService.getProfileActivities(this.selectedProfile)
-        this.profileInteractions = this.activitiesService.getProfileInteractions(this.selectedProfile)
+        //Incoming Requests
+        this.activitiesService.getIncomingRequests(this.userId).subscribe({
+          next: (response:any) => {
+            const data = response.data
+            for(let i=0;i<data.length;i++){
+              this.incomingRequests[i] = {
+                id: data[i].id,
+                name: data[i].name_es,
+                title: data[i].title,
+                updated_at: data[i].updated_at,
+                username:data[i].username
+              }
+
+            }
+            this.requestHistorical.incoming = [...this.incomingRequests].filter(req => req.name==='Finalizada').reverse()
+            this.incomingRequests = [...this.incomingRequests].filter(req => req.name!=='Finalizada').reverse()
+
+          }
+        })
+        //outgoing Requests - Falta "a quién"
+        // this.activitiesService.getOutgoingRequests(this.userId).subscribe({
+        //   next: (response:any) => {
+        //     response.data.forEach((req: { id: any; name_es: any; name_eu:any, title: any; updated_at: any; username: any; }) => {
+        //       if(req.name_es !== 'Finalizada')
+        //       this.incomingRequests.push({
+        //         id: req.id,
+        //         name: req.name_es,
+        //         title: req.title,
+        //         updated_at: req.updated_at,
+        //         username:req.username
+        //       })
+        //       else{
+        //         this.requestHistorical.incoming.push({
+        //           id: req.id,
+        //           name: req.name_es,
+        //           title: req.title,
+        //           updated_at: req.updated_at,
+        //           username:req.username
+        //         })
+        //       }
+        //     })
+        //   }
+        // })        
     })
     // Verifica si el usuario logueado está en su propio perfil
       if(this.userId === this.selectedProfile){
@@ -91,8 +139,8 @@ export class UserComponent implements OnInit {
   loadData(){
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
+        console.log(data)
         this.profileContent = data[0]
-        console.log(this.profileContent)
       }
     })
   }
@@ -113,6 +161,78 @@ export class UserComponent implements OnInit {
     this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
       next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
       error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
+    })
+  }
+
+  acceptRequest(id:string, index:number, type:number){
+    this.clearAlerts()
+    this.activitiesService.updateRequest(
+      {
+        "id": Number(id),
+        "idState": "A"
+      }
+    ).subscribe({
+      next: ()=> {
+        switch(type) {
+          //TO-DO -- Outgoing
+          case 2: { //incoming
+            this.incomingRequests[index].name = "Aceptada"
+            break
+          }
+        }
+      },
+      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
+    })
+  }
+
+  cancelRequest(id:string, index:number, type:number){
+    this.clearAlerts()
+    this.activitiesService.updateRequest(
+      {
+        "id": Number(id),
+        "idState": "C"
+      }
+    ).subscribe({
+      next: ()=> {
+        switch(type) {
+          //TO-DO -- Outgoing
+          case 2: { //incoming
+            this.incomingRequests[index].name = "Cancelada"
+            break
+          }
+        }
+      },
+      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
+    })
+  }
+
+  endRequest(id:string, index:number, type:number){
+    this.clearAlerts()
+    this.activitiesService.updateRequest(
+      {
+        "id": Number(id),
+        "idState": "F",
+        "hours": Number(this.interactionHours)
+      }
+    ).subscribe({
+      next: ()=> {
+        if (this.interactionHours<=0){
+          this.alerts.error = "El mínimo es de una hora"
+        }
+        else{
+          switch(type) {
+            //TO-DO -- Outgoing
+            case 2: { //incoming
+              let element = this.incomingRequests.splice(index,1)
+              this.requestHistorical.incoming.push(element) 
+              //TO-DO recargar historico
+              //TO-DO recargar horas
+              break
+            }
+          }
+        }
+      },
+      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
     })
   }
 

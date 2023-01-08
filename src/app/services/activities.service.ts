@@ -14,6 +14,9 @@ export class ActivitiesService {
   private filterd_search_endpoint:string
   private create_activity_endpoint:string
   private request_endpoint:string
+  private outgoing_requests_endpoint:string
+  private incoming_requests_endpoint:string
+  private update_request_endpoint:string
 
   private lastActivities: CardInfo[] = [
     // {id:1, image_src: 'assets/img/portfolio/1.jpg',transmitter_thumbnail:'assets/img/team/1.jpg',transmitter_name:'Juan Palomo',transmitter_id:5,date:'20-08-2022',transmitter_location: 'Tolosa',title:'Cuidado de animales',description:'Descripción del anuncio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!', category:'Graphic Design'},
@@ -38,6 +41,9 @@ export class ActivitiesService {
     this.filterd_search_endpoint = '/activity/findall'
     this.create_activity_endpoint = '/activity/create'
     this.request_endpoint = '/requests/create'
+    this.outgoing_requests_endpoint = '/requests/getRequests/'
+    this.incoming_requests_endpoint = '/requests/getRequestsByactivities/'
+    this.update_request_endpoint = '/requests/update'
   }
 
   createActivity(body:{"title":string,"description":string,"idCategory":number,"idUser":number}): Observable<any>{
@@ -47,6 +53,18 @@ export class ActivitiesService {
 
   requestActivity(body:{"idUser":number,"idActivity":number}){
     return this.http.post(this.url+this.request_endpoint,{"idUser":body.idUser,"idActivity":body.idActivity,"idState":"P"})
+  }
+
+  getOutgoingRequests(id:string | null | undefined) {
+    return this.http.get(this.url+this.outgoing_requests_endpoint+id)
+  }
+
+  getIncomingRequests(id:string | null | undefined) {
+    return this.http.get(this.url+this.incoming_requests_endpoint+id)
+  }
+
+  updateRequest(body:any) {
+    return this.http.post(this.url+this.update_request_endpoint,body)
   }
 
   getLastActivities(): CardInfo[] {

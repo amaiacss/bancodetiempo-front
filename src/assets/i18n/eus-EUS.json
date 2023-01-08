@@ -130,6 +130,16 @@
             "state": "Egoera",
             "cancel": "Deuseztatu",
             "finish": "Amaitu"
+        },
+        "historical_request": {
+            "out": "Eskainitako denbora",
+            "in": "Jasotako denbora"
+        },
+        "finish_modal": {
+            "title": "¿Jarduera amaitua?",
+            "text": "Adierazi zenbat ordu iraun duen elkarrekintza",
+            "placeholder": "Orduak",
+            "btn": "Baieztatu eta amaitu"
         }
     },
     "preferences_page": {

@@ -19,6 +19,7 @@ export class UsersService {
   private profile_update_endpoint:string
   private create_profile_endpoint: string
   private update_pass_endpoint:string
+  private update_picture_endpoint:string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -41,6 +42,7 @@ export class UsersService {
     this.profile_update_endpoint = "/profile/update"
     this.create_profile_endpoint = "/profile/create"
     this.update_pass_endpoint = "/user/updatepass"
+    this.update_picture_endpoint = '/profile/updatePicture'
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -54,6 +56,10 @@ export class UsersService {
   updateUserProfile(body:{"id":string,"firstName":string,"lastName":string,"phone":string,"locationCode":string,"aboutMe":string}): Observable<any>{
     console.log(body)
     return this.http.put(this.url+this.profile_update_endpoint,body)
+  }
+
+  updatePicture(body:{"id":string | null | undefined,"pictureData":string | undefined}){
+    return this.http.put(this.url+this.update_picture_endpoint,body)
   }
 
   createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string}): Observable<any>{

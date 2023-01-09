@@ -24,7 +24,7 @@ export class PreferencesComponent implements OnInit {
     province_code:'',
     city_code:'',
     aboutMe:'',
-    picture:'./assets/img/user-icons/generic_user.png'
+    picture:''
   }
   profileContent:any = {}
 
@@ -215,5 +215,45 @@ export class PreferencesComponent implements OnInit {
         validators: CustomValidation.confirmPassword("pass1", "pass2")
       }
     )
+  }
+
+  uploadImage(event: any) {
+    this.clearAlerts()
+    const localImage = event.target.files[0]
+    console.log('localImage: ',event.target.files[0])
+    //Convert this file into a readble url
+    const reader = new FileReader
+    reader.readAsDataURL(localImage)
+    reader.onload = (event) => {
+      const localImage_url = event.target?.result
+      const imgEl:any = document.createElement('img')
+      imgEl.src = localImage_url
+      imgEl.onload = (e:any) => {
+        const canvas = document.createElement('canvas')
+        const ratio = 250 / e.target.width
+        canvas.width = 250
+        canvas.height = e.target.height * ratio
+
+        const ctx = canvas.getContext('2d')
+        ctx?.drawImage(imgEl,0,0,canvas.width,canvas.height)
+
+        const resizedImage_url = ctx?.canvas.toDataURL("image/jpeg", 90)
+        
+        this.inputData.picture = resizedImage_url || ''
+        const imageData = resizedImage_url?.split(',')[1]
+
+        this.usersService.updatePicture({"id":this.userId,"pictureData":imageData}).subscribe({
+          next: () => this.alerts.success = 'Imagen subida correctamente',
+          error: () => this.alerts.error = "No se ha podido subir la imagen"
+        })
+        
+      }
+      //Resize image
+      // const width = this.editableImage
+      // const ratio = width / localImage.width
+      // const height = localImage.height * ratio
+      // console.log(width,'*',height,'  ,  ',localImage.width,'*',localImage.height)
+    }
+    
   }
 }

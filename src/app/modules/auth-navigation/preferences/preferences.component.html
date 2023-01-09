@@ -6,10 +6,13 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
-                    <div class="profile"><img src="{{inputData.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
-                        <!--<div *ngIf="fullProfile">
-                            <a href="#" class="btn btn-secondary mb-2" >{{'preferences_page.upload_image_btn' | translate}}</a>                  
-                        </div>   -->                      
+                    <div class="profile"><img src="{{profileContent.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                        <div *ngIf="fullProfile">
+                            <!-- //uploading image -->
+                            <input (change)="uploadImage($event)" id="file" type="file" accept=".jpg, .jpeg, .png" style="width: 0.1px;height: 0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;"/>
+                            <label for="file" style="font-size: 1.25em;font-weight: 700;
+                            color: white;background-color: rgb(238, 212, 12);display: inline-block;cursor:pointer;padding:10px;border-radius:5px;">{{'preferences_page.upload_image_btn' | translate}}</label>               
+                        </div>                        
                     </div>                           
                     <div *ngIf="profileContent.city" class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>

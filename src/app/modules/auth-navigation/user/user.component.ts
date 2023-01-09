@@ -176,7 +176,7 @@ export class UserComponent implements OnInit {
         error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
       })
     } else {
-      this.alerts.error = "No puedes realizar ninguna solicitud hasta que tengas algo de saldo en tu perfil"
+      this.alerts.error = "No puedes realizar ninguna solicitud hasta que tengasgit  algo de saldo en tu perfil"
     }
     
   }

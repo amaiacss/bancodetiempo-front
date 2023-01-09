@@ -104,7 +104,7 @@
                             <div class="portfolio-caption py-3 d-block">
                                 <h5 class="mt-3 text-center">{{activitie.title}}</h5>
                                 <h5 class="text-muted text-center">{{activitie.category_es}}</h5>
-                                <h6 class="text-center pb-2 ">{{activitie.dateActivity}}</h6>                                
+                                <h6 class="text-center pb-2 ">{{activitie.dateActivity | date:'dd/MM/yyyy'}}</h6>                                
                             </div>
                         </div>
                     <!-- Portfolio Modal-->
@@ -172,7 +172,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.incoming">
                             <p *ngIf="interaction.id.length">
-                                <b>{{interaction.title}} </b> --   @{{interaction.username}},  --  {{interaction.updated_at}}
+                                <b>{{interaction.title}} </b> --   @{{interaction.username}},  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>

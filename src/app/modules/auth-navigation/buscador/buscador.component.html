@@ -35,7 +35,7 @@
                     <div class="portfolio-item shadow-sm cardItem pt-2">
                         <h5 class="mt-3 text-center ">{{card.title}}</h5>
                         <h5 class="text-muted text-center">{{card.category_es}}</h5>  
-                        <h6 class="text-center pb-2">{{card.dateActivity}}</h6> 
+                        <h6 class="text-center pb-2">{{card.dateActivity | date:'dd/MM/yyyy'}}</h6> 
                         <a class="portfolio-link" data-bs-toggle="modal" href="/#modal{{card.idUser}}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>

@@ -55,49 +55,7 @@ export class UserComponent implements OnInit {
         this.selectedProfile = params["profile"]
         this.loadData()
         this.profileActivities = this.activitiesService.getProfileActivities(this.selectedProfile)
-        //Incoming Requests
-        this.activitiesService.getIncomingRequests(this.userId).subscribe({
-          next: (response:any) => {
-            const data = response.data
-            for(let i=0;i<data.length;i++){
-              this.incomingRequests[i] = {
-                id: data[i].id,
-                name: data[i].name_es,
-                title: data[i].title,
-                updated_at: data[i].updated_at,
-                username:data[i].username
-              }
-
-            }
-            this.requestHistorical.incoming = [...this.incomingRequests].filter(req => req.name==='Finalizada').reverse()
-            this.incomingRequests = [...this.incomingRequests].filter(req => req.name!=='Finalizada').reverse()
-
-          }
-        })
-        //outgoing Requests - Falta "a quién"
-        // this.activitiesService.getOutgoingRequests(this.userId).subscribe({
-        //   next: (response:any) => {
-        //     response.data.forEach((req: { id: any; name_es: any; name_eu:any, title: any; updated_at: any; username: any; }) => {
-        //       if(req.name_es !== 'Finalizada')
-        //       this.incomingRequests.push({
-        //         id: req.id,
-        //         name: req.name_es,
-        //         title: req.title,
-        //         updated_at: req.updated_at,
-        //         username:req.username
-        //       })
-        //       else{
-        //         this.requestHistorical.incoming.push({
-        //           id: req.id,
-        //           name: req.name_es,
-        //           title: req.title,
-        //           updated_at: req.updated_at,
-        //           username:req.username
-        //         })
-        //       }
-        //     })
-        //   }
-        // })        
+        this.loadRequestsData()
     })
     // Verifica si el usuario logueado está en su propio perfil
       if(this.userId === this.selectedProfile){
@@ -145,6 +103,52 @@ export class UserComponent implements OnInit {
     })
   }
 
+  loadRequestsData(){
+    //Incoming Requests
+    this.activitiesService.getIncomingRequests(this.selectedProfile).subscribe({
+      next: (response:any) => {
+        const data = response.data
+        for(let i=0;i<data.length;i++){
+          this.incomingRequests[i] = {
+            id: data[i].id,
+            name: data[i].name_es,
+            title: data[i].title,
+            updated_at: data[i].updated_at,
+            username:data[i].username
+          }
+
+        }
+        this.requestHistorical.incoming = [...this.incomingRequests].filter(req => req.name==='Finalizada').reverse()
+        this.incomingRequests = [...this.incomingRequests].filter(req => req.name!=='Finalizada').reverse()
+
+      }
+    })
+    //outgoing Requests - Falta "a quién"
+    // this.activitiesService.getOutgoingRequests(this.userId).subscribe({
+    //   next: (response:any) => {
+    //     response.data.forEach((req: { id: any; name_es: any; name_eu:any, title: any; updated_at: any; username: any; }) => {
+    //       if(req.name_es !== 'Finalizada')
+    //       this.incomingRequests.push({
+    //         id: req.id,
+    //         name: req.name_es,
+    //         title: req.title,
+    //         updated_at: req.updated_at,
+    //         username:req.username
+    //       })
+    //       else{
+    //         this.requestHistorical.incoming.push({
+    //           id: req.id,
+    //           name: req.name_es,
+    //           title: req.title,
+    //           updated_at: req.updated_at,
+    //           username:req.username
+    //         })
+    //       }
+    //     })
+    //   }
+    // })        
+  }
+
   getUsersActivities(){
     if(this.userId){
       this.activitiesService.getFilteredSearch({idUser:this.selectedProfile}).subscribe({
@@ -173,13 +177,7 @@ export class UserComponent implements OnInit {
       }
     ).subscribe({
       next: ()=> {
-        switch(type) {
-          //TO-DO -- Outgoing
-          case 2: { //incoming
-            this.incomingRequests[index].name = "Aceptada"
-            break
-          }
-        }
+        this.loadRequestsData()
       },
       error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
     })
@@ -194,13 +192,7 @@ export class UserComponent implements OnInit {
       }
     ).subscribe({
       next: ()=> {
-        switch(type) {
-          //TO-DO -- Outgoing
-          case 2: { //incoming
-            this.incomingRequests[index].name = "Cancelada"
-            break
-          }
-        }
+        this.loadRequestsData()
       },
       error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
     })
@@ -208,32 +200,25 @@ export class UserComponent implements OnInit {
 
   endRequest(id:string, index:number, type:number){
     this.clearAlerts()
-    this.activitiesService.updateRequest(
-      {
-        "id": Number(id),
-        "idState": "F",
-        "hours": Number(this.interactionHours)
-      }
-    ).subscribe({
-      next: ()=> {
-        if (this.interactionHours<=0){
-          this.alerts.error = "El mínimo es de una hora"
+    if (this.interactionHours>0){
+      this.activitiesService.updateRequest(
+        {
+          "id": Number(id),
+          "idState": "F",
+          "hours": Number(this.interactionHours)
         }
-        else{
-          switch(type) {
-            //TO-DO -- Outgoing
-            case 2: { //incoming
-              let element = this.incomingRequests.splice(index,1)
-              this.requestHistorical.incoming.push(element) 
-              //TO-DO recargar historico
-              //TO-DO recargar horas
-              break
-            }
-          }
+      ).subscribe({
+        next: ()=> {
+          this.loadRequestsData()
+          this.loadData()
+        },
+        error: () => {
+          this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"
         }
-      },
-      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
-    })
+      })
+    } else {
+      this.alerts.error = "El mínimo es de una hora"
+    }
   }
 
   clearAlerts(){

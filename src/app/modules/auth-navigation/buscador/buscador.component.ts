@@ -13,6 +13,8 @@ export class BuscadorComponent implements OnInit {
   userId:string | undefined | null = undefined
   searchMessage:any = ['search_page.search_text','']
 
+  canRequest:boolean = false
+
   filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<{id:string,name:string}>,text:string} = {provinces:[],cities:[],categories:[],text:''}
   filters: {province?:string,city?:string,category?:string,text?:string} = {}
   
@@ -49,6 +51,17 @@ export class BuscadorComponent implements OnInit {
       if(this.userId) {
         this.isLoged = true
         this.router.navigate([`/user/${this.userId}/search`])
+        this.usersService.getUserProfile(this.userId).subscribe({
+          next: (res)=> {
+            if (res.length && Number(res.credit)>=1){
+              this.canRequest = true
+              this.alerts.error = ''
+            } else {
+              this.canRequest = false
+              this.alerts.error = 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.'
+            }
+          }
+        })
       }else{
         this.isLoged = false
         this.router.navigate(['/'])
@@ -91,7 +104,6 @@ export class BuscadorComponent implements OnInit {
 
   goToProfile(id:number | string | null | undefined){
     this.clearAlerts()
-    console.log(`/user/${this.userId}/profile/${id}`)
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
 
@@ -104,7 +116,6 @@ export class BuscadorComponent implements OnInit {
   }
 
   loadCategoriesSelect(lang:string){
-    console.log('switched to', lang)
     this.activitiesService.getCategories().subscribe({
       next: (categories:[{id:string,name_es:string,name_eu:string}]) => {
         switch(lang){
@@ -150,10 +161,14 @@ export class BuscadorComponent implements OnInit {
   }
 
   sendRequest(activityId:string){
-    this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
-      next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
-      error: ()=> {alert("ups!")}
-    })
+    if(this.canRequest){
+      this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
+        next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
+        error: ()=> {alert("ups!")}
+      })
+    } else {
+      this.alerts.error = "No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo."
+    }
   }
 
   clearAlerts(){

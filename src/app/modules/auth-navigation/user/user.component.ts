@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
 
   selectedProfile:string = ''
   canEdit:boolean = false
+  canRequest:boolean = false
   fullProfile:boolean = false
   selectedLanguage = 'ES'
 
@@ -99,6 +100,12 @@ export class UserComponent implements OnInit {
       next: (data) => {
         console.log(data)
         this.profileContent = data[0]
+        if (this.profileContent.length && Number(this.profileContent.credit)>=1){
+          this.canRequest = true
+        }
+        else {
+          this.canRequest = false
+        }
       }
     })
   }
@@ -162,10 +169,16 @@ export class UserComponent implements OnInit {
   }
 
   sendRequest(activityId:string){
-    this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
-      next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
-      error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
-    })
+    this.clearAlerts()
+    if (this.canRequest){
+      this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
+        next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
+        error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
+      })
+    } else {
+      this.alerts.error = "No puedes realizar ninguna solicitud hasta que tengas algo de saldo en tu perfil"
+    }
+    
   }
 
   acceptRequest(id:string, index:number, type:number){

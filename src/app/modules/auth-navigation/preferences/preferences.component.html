@@ -10,8 +10,7 @@
                         <div *ngIf="fullProfile">
                             <!-- //uploading image -->
                             <input (change)="uploadImage($event)" id="file" type="file" accept=".jpg, .jpeg, .png" style="width: 0.1px;height: 0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;"/>
-                            <label for="file" style="font-size: 1.25em;font-weight: 700;
-                            color: white;background-color: rgb(238, 212, 12);display: inline-block;cursor:pointer;padding:10px;border-radius:5px;">{{'preferences_page.upload_image_btn' | translate}}</label>               
+                            <label for="file" class="btn btn-secondary" >{{'preferences_page.upload_image_btn' | translate}}</label>               
                         </div>                        
                     </div>                           
                     <div *ngIf="profileContent.city" class="media-body mb-5 ms-3 text-white align-items-center">
@@ -25,13 +24,7 @@
             </div>           
         </div>       
     </div>     
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
+    <!--Formulario-->   
     <div class="container mt-5 ">
         <form id="perfilForm">
             <div class="row align-items-stretch mb-5">

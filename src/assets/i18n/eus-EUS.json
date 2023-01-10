@@ -1,10 +1,10 @@
 {
     "nav_bar": {
-        "servicesLink": "¿Zer da?",
-        "portfolioLink": "¿Zer gertatzen ari da?",
-        "participateLink": "¿Parte hartu nahi duzu?",
-        "searchLink": "¿Zer behar duzu?",
-        "preferencesLink": "Konfigurazioa",
+        "servicesLink": "Zer da?",
+        "portfolioLink": "Zer gertatzen ari da?",
+        "participateLink": "Parte hartu nahi duzu?",
+        "searchLink": "Zer behar duzu?",
+        "preferencesLink": "Profila Aldatu",
         "logoutLink": "Saioa itxi"
     },
     "login_page": {

@@ -6,7 +6,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
-                    <div class="profile"><img src="{{profileContent.picture}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                    <div class="profile"><img src="{{profileContent.picture   || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail" style="cursor:pointer;" (click)="goToProfilePage()">
                         <div *ngIf="fullProfile">
                             <!-- //uploading image -->
                             <input (change)="uploadImage($event)" id="file" type="file" accept=".jpg, .jpeg, .png" style="width: 0.1px;height: 0.1px;opacity: 0;overflow: hidden;position: absolute;z-index: -1;"/>

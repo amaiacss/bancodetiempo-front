@@ -119,6 +119,7 @@
         "new_activitie_span": "Jarduera berria",
         "activities_text": "jarduera argitaratuak",
         "out_request": {
+            "subtitle": "Eskatu dizuten denbora",
             "text": "eskatu dizu",
             "state": "Egoera",
             "accept": "Onartu",
@@ -126,6 +127,7 @@
             "finish": "Amaitu"
         },
         "in_request": {
+            "subtitle": "Eskatu duzun denbora",
             "text": "zure eskaera jaso du",
             "state": "Egoera",
             "cancel": "Deuseztatu",

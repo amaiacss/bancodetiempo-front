@@ -4,7 +4,7 @@
         "portfolioLink": "¿Qué está pasando?",
         "participateLink": "¿Quieres participar?",
         "searchLink": "¿Qué necesitas?",
-        "preferencesLink": "Preferencias",
+        "preferencesLink": "Editar Perfil",
         "logoutLink": "Cerrar sesión"
     },
     "login_page": {
@@ -120,6 +120,7 @@
         "new_activitie_span": "Nueva actividad",
         "activities_text": "actividades publicadas",
         "in_request": {
+            "subtitle": "Tiempo te han solicitado",
             "text": "te ha solicitado",
             "state": "Estado",
             "accept": "Aceptar",
@@ -127,6 +128,7 @@
             "finish": "Finalizar"
         },
         "out_request": {
+            "subtitle": "Tiempo que has solicitado",
             "text": "ha recibido tu solicitud",
             "state": "Estado",
             "cancel": "Cancelar",

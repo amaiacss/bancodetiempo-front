@@ -220,8 +220,6 @@ export class PreferencesComponent implements OnInit {
   uploadImage(event: any) {
     this.clearAlerts()
     const localImage = event.target.files[0]
-    console.log('localImage: ',event.target.files[0])
-    //Convert this file into a readble url
     const reader = new FileReader
     reader.readAsDataURL(localImage)
     reader.onload = (event) => {
@@ -239,7 +237,7 @@ export class PreferencesComponent implements OnInit {
 
         const resizedImage_url = ctx?.canvas.toDataURL("image/jpeg", 90)
         
-        this.inputData.picture = resizedImage_url || ''
+        this.profileContent.picture = resizedImage_url || ''
         const imageData = resizedImage_url?.split(',')[1]
 
         this.usersService.updatePicture({"id":this.userId,"pictureData":imageData}).subscribe({
@@ -248,12 +246,10 @@ export class PreferencesComponent implements OnInit {
         })
         
       }
-      //Resize image
-      // const width = this.editableImage
-      // const ratio = width / localImage.width
-      // const height = localImage.height * ratio
-      // console.log(width,'*',height,'  ,  ',localImage.width,'*',localImage.height)
     }
-    
+  }
+
+  goToProfilePage(){
+    this.router.navigate([`/user/${this.userId}/profile/${this.userId}`])
   }
 }

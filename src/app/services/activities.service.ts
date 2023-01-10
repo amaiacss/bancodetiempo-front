@@ -71,8 +71,8 @@ export class ActivitiesService {
     return this.lastActivities
   }
 
-  getProfileActivities(userId:string): CardInfo[] {
-    return this.profileActivities
+  getProfileActivities(userId:string):any {
+    return this.http.post(this.url+this.filterd_search_endpoint,{"idUser":userId})
   }
 
   getProfileInteractions(userId:string) {

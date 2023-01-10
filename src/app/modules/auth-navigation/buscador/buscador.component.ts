@@ -21,12 +21,15 @@ export class BuscadorComponent implements OnInit {
   searchresult:Array<{
     id: string,
     title: string,
+    description:string,
     idUser: string,
     dateActivity: string,
+    category:string
     category_es: string,
     category_eu: string,
     picture: string,
     firstName: string,
+    lastName:string
     city: string,
     province: string,
     url: string
@@ -53,7 +56,8 @@ export class BuscadorComponent implements OnInit {
         this.router.navigate([`/user/${this.userId}/search`])
         this.usersService.getUserProfile(this.userId).subscribe({
           next: (res)=> {
-            if (res.length && Number(res.credit)>=1){
+            console.log(res)
+            if (res.length && Number(res[0].credit)>=1){
               this.canRequest = true
               this.alerts.error = ''
             } else {
@@ -92,11 +96,25 @@ export class BuscadorComponent implements OnInit {
     if (this.filters.text && this.filters.text.length) {
       body['search'] = this.filters.text
     }
-    
+    console.log(body)
     this.activitiesService.getFilteredSearch(body).subscribe({
+      
       next: (res) => {
         this.searchresult = res.data.filter((activity: { idUser: string | null | undefined; }) => activity.idUser!==this.userId)
-        this.searchMessage = ['search_page.result_text',res.data.length]
+        this.searchMessage = ['search_page.result_text',this.searchresult.length]
+        console.log(this.searchresult)
+
+        switch(localStorage.getItem('lang')){
+          case 'eus-EUS': 
+            this.searchresult.forEach(res => {
+              res.category = res.category_eu
+            })
+            break
+          default:
+            this.searchresult.forEach(res => {
+              res.category = res.category_es
+            })
+        }
       }
     })
     
@@ -161,6 +179,7 @@ export class BuscadorComponent implements OnInit {
   }
 
   sendRequest(activityId:string){
+    this.clearAlerts()
     if(this.canRequest){
       this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
         next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},

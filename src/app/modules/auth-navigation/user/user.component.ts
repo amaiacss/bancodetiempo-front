@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   profileContent:any = {}
   profileActivities:any = []
   requestHistorical: {incoming:any,outgoing:any} = {incoming:[],outgoing:[]}
-  outgoingRequests:[] = []
+  outgoingRequests:any = []
   incomingRequests:any = []
 
   interactionHours = 0
@@ -44,6 +44,8 @@ export class UserComponent implements OnInit {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
       this.selectedLanguage = event.lang
+      this.loadProfileActivities()
+      this.loadRequestsData()
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
@@ -54,16 +56,13 @@ export class UserComponent implements OnInit {
         this.route.params
       .subscribe(params => {
         this.selectedProfile = params["profile"]
+        // Verifica si el usuario logueado está en su propio perfil
+        this.canEdit = this.userId === this.selectedProfile
         this.loadData()
-        this.profileActivities = this.activitiesService.getProfileActivities(this.selectedProfile)
+        this.loadProfileActivities()
         this.loadRequestsData()
     })
-    // Verifica si el usuario logueado está en su propio perfil
-      if(this.userId === this.selectedProfile){
-        this.canEdit = true
-      }else {
-        this.canEdit = false
-      }
+          
     //Controla que el usuario no pueda falsear su identidad mediante url
         this.router.navigate([`/user/${this.userId}/profile/${this.selectedProfile}`])
       }else{  //USUARIO NO LOGUEADO
@@ -75,7 +74,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsersActivities()
   }   
 
   goToNewActivitiePage(): void{
@@ -91,14 +89,12 @@ export class UserComponent implements OnInit {
 
   goToProfile(id:number | string | null | undefined){
     this.clearAlerts()
-    console.log(`/user/${this.userId}/profile/${id}`)
     id !== undefined && this.isLoged ? this.router.navigate([`/user/${this.userId}/profile/${id}`]) : alert('Inicie sesión')
   }
 
   loadData(){
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
-        console.log(data)
         this.profileContent = data[0]
         if (this.profileContent.length && Number(this.profileContent.credit)>=1){
           this.canRequest = true
@@ -110,62 +106,70 @@ export class UserComponent implements OnInit {
     })
   }
 
+  loadProfileActivities() {
+    this.activitiesService.getProfileActivities(this.selectedProfile).subscribe({
+      next: (res:any) => {
+        this.profileActivities = res.data
+        switch(this.selectedLanguage){
+          case 'eus-EUS':
+            this.profileActivities.forEach((res: { [x: string]: any; category_eu: any; }) => {
+              res['category'] = res.category_eu
+            })
+            break
+          default:
+            this.profileActivities.forEach((res: { [x: string]: any; category_es: any; }) => {
+              res['category'] = res.category_es
+            })
+            break
+        }
+      }
+      
+    })
+  }
+
   loadRequestsData(){
     //Incoming Requests
     this.activitiesService.getIncomingRequests(this.selectedProfile).subscribe({
       next: (response:any) => {
-        const data = response.data
-        for(let i=0;i<data.length;i++){
-          this.incomingRequests[i] = {
-            id: data[i].id,
-            name: data[i].name_es,
-            title: data[i].title,
-            updated_at: data[i].updated_at,
-            username:data[i].username
-          }
-
+        this.incomingRequests = response.data
+        switch(this.selectedLanguage){
+          case 'eus-EUS':
+            this.incomingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {
+              res['name'] = res.name_eu
+            })
+            break
+          default:
+            this.incomingRequests.forEach((res: { [x: string]: any; name_es: any; }) => {
+              res['name'] = res.name_es
+            })
+            break
         }
-        this.requestHistorical.incoming = [...this.incomingRequests].filter(req => req.name==='Finalizada').reverse()
-        this.incomingRequests = [...this.incomingRequests].filter(req => req.name!=='Finalizada').reverse()
+        this.requestHistorical.incoming = [...this.incomingRequests].filter((req: { name_es: string}) => req.name_es==='Finalizada')
+        this.incomingRequests = [...this.incomingRequests].filter((req) => req.name_es!=='Finalizada' && req.name_es!=='Cancelada')
 
       }
     })
-    //outgoing Requests - Falta "a quién"
-    // this.activitiesService.getOutgoingRequests(this.userId).subscribe({
-    //   next: (response:any) => {
-    //     response.data.forEach((req: { id: any; name_es: any; name_eu:any, title: any; updated_at: any; username: any; }) => {
-    //       if(req.name_es !== 'Finalizada')
-    //       this.incomingRequests.push({
-    //         id: req.id,
-    //         name: req.name_es,
-    //         title: req.title,
-    //         updated_at: req.updated_at,
-    //         username:req.username
-    //       })
-    //       else{
-    //         this.requestHistorical.incoming.push({
-    //           id: req.id,
-    //           name: req.name_es,
-    //           title: req.title,
-    //           updated_at: req.updated_at,
-    //           username:req.username
-    //         })
-    //       }
-    //     })
-    //   }
-    // })        
-  }
-
-  getUsersActivities(){
-    if(this.userId){
-      this.activitiesService.getFilteredSearch({idUser:this.selectedProfile}).subscribe({
-        next: (res) => {
-          console.log(res.data)
-          this.profileActivities = res.data
-        },
-        error: () => {this.profileActivities = []}
-      })
-    }
+    // TO-DO outgoing Requests - Falta "a quién"
+    this.activitiesService.getOutgoingRequests(this.userId).subscribe({
+      next: (response:any) => {
+        this.outgoingRequests = response.data
+        switch(this.selectedLanguage){
+          case 'eus-EUS':
+            this.outgoingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {
+              res['name'] = res.name_eu
+            })
+            break
+          default:
+            this.outgoingRequests.forEach((res: { [x: string]: any; name_es: any; }) => {
+              res['name'] = res.name_es
+            })
+            break
+        }
+        
+        this.requestHistorical.outgoing = [...this.outgoingRequests].filter((req: { name_es: string}) => req.name_es==='Finalizada')
+        this.outgoingRequests = [...this.outgoingRequests].filter((req: { name_es: string}) => req.name_es!=='Finalizada')
+      }
+    })        
   }
 
   sendRequest(activityId:string){
@@ -181,7 +185,7 @@ export class UserComponent implements OnInit {
     
   }
 
-  acceptRequest(id:string, index:number, type:number){
+  acceptRequest(id:string){
     this.clearAlerts()
     this.activitiesService.updateRequest(
       {
@@ -196,7 +200,7 @@ export class UserComponent implements OnInit {
     })
   }
 
-  cancelRequest(id:string, index:number, type:number){
+  cancelRequest(id:string){
     this.clearAlerts()
     this.activitiesService.updateRequest(
       {

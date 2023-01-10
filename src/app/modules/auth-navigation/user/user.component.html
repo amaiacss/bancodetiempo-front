@@ -1,12 +1,12 @@
 <!-- PerfilUsuario Heather-->
-<section class="page-section pb-5" id="perfilUsuario">
-    <div *ngIf="!fullProfile && canEdit" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
-            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-        </svg> 
-        <strong style="margin-right:20px;">{{'alerts.profile_false' | translate}}</strong>
-        <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
-    </div>
+<div *ngIf="!fullProfile && canEdit" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16"  style="margin-top:300px;">
+    </svg> 
+    <strong style="margin-right:20px;">{{'alerts.profile_false' | translate}}</strong>
+    <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
+</div>
+
+<section *ngIf="fullProfile" class="page-section pb-5" id="perfilUsuario">
     <div class="container">     
         <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
         <!-- Profile widget -->
@@ -20,7 +20,7 @@
                 <div class="media d-flex align-items-end profile-header"> 
                     <div class="profile">
                         <div class="img-container">
-                            <img src="{{profileContent.picture}} || './assets/img/user-icons/generic_user.png'" alt="..." width="160" class="rounded mb-2 img-thumbnail">                           
+                            <img src="{{profileContent.picture  || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">                           
                         </div>
                     <div *ngIf="canEdit">
                         <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a> 
@@ -69,7 +69,7 @@
 
 
 
-<section  class="page-section pt-5">
+<section *ngIf="fullProfile" class="page-section pt-5">
     <div class="container">
          <!-----------------Div para la descripción de usuario al cambio 992px----------------------------->
         <div class="userDescriptionCh text-muted pb-4 mx-2">
@@ -103,7 +103,7 @@
                             </a>
                             <div class="portfolio-caption py-3 d-block">
                                 <h5 class="mt-3 text-center">{{activitie.title}}</h5>
-                                <h5 class="text-muted text-center">{{activitie.category_es}}</h5>
+                                <h5 class="text-muted text-center">{{activitie.category}}</h5>
                                 <h6 class="text-center pb-2 ">{{activitie.dateActivity | date:'dd/MM/yyyy'}}</h6>                                
                             </div>
                         </div>
@@ -118,19 +118,20 @@
                                         <div class="col-lg-8">
                                             <h2 class="text-uppercase">{{activitie.title}}</h2>
                                             <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
-                                            <p><strong>{{'profile_page.category' | translate}}:</strong> #{{activitie.category_es}} </p>
+                                            <p><strong>{{'profile_page.category' | translate}}:</strong> #{{activitie.category}} </p>
+                                            <p>{{profileContent.phone}}</p>
                                             <div class="modal-body aling-items-center cambio">
                                             
                                                 <!-- Project details-->
                                                 <div class="col-lg-6 col-sm-12 me-3">
                                                     <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />   
-                                                    <p class="text-start">TO-DO ->Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>                                                 
+                                                    <p class="text-start">{{activitie.description}}</p>                                                 
                                                 </div>
                                                 <div class="col-lg-6 col-sm-12 ms-3">
                                                     
                                                     <ul class="list-inline">                
                                                         <li>
-                                                            <strong>{{'profile_page.category' | translate}}:</strong>#{{activitie.category_es}}
+                                                            <strong>{{'profile_page.category' | translate}}:</strong>#{{activitie.category}}
                                                         </li>
                                                     </ul>
                                                     <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase"
@@ -178,6 +179,18 @@
                     </div>
                     
                 </div>
+                <p>{{'profile_page.historical_request.out' | translate}}:</p>
+                <div class="row">
+                    <div class="col"> 
+                        <div *ngFor="let interaction of requestHistorical.outgoing">
+                            <p *ngIf="interaction.id.length">
+                                <b>{{interaction.title}} </b> --   TO-DO@zuprima,  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+
             </div>
             
              <!--Solicitudes-->           
@@ -187,18 +200,22 @@
                 </div>
                 
                 <div class="row userRequests">
+                    <p>{{'profile_page.out_request.subtitle' | translate}}</p>
                     <ul>
-                        <li class="d-flex justify-content-between align-items-center">
-                            <div class="col-md-6">
-                                <p><strong>TO-DO ->@nosekien</strong> {{'profile_page.out_request.text' | translate}} <strong> TO-DO -> Titulo de actividad</strong></p>
-                                <p>{{'profile_page.out_request.state' | translate}}: <strong>TO-DO->Aceptada</strong></p>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end">
-                                <button class="col-md-3 btn btn btn-primary  mx-3">{{'profile_page.out_request.cancel' | translate}}</button>                      
-                                <button class="col-md-3 btn btn-primary" data-bs-toggle="assingHours" href="#assingHours">{{'profile_page.out_request.finish' | translate}}</button>
-                                
-                            </div>                            
-                        </li>
+                        <div *ngFor="let request of outgoingRequests; let i = index" >
+                            <li class="d-flex justify-content-between align-items-center">
+                                <div class="col-md-6">
+                                    <p><strong>TO-DO ->@nosekien</strong> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
+                                    <p>{{'profile_page.out_request.state' | translate}}: <strong>{{request.name}}</strong></p>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end">
+                                    <button *ngIf="request.name_es!=='Cancelada'" (click)="cancelRequest(request.id)" class="col-md-3 btn btn btn-primary  mx-3">{{'profile_page.out_request.cancel' | translate}}</button>                      
+                                    <button  *ngIf="request.name_es!=='Cancelada'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.out_request.finish' | translate}}</button>
+                                    
+                                </div>                            
+                            </li>
+                        </div>
+                        <p>{{'profile_page.in_request.subtitle' | translate}}</p>
                         <div *ngFor="let request of incomingRequests; let i = index">
                             <li *ngIf="request.id.length" class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
@@ -206,16 +223,58 @@
                                     <p>{{'profile_page.in_request.state' | translate}}: <strong>{{request.name}}</strong></p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">
-                                    <button class="col-md-3 btn btn-primary" (click)="acceptRequest(request.id, i, 2)">{{'profile_page.in_request.accept' | translate}}</button>
-                                    <button class="col-md-3 btn btn-primary mx-3 " (click)="cancelRequest(request.id, i, 2)">{{'profile_page.in_request.reject' | translate}}</button>
-                                    <button [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button>
+                                    <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="acceptRequest(request.id)">{{'profile_page.in_request.accept' | translate}}</button>
+                                    <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary mx-3 " (click)="cancelRequest(request.id)">{{'profile_page.in_request.reject' | translate}}</button>
+                                    <button *ngIf="request.name_es!=='Pendiente'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button>
                                 </div>                            
                             </li>
                         </div>
                     </ul>                    
                 </div>
             </div>
-                                 
+    
+<!-- Modal para asignar las horas en el botón Finalizar SALIENTE type=1-->
+
+<div *ngFor="let request of outgoingRequests; let i = index" class="portfolio-modal modal fade" id="assingHours{{request.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" (click)="clearAlerts()"/>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center" >
+                    <div class="col-lg-8">
+                        <div class="modal-body d-block  ">
+                            <!-- Project details-->  
+                            <h2 class="text-uppercase mb-4">{{'profile_page.finish_modal.title' | translate}}</h2>
+                            <p class="align-self-start item-intro text-muted">{{'profile_page.finish_modal.text' | translate}}</p>
+
+                            <div class="input-group mb-3 w-50 mx-auto">
+                                <input name="interactionHours" [(ngModel)]="interactionHours" type="number" class="form-control" placeholder="{{'profile_page.finish_modal.placeholder' | translate}}" aria-label="hours input" aria-describedby="button-addon2">
+                                <button (click)="endRequest(request.id,i,1)" class="btn btn-primary text-uppercase fw-bold" type="button" id="button-addon2" data-bs-dismiss="modal">{{'profile_page.finish_modal.btn' | translate}}</button>
+                            </div> 
+                            
+                            <!--ESTOS ALERTS LOS HE PUESTO PARA QUE EXISTA COMO UNA RESPUESTA AL USUARIO, SI NO OS PARECE QUITAMOS-->
+                           
+                                <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg>
+                                    <strong>{{alerts.success}}</strong>
+                                </div>  
+                                <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg> 
+                                    <strong>{{alerts.error}}</strong>
+                                </div>                      
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal para asignar las horas en el botón Finalizar ENTRANTES type=2-->
 

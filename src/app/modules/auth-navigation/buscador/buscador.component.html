@@ -41,7 +41,7 @@
                     <div class="portfolio-item shadow-sm cardItem pt-2">
                         <h5 class="mt-3 text-center ">{{card.title}}</h5>
                         <h5 class="text-muted text-center">{{card.category_es}}</h5>  
-                        <h6 class="text-center pb-2">{{card.dateActivity | date:'dd/MM/yyyygit '}}</h6> 
+                        <h6 class="text-center pb-2">{{card.dateActivity | date:'dd/MM/yyyy'}}</h6> 
                         <a class="portfolio-link" data-bs-toggle="modal" href="/#modal{{card.idUser}}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div>                                                                                      
-                                <h6 (click)="goToProfile(card.idUser)">{{card.firstName}} TO-DO -> Apellido</h6>
+                                <h6 (click)="goToProfile(card.idUser)">{{card.firstName}} {{card.lastName}}</h6>
                                 <div class="d-flex"> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt me-1" viewBox="0 0 16 16">
                                         <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
@@ -82,13 +82,13 @@
                                                 <!-- Project details-->
                                                 <div class="col-lg-6 col-sm-12 ">
                                                     <img class="img-fluid d-block mx-auto" src="{{card.picture}}" alt="imagen prueba" />
-                                                    <p class="text-start">TO-DO -> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla architecto aperiam sapiente odit incidunt deserunt atque facilis quos, corporis sit blanditiis. Sapiente aspernatur, consequatur omnis suscipit error eius cum illum.</p>
+                                                    <p class="text-start">{{card.description}}</p>
                                                 </div>
                                                 <div class="col-lg-6 col-sm-12">
                                                     <ul class="list-inline">
                                                         <li class="mb-4">
                                                             <strong>{{'home_page.sect2.modal_transmitter_title' | translate}} </strong>
-                                                            <a data-bs-dismiss="modal" (click)="goToProfile(card.idUser)">{{card.firstName}} TO-DO -> Apellido</a>
+                                                            <a data-bs-dismiss="modal" (click)="goToProfile(card.idUser)">{{card.firstName}} {{card.lastName}}</a>
                                                         </li>
                                                         <li>
                                                             <div class="col-4 mx-auto" >
@@ -97,7 +97,7 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <strong>{{'search_page.filters.category' | translate}}:</strong>#{{card.category_es}}
+                                                            <strong>{{'search_page.filters.category' | translate}}:</strong>#{{card.category}}
                                                         </li>
                                                     </ul>
                                                     <button class="btn btn-primary btn-xl text-uppercase"

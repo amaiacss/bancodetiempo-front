@@ -117,8 +117,9 @@
                                     <div class="row justify-content-center">
                                         <div class="col-lg-8">
                                             <h2 class="text-uppercase">{{activitie.title}}</h2>
-                                            <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
                                             <p><strong>{{'profile_page.category' | translate}}:</strong> #{{activitie.category}} </p>
+                                            <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>
+                                            
                                             <p>{{profileContent.email}}</p>
                                             <p>{{profileContent.phone}}</p>
                                             <div class="modal-body aling-items-center cambio">
@@ -126,33 +127,26 @@
                                                 <!-- Project details-->
                                                 <div class="col-lg-6 col-sm-12 me-3">
                                                     <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen prueba" />   
-                                                    <p class="text-start">{{activitie.description}}</p>                                                 
-                                                </div>
-                                                <div class="col-lg-6 col-sm-12 ms-3">
-                                                    
-                                                    <ul class="list-inline">                
-                                                        <li>
-                                                            <strong>{{'profile_page.category' | translate}}:</strong>#{{activitie.category}}
-                                                        </li>
-                                                    </ul>
+                                                    <p class="text-start">{{activitie.description}}</p> 
                                                     <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase"
-                                                        type="button" (click)="sendRequest(activitie.id)">
-                                                        {{'home_page.sect2.modal_button' | translate}}
-                                                    </button>
-                                                    <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                                        </svg>
-                                                        <strong>{{alerts.success}}</strong>
-                                                        <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">Ver Perfil</button>
-                                                    </div>  
-                                                    <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
-                                                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                                        </svg> 
-                                                        <strong>{{alerts.error}}</strong>
-                                                    </div>
+                                                    type="button" (click)="sendRequest(activitie.id)">
+                                                    {{'home_page.sect2.modal_button' | translate}}
+                                                </button>
+                                                <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                                    </svg>
+                                                    <strong>{{alerts.success}}</strong>
+                                                    <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">Ver Perfil</button>
+                                                </div>  
+                                                <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                    </svg> 
+                                                    <strong>{{alerts.error}}</strong>
+                                                </div>                                                
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>

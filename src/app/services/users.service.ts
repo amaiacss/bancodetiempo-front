@@ -20,6 +20,7 @@ export class UsersService {
   private create_profile_endpoint: string
   private update_pass_endpoint:string
   private update_picture_endpoint:string
+  private contact_endpoint:string
 
   private _sessionData = new BehaviorSubject<any> ({
     isLoged: false,
@@ -43,6 +44,7 @@ export class UsersService {
     this.create_profile_endpoint = "/profile/create"
     this.update_pass_endpoint = "/user/updatepass"
     this.update_picture_endpoint = '/profile/updatePicture'
+    this.contact_endpoint = '/contact/index'
   }
 
   findUserById(id:string): Observable<User | null> {
@@ -135,8 +137,11 @@ export class UsersService {
     localStorage.clear()
   }
 
+  sendContactEmail(body:{"name": string,"email": string,"location": string,"message": string}){
+    console.log(body)
+    return this.http.post(this.url+this.contact_endpoint,body)
+  }
+
 }
-function throwError(err: any): any {
-  throw new Error('Function not implemented.');
-}
+
 

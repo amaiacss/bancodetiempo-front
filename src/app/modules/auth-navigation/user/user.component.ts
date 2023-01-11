@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { CardInfo } from 'src/app/models/activities';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -96,13 +95,20 @@ export class UserComponent implements OnInit {
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
         this.profileContent = data[0]
+        console.log(this.profileContent)
         if (this.profileContent.length && Number(this.profileContent.credit)>=1){
           this.canRequest = true
         }
         else {
           this.canRequest = false
         }
+        this.usersService.findUserById(this.userId || '').subscribe({
+          next: (data) => {
+            this.profileContent['email'] = data?.email || ''
+          }
+        })
       }
+      
     })
   }
 

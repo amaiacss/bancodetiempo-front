@@ -1,63 +1,53 @@
 <section class="page-section" id="contact">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase mt-md-5 mb-md-4">Contacta con nosotros</h2>
-            <h3 class="section-subheading text-muted">Si tienes alguna consulta dejanos un mensaje</h3>
+            <h2 class="section-heading text-uppercase mt-md-5 mb-md-4">{{'contact_page.title' | translate}}</h2>
+            <h3 class="section-subheading text-muted">{{'contact_page.subtitle' | translate}}</h3>
         </div>
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+       
+        <form id="contactForm"  [formGroup]="contactForm">
             <div class="row align-items-stretch mb-5">
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- Name input-->
-                        <input class="form-control" id="name" type="text" placeholder="Nombre *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">Campo nombre debe ser completado</div>
+                        <input formControlName="name" class="form-control" id="name" type="text" placeholder="{{'preferences_page.name_inp' | translate}} *"/>
+                        <div *ngIf="contactForm.controls['location'].dirty && contactForm.controls['name'].invalid" class="text-center text-danger mb-3">{{'register_page.required_error' | translate}}</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
-                        <input class="form-control" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">Campo email debe ser completado</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email no valido</div>
+                        <input formControlName="email" class="form-control" id="email" type="email" placeholder="{{'preferences_page.email_inp' | translate}} *"/>
+                        <div *ngIf="contactForm.controls['email'].dirty && contactForm.controls['email'].invalid" class="text-center text-danger mb-3">{{'login_page.invalidEmail' | translate}}</div>
                     </div>
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
-                        <input class="form-control" id="ubicacion" type="tel" placeholder="Ubicacion *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">Campo ubicación debe ser completado</div>
+                        <input formControlName="location" class="form-control" id="ubicacion" type="tel" placeholder="{{'preferences_page.city_inp' | translate}} *"/>
+                        <div *ngIf="contactForm.controls['location'].dirty && contactForm.controls['location'].invalid" class="text-center text-danger mb-3">{{'register_page.required_error' | translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
-                        <textarea class="form-control" id="message" placeholder="Mensaje *" data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">Campo mensaje no puede estar vacio</div>
+                        <textarea formControlName="message" class="form-control" id="message" placeholder="{{'contact_page.message' | translate}} *"></textarea>
+                        <div>{{contactForm.controls['message'].value.length}} {{'contact_page.chars' | translate}}</div>
+                        <div *ngIf="contactForm.controls['message'].dirty && contactForm.controls['message'].invalid" class="text-center text-danger mb-3">{{'contact_page.msg_inp_error' | translate}}</div>
                     </div>
                 </div>
             </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
-                    <br />
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+ 
             <!-- Submit Button-->
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar mensaje</button></div>
+            <div (click)="sendEmail()" class="text-center"><button [disabled]="contactForm.invalid" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'contact_page.btn' | translate}}</button></div>
+            <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <strong>{{alerts.success}}</strong>
+            </div>
+            <div *ngIf="alerts.error.length" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg> 
+                <strong>{{alerts.error}}</strong>
+            </div>
         </form>
     </div>
 </section>

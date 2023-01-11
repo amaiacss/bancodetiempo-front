@@ -50,30 +50,31 @@
         </div>
         <!-- Card ITEM -->
         <p *ngIf="!activities.length">No ha habido ningún intercambio</p>
+        <div>
          <!-- Portfolio item 1-->
-         <div class="portfolio-item shadow cardItem pt-2">
-            <h5 class="mt-3 text-center ">Titulo de la actividad</h5>
-            <h5 class="text-muted text-center">Categoría</h5>  
-            <h6 class="text-center pb-2">10/01/2023</h6> 
+         <div *ngFor="let activity of activities" class="portfolio-item shadow cardItem pt-2">
+            <h5 class="mt-3 text-center ">{{activity.title}}</h5>
+            <h5 class="text-muted text-center">{{activity.category}}</h5>  
+            <h6 class="text-center pb-2">{{activity.DateRequest}}</h6> 
             <div class="" >                
-                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="">
+                <img class="img-fluid" src="{{activity.categoryPicture}}" alt="">
             </div>
                                                                             
                 <div class="portfolio-caption justify-content-between aling-items-center pt-3 pb-3 cardHover" >                                              
                     <div class="col-2 col-md-2 pt-2">
                         <a><!--Imagen de usuario que solicita la actividad-->
-                            <img src="./assets/img/user-icons/generic_user.png" class=" w-100 img-fluid rounded-circle shadow-sm">
+                            <img src="{{activity.userPicture || './assets/img/user-icons/generic_user.png'}}" class=" w-100 img-fluid rounded-circle shadow-sm">
                         </a>                    
                     </div> 
                     <div class="col-8 col-md-8 d-flex flex-column aling-items-center">                        
-                        <h6 class="text-start pt-2 ms-4">firsName lastName</h6><!--Datos de la persona que solicita la actividad-->
+                        <h6 class="text-start pt-2 ms-4">{{activity.firstName}} {{activity.lastName}}</h6><!--Datos de la persona que solicita la actividad-->
                         <!--<span class="mx-auto"><i class="fa-solid fa-arrows-rotate"></i></span>-->
                         
-                        <h6 class="text-end pb-2 me-4">name Owner</h6><!--Datos de la persona que publicado la actividad-->  
+                        <h6 class="text-end pb-2 me-4">{{activity.nameOwner}}</h6><!--Datos de la persona que publicado la actividad-->  
                     </div>
                     <div class="col-2 col-md-2 pt-2 ">
                         <a><!--Imagen de usuario que ha publicado la actividad-->
-                            <img src="./assets/img/user-icons/generic_user.png" class=" w-100 img-fluid rounded-circle shadow-sm ">
+                            <img src="{{activity.pictureOwner || './assets/img/user-icons/generic_user.png'}}" class=" w-100 img-fluid rounded-circle shadow-sm ">
                         </a>                    
                     </div>                              
                                                                        
@@ -82,6 +83,7 @@
 
             </div>
                                    
+        </div>
         </div>
 
     </div>
@@ -102,40 +104,6 @@
         </div>
     </div>
 </section>
-
-<section class="page-section bg-light" id="portfolio">
-    <div class="container">
-        <h2 style="color:red;">Card pruebas diseño</h2>
-        <!-- Portfolio item 1-->
-        <div class="portfolio-item shadow cardItem pt-2">
-            <h5 class="mt-3 text-center ">Titulo de la actividad</h5>
-            <h5 class="text-muted text-center">Categoría</h5>  
-            <h6 class="text-center pb-2">10/01/2023</h6> 
-            <div class="" >                
-                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="">
-            </div>
-            <div class="portfolio-caption justify-content-between aling-items-center pt-3 pb-3 cardHover" >                                              
-                <div class="col-2 col-md-2 pt-2">
-                    <a><!--Imagen de usuario que solicita la actividad-->
-                        <img src="./assets/img/user-icons/generic_user.png" class=" w-100 img-fluid rounded-circle shadow-sm">
-                    </a>                    
-                </div> 
-                <div class="col-8 col-md-8 d-flex flex-column aling-items-center">                        
-                    <h6 class="text-start pt-2 ms-4">firsName lastName</h6><!--Datos de la persona que solicita la actividad-->
-                    <!--<span class="mx-auto"><i class="fa-solid fa-arrows-rotate"></i></span>-->
-                    
-                    <h6 class="text-end pb-2 me-4">name Owner</h6><!--Datos de la persona que publicado la actividad-->  
-                </div>
-                <div class="col-2 col-md-2 pt-2 ">
-                    <a><!--Imagen de usuario que ha publicado la actividad-->
-                        <img src="./assets/img/user-icons/generic_user.png" class=" w-100 img-fluid rounded-circle shadow-sm ">
-                    </a>                    
-                </div>                              
-            </div>                       
-        </div>    
-    </div>
-</section>
-
 
 
 

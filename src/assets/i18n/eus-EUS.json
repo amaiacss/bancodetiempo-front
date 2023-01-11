@@ -21,6 +21,14 @@
         "passwordError": "Pasahitz okerra. Berrikusi sartutako eremuak."
 
     },
+    "contact_page": {
+        "title": "Jarri gurekin arremanetan",
+        "subtitle": "Zalantzaren bat baduzu, bidaliguzu mezu bat",
+        "msg_inp_error": "Mezua derrigorrezkoa da eta gehienez 300 karaktere izan ditzazke.",
+        "chars": "Karaktere",
+        "btn": "Bidali",
+        "message": "Mezua"
+    },
     "register_page": {
         "title": "Izen eman",
         "emailLabel": "Emaila",
@@ -107,7 +115,7 @@
     "profile_page": {
         "title": "Profila",
         "edit_profile_btn": "Profila aldatu",
-        "balance": "Oreka",
+        "balance": "Saldoa",
         "hours": "Ordu",
         "category": "Kategoría",
         "publications_tab": "Argitalpenak",
@@ -118,15 +126,15 @@
         "requests_title": "Eskaera orria",
         "new_activitie_span": "Jarduera berria",
         "activities_text": "jarduera argitaratuak",
-        "out_request": {
+        "in_request": {
             "subtitle": "Eskatu dizuten denbora",
             "text": "eskatu dizu",
             "state": "Egoera",
             "accept": "Onartu",
-            "reject": "Deuseztatu",
+            "cancel": "Deuseztatu",
             "finish": "Amaitu"
         },
-        "in_request": {
+        "out_request": {
             "subtitle": "Eskatu duzun denbora",
             "text": "zure eskaera jaso du",
             "state": "Egoera",

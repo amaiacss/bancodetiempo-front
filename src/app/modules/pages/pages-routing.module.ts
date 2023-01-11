@@ -12,18 +12,10 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  // {path:'#', component: HomeComponent},
-  // {path:'#services', component: HomeComponent},
-  // {path:'#portfolio', component: HomeComponent},
-  // {path:'#participate', component: HomeComponent},
 
   {path:'contacto', component: ContactComponent},
   {path: 'registro', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-
-  // {path: 'buscador', component:BuscadorComponent},
-  // {path: 'editar', component: PreferencesComponent},
-  // {path: 'usuario', component: UserComponent},
 
   {path: 'user/:id', loadChildren: () => import('../auth-navigation/auth-navigation.module').then(module => module.AuthNavigationModule),canActivate:[AuthGuard]},
 

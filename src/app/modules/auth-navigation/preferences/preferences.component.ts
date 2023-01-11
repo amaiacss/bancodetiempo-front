@@ -57,7 +57,7 @@ export class PreferencesComponent implements OnInit {
         this.loadData(this.userId || '0')
         this.buildForm()
         //Controla que el usuario no pueda falsear su identidad mediante url
-        this.router.navigate([`/user/${this.userId}/preferences`])
+        this.router.navigate([`/user/${this.userId}/edit-profile`])
         
       }else{  //USUARIO NO LOGUEADO
         this.isLoged = false

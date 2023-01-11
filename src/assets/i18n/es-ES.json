@@ -22,6 +22,14 @@
         "notRegisteredError": "Ningún usuario registrado con ese email.",
         "passwordError": "Contraseña incorrecta. Revise los campos."
     },
+    "contact_page": {
+        "title": "Contacta con nosotros",
+        "subtitle": "Si tienes alguna consulta dejanos un mensaje",
+        "msg_inp_error": "Mezua derrigorrezkoa da eta gehienez 300 karaktere izan ditzazke.",
+        "chars": "Karaktere",
+        "btn": "Bidali",
+        "message": "Mensaje"
+    },
     "register_page": {
         "title": "Regístrate",
         "emailLabel": "Email",
@@ -124,7 +132,7 @@
             "text": "te ha solicitado",
             "state": "Estado",
             "accept": "Aceptar",
-            "reject": "Rechazar",
+            "cancel": "Rechazar",
             "finish": "Finalizar"
         },
         "out_request": {

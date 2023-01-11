@@ -46,8 +46,9 @@ export class BuscadorComponent implements OnInit {
     private router: Router
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.translateService.use(event.lang);
+      this.translateService.use(event.lang)
       this.loadCategoriesSelect(event.lang)
+      this.initSearch()
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')

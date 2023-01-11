@@ -124,7 +124,7 @@
             "text": "te ha solicitado",
             "state": "Estado",
             "accept": "Aceptar",
-            "reject": "Rechazar",
+            "cancel": "Rechazar",
             "finish": "Finalizar"
         },
         "out_request": {

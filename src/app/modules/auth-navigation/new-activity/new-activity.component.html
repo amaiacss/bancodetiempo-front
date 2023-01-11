@@ -14,10 +14,10 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-5 bg-dark">
                 <div class="media d-flex align-items-end profile-header w-75"> 
-                    <div class="profile" (click)="goToProfilePage()"><img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
+                    <div class="profile" (click)="goToProfilePage()" style="cursor:pointer;"><img src="{{profileContent.picture || './assets/img/user-icons/generic_user.png'}}" alt="..." width="160" class="rounded mb-2 img-thumbnail">
                                                 
                     </div>                           
-                    <div *ngIf="fullProfile" class="media-body mb-5 ms-3 text-white align-items-center" (click)="goToProfilePage()">
+                    <div *ngIf="fullProfile" class="media-body mb-5 ms-3 text-white align-items-center" (click)="goToProfilePage()" style="cursor:pointer;">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
                         <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
                     </div>                                                  

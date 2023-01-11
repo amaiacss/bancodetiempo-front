@@ -106,12 +106,22 @@ export class UsersService {
     
       this.findUserById(id).subscribe({
         next: (res) => {
+          if(res===null){
+            localStorage.clear()
+            this.sessionData$.next({
+              isLoged: false,
+              lang: 'es-ES',
+              fullProfile: false,
+              userData: {}
+            })
+          }else{ 
           this.sessionData$.next({
             isLoged: true,
             lang: localStorage.getItem('lang'),
             fullProfile: localStorage.getItem('fullProfile')==='true',
             userData:res
           })
+          }
         }
       })
   }

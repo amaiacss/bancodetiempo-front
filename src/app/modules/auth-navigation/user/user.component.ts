@@ -79,12 +79,12 @@ export class UserComponent implements OnInit {
   goToNewActivitiePage(): void{
     // route: create
     if(this.userId){
-      this.router.navigate([`/user/${this.userId}/create`])
+      this.router.navigate([`/user/${this.userId}/new-activity`])
     }
   }
 
   gotToConfigurationPage() {
-    this.router.navigate([`/user/${this.userId}/preferences`])
+    this.router.navigate([`/user/${this.userId}/edit-profile`])
   }
 
   goToProfile(id:number | string | null | undefined){
@@ -198,6 +198,7 @@ export class UserComponent implements OnInit {
       },
       error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
     })
+    this.interactionHours = 0
   }
 
   cancelRequest(id:string){
@@ -213,9 +214,10 @@ export class UserComponent implements OnInit {
       },
       error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
     })
+    this.interactionHours = 0
   }
 
-  endRequest(id:string, index:number, type:number){
+  endRequest(id:string){
     this.clearAlerts()
     if (this.interactionHours>0){
       this.activitiesService.updateRequest(
@@ -236,6 +238,7 @@ export class UserComponent implements OnInit {
     } else {
       this.alerts.error = "El mínimo es de una hora"
     }
+    this.interactionHours = 0
   }
 
   clearAlerts(){

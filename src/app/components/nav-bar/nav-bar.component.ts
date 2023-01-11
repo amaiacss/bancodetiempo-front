@@ -11,6 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class NavBarComponent implements OnInit {
   userInfo: {isLoged:boolean,userData:LoginResponse} = { isLoged:false, userData:{}}
+  selectedLang:string = 'es-ES'
 
   constructor(
     private translateService: TranslateService,
@@ -19,17 +20,18 @@ export class NavBarComponent implements OnInit {
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
+      this.selectedLang = event.lang;
     });
     this.usersService.getSessionData().subscribe({
       next: response => {
         this.userInfo = response
+        console.log(this.userInfo)
       }
     })
-    
   }
 
   ngOnInit(): void {
-    
+    this.selectedLang = localStorage.getItem('lang') || 'es-ES'
   }
 
   pickLanguage(e:any){
@@ -79,7 +81,7 @@ export class NavBarComponent implements OnInit {
   }
 
   goToPreferencesPage(){
-    this.router.navigate([`/user/${this.userInfo.userData?.id}/preferences`])
+    this.router.navigate([`/user/${this.userInfo.userData?.id}/edit-profile`])
   }
 
   goToProfilePage(profileId:string | null | undefined){

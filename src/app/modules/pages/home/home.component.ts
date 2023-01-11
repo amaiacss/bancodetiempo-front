@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { CardInfo } from 'src/app/models/activities';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -24,18 +23,16 @@ export class HomeComponent implements OnInit {
       this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
         this.translateService.use(event.lang);
       })
-      
-      this.getSessionData()
-      this.getLastActivitiesData()
-    
     }
 
   ngOnInit(): void {
-    
+    this.getSessionData()
+    this.getLastActivitiesData()
   }
 
   getSessionData() {
     this.usersService.getSessionData().subscribe(response => {
+      console.log(response);
       let id, fragment
       this.userId = response.userData?.id || localStorage.getItem('id')
         if(this.userId) {

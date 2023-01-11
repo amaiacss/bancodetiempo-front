@@ -9,9 +9,9 @@ import { UserComponent } from './user/user.component';
 const routes: Routes = [
     {path: '',component:HomeComponent},
     {path: 'search', component:BuscadorComponent},
-    {path: 'preferences', component: PreferencesComponent},
+    {path: 'edit-profile', component: PreferencesComponent},
     {path: 'profile/:profile', component: UserComponent},
-    {path: 'create', component:NewActivityComponent}
+    {path: 'new-activity', component:NewActivityComponent}
 ]
 
 @NgModule({

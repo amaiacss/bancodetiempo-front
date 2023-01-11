@@ -40,9 +40,9 @@
                     <!-- Portfolio item 1-->
                     <div class="portfolio-item shadow-sm cardItem pt-2">
                         <h5 class="mt-3 text-center ">{{card.title}}</h5>
-                        <h5 class="text-muted text-center">{{card.category_es}}</h5>  
+                        <h5 class="text-muted text-center">{{card.category}}</h5>  
                         <h6 class="text-center pb-2">{{card.dateActivity | date:'dd/MM/yyyy'}}</h6> 
-                        <a class="portfolio-link" data-bs-toggle="modal" href="/#modal{{card.idUser}}">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="/#modal{{card.id}}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -68,7 +68,7 @@
                     </div>
                     
                     <!-- Portfolio Modal-->
-                    <div class="portfolio-modal modal fade" id="modal{{card.idUser}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="portfolio-modal modal fade" id="modal{{card.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div (click)="clearAlerts()" class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" />
@@ -93,7 +93,7 @@
                                                         <li>
                                                             <div class="col-4 mx-auto" >
                                                                 <img data-bs-dismiss="modal" (click)="goToProfile(card.idUser)" class="img-fluid rounded-circle " src="./assets/img/user-icons/generic_user.png"
-                                                                    alt="imagen prueba" />
+                                                                    alt="imagen prueba" style="cursor:pointer;"/>
                                                             </div>
                                                         </li>
                                                         <li>

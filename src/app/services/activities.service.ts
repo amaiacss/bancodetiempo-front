@@ -17,6 +17,7 @@ export class ActivitiesService {
   private outgoing_requests_endpoint:string
   private incoming_requests_endpoint:string
   private update_request_endpoint:string
+  private last_activities_endpoint:string
 
   private lastActivities: CardInfo[] = [
     // {id:1, image_src: 'assets/img/portfolio/1.jpg',transmitter_thumbnail:'assets/img/team/1.jpg',transmitter_name:'Juan Palomo',transmitter_id:5,date:'20-08-2022',transmitter_location: 'Tolosa',title:'Cuidado de animales',description:'Descripción del anuncio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!', category:'Graphic Design'},
@@ -27,7 +28,6 @@ export class ActivitiesService {
     // {id:6, image_src: 'assets/img/portfolio/1.jpg',transmitter_thumbnail:'assets/img/team/1.jpg',transmitter_name:'Juan Palomo',transmitter_id:5,date:'20-08-2022',transmitter_location: 'Tolosa',title:'Veterinario',description:'Descripción del anuncio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!', category:'Salud'}
   ]
 
-  private profileActivities: CardInfo[] = []
   private profileInteractions: [] = []
 
   constructor(
@@ -44,6 +44,7 @@ export class ActivitiesService {
     this.outgoing_requests_endpoint = '/requests/getRequests/'
     this.incoming_requests_endpoint = '/requests/getRequestsByactivities/'
     this.update_request_endpoint = '/requests/update'
+    this.last_activities_endpoint = '/requests/lastRequests'
   }
 
   createActivity(body:{"title":string,"description":string,"idCategory":number,"idUser":number}): Observable<any>{
@@ -67,8 +68,8 @@ export class ActivitiesService {
     return this.http.post(this.url+this.update_request_endpoint,body)
   }
 
-  getLastActivities(): CardInfo[] {
-    return this.lastActivities
+  getLastActivities(): Observable<any> {
+    return this.http.get(this.url+this.last_activities_endpoint)
   }
 
   getProfileActivities(userId:string):any {

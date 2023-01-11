@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
   
-  activities:CardInfo[] = []
+  activities:any = []
   constructor(
     private usersService: UsersService,
     private activitiesService: ActivitiesService,
@@ -25,31 +25,53 @@ export class HomeComponent implements OnInit {
         this.translateService.use(event.lang);
       })
       
+      this.getSessionData()
+      this.getLastActivitiesData()
+    
     }
 
   ngOnInit(): void {
-    this.activities = this.activitiesService.getLastActivities()
+    
+  }
 
+  getSessionData() {
     this.usersService.getSessionData().subscribe(response => {
       let id, fragment
       this.userId = response.userData?.id || localStorage.getItem('id')
-      if(this.userId) {
-        this.isLoged = true
-        this.route.params.subscribe({
-          next: (params) => {
-            id = params['id']
-          }
-        })
-        this.route.fragment.subscribe({
-          next: (frag) => {
-            fragment = frag
-          }
-        })
-        fragment ? this.router.navigate([`/user/${this.userId}`], {preserveFragment: true, fragment: fragment}) : this.router.navigate([`/user/${this.userId}`])
+        if(this.userId) {
+          this.isLoged = true
+          this.route.params.subscribe({
+            next: (params) => {
+              id = params['id']
+            }
+          })
+          this.route.fragment.subscribe({
+            next: (frag) => {
+              fragment = frag
+            }
+          })
+          fragment ? this.router.navigate([`/user/${this.userId}`], {preserveFragment: true, fragment: fragment}) : this.router.navigate([`/user/${this.userId}`])
 
-      }else{
-        this.isLoged = false
-        fragment ? this.router.navigate(['/'], {preserveFragment: true, fragment: fragment}) : this.router.navigate(['/'])
+        }else{
+          this.isLoged = false
+          fragment ? this.router.navigate(['/'], {preserveFragment: true, fragment: fragment}) : this.router.navigate(['/'])
+        }
+      })  
+  }
+
+  getLastActivitiesData() {
+    this.activitiesService.getLastActivities().subscribe({
+      next: (res)=> {
+        this.activities = res.data
+        this.activities.forEach( (activity: { [x: string]: any; }) => {
+          switch (localStorage.getItem('lang')){
+            case 'eus-EUS':
+              activity['category'] = this.activities.category_eu
+              break
+            default:
+              activity['category'] = this.activities.category_es
+          }
+        })
       }
     })
   }

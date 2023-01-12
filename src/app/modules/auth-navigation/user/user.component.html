@@ -116,15 +116,53 @@
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-8">
-                                            <h2 class=" text-center text-uppercase mb-2">{{activitie.title}}</h2>
-                                            <p class="my-2"><strong>{{'profile_page.category' | translate}}:</strong> #{{activitie.category}} </p>
-                                            <p class="item-intro text-muted my-2">{{activitie.city}}, {{activitie.province}}</p>
-                                                         
-                                            
-                                            <div class="modal-body aling-items-center cambio">
+                                            <h2 class="text-uppercase">{{activitie.title}}</h2>                                            
+                                            <p class="item-intro text-muted">{{activitie.city}}, {{activitie.province}}</p>                                           
+                                            <div class="modal-body cambio">
                                             
                                                 <!-- Project details-->
-                                                <div class="col-lg-12 col-sm-12 mx-auto">
+                                                <div class="col-lg-6 col-sm-12 ">
+                                                    <img class="img-fluid d-block mx-auto" src="{{activitie.picture}}" alt="imagen_actv" />
+                                                    <p class="text-start">{{activitie.description}}</p>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12">
+                                                    <ul class="list-inline">
+                                                        <li class="mb-1">
+                                                            <strong>{{'home_page.sect2.modal_transmitter_title' | translate}} </strong>
+                                                            <a href="" data-bs-dismiss="modal" (click)="goToProfile(activitie.idUser)">{{activitie.firstName}} {{activitie.lastName}}</a>
+                                                        </li>
+                                                        <li *ngIf="selectedProfile!==userId" class="mb-1 ">
+                                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                                                              </svg>                                                           
+                                                            <span> {{profileContent.email}}</span> </span>                                                                                                                       
+                                                        </li>
+                                                        <li *ngIf="selectedProfile!==userId" class="mb-3">
+                                                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                                              </svg>                                                         
+                                                            <span> {{profileContent.phone}}</span> </span>                                                             
+                                                        </li>                                                        
+                                                        <li>
+                                                            <div class="col-4 mx-auto" >
+                                                                <img data-bs-dismiss="modal" (click)="goToProfile(userId)" class="imgContentMSearch rounded-circle shadow mb-3 mt-3" src="{{activitie.profilePicture || './assets/img/user-icons/generic_user.png'}}"
+                                                                    alt="imagen_usuario" style="cursor:pointer;"/>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <strong>{{'search_page.filters.category' | translate}}:</strong>#{{activitie.category}}
+                                                        </li>
+                                                    </ul>
+                                                    <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase"
+                                                        type="button" (click)="sendRequest(activitie.id)">
+                                                        {{'home_page.sect2.modal_button' | translate}}
+                                                    </button>                                                  
+                                                   
+                                                </div> 
+
+                                                <!--Esto ya lo borrare ok? por si aca...-->
+
+                                                <!--<div class="col-lg-12 col-sm-12 mx-auto">
                                                     <img class="w-75 img-fluid d-block mx-auto mb-3" src="{{activitie.picture}}" alt="imagen_actv" />   
                                                     <p class="text-justify mb-3">{{activitie.description}}</p> 
                                                     <ul class="list-inline">
@@ -144,22 +182,36 @@
                                                     <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase"
                                                     type="button" (click)="sendRequest(activitie.id)">
                                                     {{'home_page.sect2.modal_button' | translate}}
-                                                </button>
-                                                <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
+                                                 </button>
+                                                 <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
                                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                                     </svg>
                                                     <strong>{{alerts.success}}</strong>
                                                     <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">{{'profile_page.see_prof_btn' | translate}}</button>
-                                                </div>  
-                                                <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
+                                                 </div> 
+                                                 <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
                                                         <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                                                     </svg> 
                                                     <strong>{{alerts.error}}</strong>
-                                                </div>                                                
-                                                </div>
+                                                 </div>                                                
+                                                </div>-->
                                                 
+                                            </div>
+                                            <!--ALERTS-->
+                                            <div *ngIf="alerts.success.length" class="alert alert-success mt-2 d-flex align-items-center" role="alert">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                                </svg>
+                                                <strong>{{alerts.success}}</strong>
+                                                <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">{{'profile_page.see_prof_btn' | translate}}</button>
+                                            </div> 
+                                            <div *ngIf="alerts.error.length"  class="alert alert-warning mt-2 d-flex align-items-center" role="alert">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                </svg> 
+                                                <strong>{{alerts.error}}</strong>
                                             </div>
                                         </div>
                                     </div>

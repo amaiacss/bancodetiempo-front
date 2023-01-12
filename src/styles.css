@@ -12142,8 +12142,15 @@ section#perfilUsuario .section-heading {
   object-fit: cover;
 }
 
-/*--Estilo para img de la card de buscador--*/
+/*--Estilo para img de la card de buscador-*/
 .imgContentSearch {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+
+/*--Estilo para img de la modal de buscador--*/
+.imgContentMSearch {
   height: 100px;
   width: 100px;
   object-fit: cover;

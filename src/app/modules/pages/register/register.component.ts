@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   conditions_accepted:boolean = true
   error: any
   response: any
-
+  selectedLang = 'es-ES'
   alerts = {
     success:'',
     error:''
@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
 
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang);
     });
     this.buildForm()
@@ -73,18 +74,30 @@ export class RegisterComponent implements OnInit {
         console.log(`Error: ${error.status}`)
         switch(error.status) {
           case 400:
-            this.alerts.error = 'Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.'
+            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+              next: (text) => {
+                return this.alerts.error = text.alerts.server_err2
+              }
+            })
             break;
           case 200: //manejando el error 200 como success
-            this.alerts.success = '¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.'
-            this.buildForm()
+            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+              next: (text) => {
+                return this.alerts.success = text.alerts.register_success
+              }
+            })
+            break
         }
         // after handling error, return a new observable 
         // that doesn't emit any values and completes
         return of();
       }))
       .subscribe(() => {
-        this.alerts.success = '¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.'
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.success = text.alerts.register_success
+          }
+        })
         this.buildForm()
       });
   }

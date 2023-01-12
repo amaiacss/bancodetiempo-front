@@ -81,23 +81,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
-                    <br />
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
             <!-- Server alerts -->
             <div *ngIf="alerts.success.length" class="alert alert-success mt-5 d-flex align-items-center" role="alert">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
@@ -129,15 +112,15 @@
                         <div class="modal-body d-block">
                             <!-- Project details-->                            
                             <form [formGroup]="passwordForm" id="cambiarPassForm">
-                                <h2 class="text-uppercase mb-4">Cambiar contraseña</h2>
+                                <h2 class="text-uppercase mb-4">{{'preferences_page.change_pass_btn' | translate}}</h2>
                                 <div class="row justify-content-center text-start mb-4">                                    
                                     <div class="col-md-10 col-10">                                    
                                         <div class="form-group">
                                             <!-- Contraseña antigua-->
-                                            <label for="passAntigua">Introduza la antigua contraseña:</label>
+                                            <label for="passAntigua">{{'preferences_page.modal_old_pass' | translate}}:</label>
                                             <input formControlName="pass" class="form-control" id="passAntigua" type="password" placeholder="Contraseña antigua" data-sb-validations="required" />
                                             <div  *ngIf="passwordForm.get('pass')?.dirty &&  passwordForm.get('pass')?.hasError('required')" class="text-center text-danger mb-3" >
-                                                Contraseña antigua es obligatorio
+                                                {{'preferences_page.required_err' | translate}}
                                             </div>
                                         </div>
                                         <div *ngIf="passwordForm.controls['pass'].dirty && passwordForm.controls['pass'].invalid"  class="text-center text-danger mb-3">
@@ -145,10 +128,10 @@
                                         </div>
                                         <div class="form-group">
                                             <!-- Nueva contraseña-->
-                                            <label for="passNueva">Introduzca la nueva contraseña</label>
-                                            <input formControlName="pass1" class="form-control" id="passNueva" type="password" placeholder="Nueva contraseña" data-sb-validations="required,passNueva" />
+                                            <label for="passNueva">{{'preferences_page.modal_new_pass' | translate}}</label>
+                                            <input formControlName="pass1" class="form-control" id="passNueva" type="password" placeholder="New password" data-sb-validations="required,passNueva" />
                                             <div  *ngIf="passwordForm.get('pass1')?.dirty &&  passwordForm.get('pass1')?.hasError('required')" class="text-center text-danger mb-3" >
-                                                Nueva Contraseña es obligatorio
+                                                {{'preferences_page.required_err' | translate}}
                                             </div>
                                         </div>
                                         <div *ngIf="passwordForm.controls['pass1'].dirty && passwordForm.controls['pass1'].invalid"  class="text-center text-danger mb-3">
@@ -157,8 +140,8 @@
                                     
                                         <div class="form-group">
                                             <!-- Repite contraseña-->
-                                            <label for="passRepeat">Repita la contraseña</label>
-                                            <input formControlName="pass2" class="form-control" id="passRepeat" type="password" placeholder="Repita contraseña" data-sb-validations="required,passRepeat" />
+                                            <label for="passRepeat">{{'preferences_page.modal_pass_repeat' | translate}}</label>
+                                            <input formControlName="pass2" class="form-control" id="passRepeat" type="password" placeholder="Repeat" data-sb-validations="required,passRepeat" />
                                             <div *ngIf="passwordForm.get('pass2')?.dirty &&  passwordForm.get('pass2')?.hasError('required')" class="text-center text-danger mb-3">
                                                 {{'register_page.required_error' | translate}}
                                             </div>
@@ -169,7 +152,7 @@
                                     </div>                                                                     
                                 </div>
                                 <!-- Submit Button-->
-                                <div class="text-center"><button (click)="updatePassword()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" data-bs-dismiss="modal">Cambiar</button></div>
+                                <div class="text-center"><button (click)="updatePassword()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" data-bs-dismiss="modal">{{'prefences_page.modal_btn' | translate}}</button></div>
                             </form>
                         </div>
                     </div>

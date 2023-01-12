@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   canEdit:boolean = false
   canRequest:boolean = false
   fullProfile:boolean = false
-  selectedLanguage = 'ES'
+  selectedLang = 'es-ES'
 
   profileContent:any = {}
   profileActivities:any = []
@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateService.use(event.lang);
-      this.selectedLanguage = event.lang
+      this.selectedLang = event.lang
       this.loadProfileActivities()
       this.loadRequestsData()
     })
@@ -102,7 +102,7 @@ export class UserComponent implements OnInit {
         else {
           this.canRequest = false
         }
-        this.usersService.findUserById(this.userId || '').subscribe({
+        this.usersService.findUserById(this.selectedProfile || '').subscribe({
           next: (data) => {
             this.profileContent['email'] = data?.email || ''
           }
@@ -116,7 +116,7 @@ export class UserComponent implements OnInit {
     this.activitiesService.getProfileActivities(this.selectedProfile).subscribe({
       next: (res:any) => {
         this.profileActivities = res.data
-        switch(this.selectedLanguage){
+        switch(this.selectedLang){
           case 'eus-EUS':
             this.profileActivities.forEach((res: { [x: string]: any; category_eu: any; }) => {
               res['category'] = res.category_eu
@@ -138,7 +138,7 @@ export class UserComponent implements OnInit {
     this.activitiesService.getIncomingRequests(this.selectedProfile).subscribe({
       next: (response:any) => {
         this.incomingRequests = response.data
-        switch(this.selectedLanguage){
+        switch(this.selectedLang){
           case 'eus-EUS':
             this.incomingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {
               res['name'] = res.name_eu
@@ -159,7 +159,7 @@ export class UserComponent implements OnInit {
     this.activitiesService.getOutgoingRequests(this.userId).subscribe({
       next: (response:any) => {
         this.outgoingRequests = response.data
-        switch(this.selectedLanguage){
+        switch(this.selectedLang){
           case 'eus-EUS':
             this.outgoingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {
               res['name'] = res.name_eu
@@ -182,13 +182,28 @@ export class UserComponent implements OnInit {
     this.clearAlerts()
     if (this.canRequest){
       this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
-        next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
-        error: ()=> {this.alerts.error = 'Ups! No se ha podido realizar la solicitud. Inténtalo más tarde.'}
+        next: ()=> {
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.success = text.alerts.saved
+            }
+          })
+        },
+        error: ()=> {
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.error = text.alerts.server_err
+            }
+          })
+        }
       })
     } else {
-      this.alerts.error = "No puedes realizar ninguna solicitud hasta que tengasgit  algo de saldo en tu perfil"
+      this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+        next: (text) => {
+          return this.alerts.error = text.alerts.timeless
+        }
+      })
     }
-    
   }
 
   acceptRequest(id:string){
@@ -202,7 +217,13 @@ export class UserComponent implements OnInit {
       next: ()=> {
         this.loadRequestsData()
       },
-      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
+      error: () => {
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.error = text.alerts.server_err
+          }
+        })
+      }
     })
     this.interactionHours = 0
   }
@@ -218,7 +239,13 @@ export class UserComponent implements OnInit {
       next: ()=> {
         this.loadRequestsData()
       },
-      error: () => {this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"}
+      error: () => {
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.error = text.alerts.server_err
+          }
+        })
+      }
     })
     this.interactionHours = 0
   }
@@ -238,11 +265,19 @@ export class UserComponent implements OnInit {
           this.loadData()
         },
         error: () => {
-          this.alerts.error = "¡Ups! No se ha podido gestionar la solicitud"
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.error = text.alerts.server_err
+            }
+          })
         }
       })
     } else {
-      this.alerts.error = "El mínimo es de una hora"
+      this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+        next: (text) => {
+          return this.alerts.error = text.alerts.req_min
+        }
+      })
     }
     this.interactionHours = 0
   }

@@ -31,7 +31,7 @@ export class PreferencesComponent implements OnInit {
   location:{provinces:Array<{code:string,name:string}>,cities:Array<{code:string,name:string}>}={provinces:[],cities:[]}
 
   passwordForm: FormGroup = new FormGroup({})
-
+  selectedLang:string = 'es-ES'
   alerts = {
     success:'',
     error:''
@@ -46,6 +46,7 @@ export class PreferencesComponent implements OnInit {
 
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang);
     })
     this.usersService.getSessionData().subscribe(response => {
@@ -142,10 +143,18 @@ export class PreferencesComponent implements OnInit {
       }
       this.usersService.updateUserProfile(body).subscribe({
         next: () => {
-          return this.alerts.success = "Los datos se han guardado correctamente"
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.success = text.alerts.saved
+            }
+          })
         },
         error: () => {
-          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.error = text.alerts.error
+            }
+          })
         }
       })
     }
@@ -166,10 +175,18 @@ export class PreferencesComponent implements OnInit {
         next: () => {
           localStorage.setItem('fullProfile', 'true')
           this.fullProfile = true
-          return this.alerts.success = "Tu perfil se ha creado correctamente."
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.success = text.alerts.saved
+            }
+          })
         },
         error: () => {
-          return this.alerts.error = "¡Ups! Algo ha fallado. Revisa que hayas completado todos los campos o intentalo más tarde."
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.error = text.alerts.error
+            }
+          })
         }
       })
     }
@@ -194,13 +211,27 @@ export class PreferencesComponent implements OnInit {
     this.usersService.updatePassword(body).subscribe({
       next: (res) => {
         if (res.ok === false){
-          this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.error = text.alerts.error
+            }
+          })
         }else {
-          this.alerts.success = 'Contraseña cambiada con éxito'
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.success = text.alerts.saved
+            }
+          })
         }
       },
-      error: () => {this.alerts.error = '¡Ups! No se ha podido actualizar la contraseña, comprueba los datos o intentalo más tarde.'}
-      })
+      error: () => {
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.error = text.alerts.error
+          }
+        })
+      }
+    })
   }
 
   buildForm() {
@@ -241,8 +272,20 @@ export class PreferencesComponent implements OnInit {
         const imageData = resizedImage_url?.split(',')[1]
 
         this.usersService.updatePicture({"id":this.userId,"pictureData":imageData}).subscribe({
-          next: () => this.alerts.success = 'Imagen subida correctamente',
-          error: () => this.alerts.error = "No se ha podido subir la imagen"
+          next: () => {
+            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+              next: (text) => {
+                return this.alerts.success = text.alerts.saved
+              }
+            })
+          },
+          error: () => {
+            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+              next: (text) => {
+                return this.alerts.error = text.alerts.server_err
+              }
+            })
+          }
         })
         
       }

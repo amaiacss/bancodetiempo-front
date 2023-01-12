@@ -8,7 +8,7 @@
 
 <section *ngIf="fullProfile" class="page-section pb-5" id="perfilUsuario">
     <div class="container">     
-        <h2 class="text-muted p-3">{{'profile_page.title' | translate}}</h2>
+        <h2 class="text-muted p-3">{{'profile_page.title' | translate}} @{{profileContent.username}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
            
@@ -150,7 +150,7 @@
                                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                                     </svg>
                                                     <strong>{{alerts.success}}</strong>
-                                                    <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">Ver Perfil</button>
+                                                    <button class="btn btn-success" data-bs-dismiss="modal" (click)="goToProfile(userId)">{{'profile_page.see_prof_btn' | translate}}</button>
                                                 </div>  
                                                 <div *ngIf="alerts.error.length"  class="alert alert-warning mt-5 d-flex align-items-center" role="alert">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
@@ -176,23 +176,23 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">{{'profile_page.interactions_title' | translate}}</h5>
                 </div>
-                <p>{{'profile_page.historical_request.in' | translate}}:</p>
+                <h3>{{'profile_page.historical_request.in' | translate}}:</h3>
                 <div class="row">
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.incoming">
                             <p *ngIf="interaction.id.length">
-                                <b>{{interaction.title}} </b> --   @{{interaction.username}},  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --   @{{interaction.username}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
                     
                 </div>
-                <p>{{'profile_page.historical_request.out' | translate}}:</p>
+                <h3>{{'profile_page.historical_request.out' | translate}}:</h3>
                 <div class="row">
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.outgoing">
                             <p *ngIf="interaction.id.length">
-                                <b>{{interaction.title}} </b> --   TO-DO@zuprima,  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --  @{{interaction.username}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <div *ngFor="let request of outgoingRequests; let i = index" >
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><strong>TO-DO ->@nosekien</strong> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
+                                    <p><strong>@{{request.username}}</strong> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
                                     <p>{{'profile_page.out_request.state' | translate}}: <strong>{{request.name}}</strong></p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">

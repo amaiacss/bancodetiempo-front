@@ -1,6 +1,0 @@
-npm install @ngx-translate/core
-npm install @ngx-translate/http-loader
-
-en app.module, crear la función HttpLoaderFactory
-
-También hay que añadir imports y funciones en cada módulo y en la lógica del componente

@@ -12135,9 +12135,17 @@ section#perfilUsuario .section-heading {
  
 }
 
+/*--Estilo para img de la card de home-*/
 .imgContent {
   height: 60px;
   width: 60px;
+  object-fit: cover;
+}
+
+/*--Estilo para img de la card de buscador--*/
+.imgContentSearch {
+  height: 100px;
+  width: 100px;
   object-fit: cover;
 }
 

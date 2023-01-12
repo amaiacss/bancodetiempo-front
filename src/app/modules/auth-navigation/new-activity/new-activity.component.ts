@@ -11,7 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class NewActivityComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
-
+  selectedLang:string = 'es-ES'
   fullProfile:boolean = false
 
   inputs = {
@@ -34,6 +34,7 @@ export class NewActivityComponent implements OnInit {
     private router: Router
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang);
       this.loadCategoriesSelect(event.lang)
     })
@@ -127,10 +128,18 @@ export class NewActivityComponent implements OnInit {
           selectedCategory: '0',
           description: ''
         }
-        this.alerts.success = 'Actividad creada correctamente!'
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            this.alerts.success = text.alerts.activity_created
+          }
+        })
       },
       error: (err) => {
-        this.alerts.error = '¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.'
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            this.alerts.error = text.alerts.error
+          }
+        })
       }
     })
   }

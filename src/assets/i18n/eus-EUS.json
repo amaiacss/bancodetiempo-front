@@ -1,5 +1,6 @@
 {
     "nav_bar": {
+        "nav_toggler":"Menua",
         "servicesLink": "Zer da?",
         "portfolioLink": "Zer gertatzen ari da?",
         "participateLink": "Parte hartu nahi duzu?",
@@ -102,6 +103,7 @@
     },
     "search_page": {
         "header": "Aurkitu behar duzuna",
+        "subtitle": "Ba al dakizu denbora eskeintzen duten pertsonak inguruan dituzula?",
         "search_text": "Hasi bilatzen",
         "result_text": "Emaitzak: ",
         "filters": {
@@ -114,6 +116,7 @@
     },
     "profile_page": {
         "title": "Profila",
+        "see_prof_btn": "Profila Ikusi",
         "edit_profile_btn": "Profila aldatu",
         "balance": "Saldoa",
         "hours": "Ordu",
@@ -165,7 +168,11 @@
         "city_inp": "Lurraldea",
         "description_inp": "Deskripzioa",
         "save_btn": "Aldaketak Gorde",
-        "create_btn": "Profila Sortu"
+        "create_btn": "Profila Sortu",
+        "modal_old_pass":"Idatzi orain arte erabilitako pasahitza",
+        "modal_new_pass": "Idatzi pasahitza berria",
+        "modal_pass_repeat": "Errepikatu pasahitza",
+        "modal_btn": "Aldatu"
     },
     "new_activity_page": {
         "title": "Jarduera argitaratu",
@@ -204,6 +211,20 @@
         "contact": "Harremanetan jarri"
     },
     "alerts": {
-        "profile_false": "Ez al duzu zure profila osatu? Zeren zain zaude? Lortu orain funtzionalitate guztiak"
+        "profile_false": "Ez al duzu zure profila osatu? Zeren zain zaude? Lortu orain funtzionalitate guztiak",
+        "timeless": "Ezin duzu aktibitaterik eskatu zure denbora kopurua handitu arte.",
+        "request_sended": "Zure eskaera zuzen bidali da",
+        "server_err":"Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu",
+        "activity_created": "Jarduera zuzen sortu da!",
+        "error": "¡Ups! Zerbait gaizki igaro da. Baietzatu eremu guztiak edo beranduago saiatu.",
+        "saved": "Datuak zuzen gorde dira",
+        "req_min": "Gutxienez ordu bat",
+        "email_success":"Zure emaila bidali egin da. Lehen baino lehen erantzungo dizugu.",
+        "no_result": "Ez dago emaitzarik",
+        "not_verified": "Erabiltzailea ez da egiaztatu. Begira ezazu zure posta elektronikoa",
+        "verified": "Email zuzen egiaztatu da. Saioa hasi.",
+        "too_verified": "Emaila egiaztatuta zegoen jada. Saioa hasi dezakezu.",
+        "server_err2": "Zerbitzariak arazoren bat dauka edo erabiltaile hau erregistratua dago jada. Baietzatu eremu guztiak edo beranduago saiatu.",
+        "register_success": "Erregistratua! Mesedez begiratu zure emailean eta baieztatze kodea aktibatu zure kontua aktibatzeko."
     }
 }

@@ -17,6 +17,7 @@ export class BuscadorComponent implements OnInit {
 
   filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<{id:string,name:string}>,text:string} = {provinces:[],cities:[],categories:[],text:''}
   filters: {province?:string,city?:string,category?:string,text?:string} = {}
+  selectedLang:string = 'es-ES'
   
   searchresult:Array<{
     id: string,
@@ -32,7 +33,10 @@ export class BuscadorComponent implements OnInit {
     lastName:string
     city: string,
     province: string,
-    url: string
+    url: string,
+    profilePicture:string,
+    email:string,
+    phone:string
   }> = []
 
   alerts = {
@@ -46,6 +50,7 @@ export class BuscadorComponent implements OnInit {
     private router: Router
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang)
       this.loadCategoriesSelect(event.lang)
       this.initSearch()
@@ -63,7 +68,11 @@ export class BuscadorComponent implements OnInit {
               this.alerts.error = ''
             } else {
               this.canRequest = false
-              this.alerts.error = 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.'
+              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+                next: (text) => {
+                  this.alerts.error = text.alerts.timeless
+                }
+              })
             }
           }
         })
@@ -183,11 +192,23 @@ export class BuscadorComponent implements OnInit {
     this.clearAlerts()
     if(this.canRequest){
       this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
-        next: ()=> {this.alerts.success = 'Tu solicitud se ha enviado correctamente'},
-        error: ()=> {alert("ups!")}
+        next: ()=> {
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              this.alerts.success = text.alerts.request_sended
+            }
+          })
+        },
+        error: ()=> {
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              this.alerts.error = text.alerts.server_err
+            }
+          })
+        }
       })
     } else {
-      this.alerts.error = "No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo."
+      this.alerts.error = ''
     }
   }
 

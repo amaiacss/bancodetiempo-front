@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
-                        <input formControlName="location" class="form-control" id="ubicacion" type="tel" placeholder="{{'preferences_page.city_inp' | translate}} *"/>
+                        <input formControlName="location" class="form-control" id="ubicacion" type="text" placeholder="{{'preferences_page.city_inp' | translate}} *"/>
                         <div *ngIf="contactForm.controls['location'].dirty && contactForm.controls['location'].invalid" class="text-center text-danger mb-3">{{'register_page.required_error' | translate}}</div>
                     </div>
                 </div>

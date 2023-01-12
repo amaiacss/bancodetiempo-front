@@ -11,7 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent implements OnInit {
   isLoged:boolean = false
   userId:string | undefined | null = undefined
-  
+
   activities:any = []
   constructor(
     private usersService: UsersService,

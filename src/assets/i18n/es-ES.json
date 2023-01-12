@@ -1,5 +1,6 @@
 {
     "nav_bar": {
+        "nav_toggler":"Menu",
         "servicesLink": "¿Qué es?",
         "portfolioLink": "¿Qué está pasando?",
         "participateLink": "¿Quieres participar?",
@@ -103,6 +104,7 @@
     },
     "search_page": {
         "header": "Encuentra lo que necesitas",
+        "subtitle": "¿Sabes que hay gente compartiendo su tiempo muy cerca?",
         "search_text": "Realiza una búsqueda",
         "result_text": "Resultados: ",
         "filters": {
@@ -115,6 +117,7 @@
     },
     "profile_page": {
         "title": "Perfil",
+        "see_prof_btn": "Ver Perfil",
         "edit_profile_btn": "Editar Perfil",
         "balance": "Saldo",
         "hours": "Horas",
@@ -166,7 +169,11 @@
         "city_inp": "Población",
         "description_inp": "Descripción",
         "save_btn": "Guardar Cambios",
-        "create_btn": "Crear Perfil"
+        "create_btn": "Crear Perfil",
+        "modal_old_pass":"Introduza la antigua contraseña",
+        "modal_new_pass": "Introduzca nueva contraseña",
+        "modal_pass_repeat": "Repita la contraseña",
+        "modal_btn": "Cambiar"
     },
     "new_activity_page": {
         "title": "Registrar actividad",
@@ -205,6 +212,20 @@
         "contact": "Contacto"
     },
     "alerts": {
-        "profile_false": "¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad"
+        "profile_false": "¿No has completado tu perfil? ¿A qué esperas? Consigue ahora toda la funcionalidad",
+        "timeless": "No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.",
+        "request_sended": "Tu solicitud se ha enviado correctamente",
+        "server_err":"Ups! Algo ha salido mal. Por favor, inténtalo más tarde",
+        "activity_created": "¡Actividad creada correctamente!",
+        "error": "¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.",
+        "saved": "Los datos se han guardado correctamente",
+        "req_min": "El mínimo es de una hora",
+        "email_success":"Tu emai ha sido enviado. Te responderemos lo antes posible.",
+        "no_result": "No hay resultados",
+        "not_verified": "Usuario no verificado. Compruebe su email",
+        "verified": "Email verificado correctamente. Inicia sesión.",
+        "too_verified": "El email ya ha sido verificado anteriormente. Puedes iniciar sesión.",
+        "server_err2": "Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.",
+        "register_success": "¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta."
     }
 }

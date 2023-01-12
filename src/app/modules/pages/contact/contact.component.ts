@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ContactComponent implements OnInit {
   contactForm: FormGroup = new FormGroup({})
-
+  selectedLang = 'es-ES'
   alerts = {
     success: '',
     error: ''
@@ -22,6 +22,7 @@ export class ContactComponent implements OnInit {
     private usersService: UsersService
   ) {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang);
     })
     this.buildForm()
@@ -50,10 +51,29 @@ export class ContactComponent implements OnInit {
       }
       this.usersService.sendContactEmail(body).subscribe({
         next: () => {
-          this.alerts.success = "Tu emai ha sido enviado. Te responderemos lo antes posible."
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.success = text.alerts.email_success
+            }
+          })
         },
-        error: () => {
-          this.alerts.error = '¡Ups! Algo ha salido mal. Intentalo más tarde.'
+        error: (err) => {
+          switch (err.status) {
+            case 200:
+              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+                next: (text) => {
+                  return this.alerts.success = text.alerts.email_success
+                }
+              })
+              break;
+            default:
+              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+                next: (text) => {
+                  return this.alerts.error = text.alerts.server_err
+                }
+              })
+              break;
+          }
         }
       })
     }

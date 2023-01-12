@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     passwordIncorrect: false
   }
   fieldTextType: boolean
-
+  selectedLang = 'es-ES'
   alerts = {
     success:'',
     warning:'',
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   ) { 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLang = event.lang
       this.translateService.use(event.lang);
     });
     this.buildForm()
@@ -68,7 +69,11 @@ export class LoginComponent implements OnInit {
           this.loginErrors.passwordIncorrect= true
         }
         if(res.verified==0){
-          this.alerts.warning = 'Usuario no verificado. Compruebe su email'
+          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+            next: (text) => {
+              return this.alerts.warning = text.alerts.not_verified
+            }
+          })
         }
         if(res.id===null){
           this.loginErrors.notRegistered=true
@@ -91,9 +96,27 @@ export class LoginComponent implements OnInit {
     const urlParams = new URLSearchParams(queryString);
     if(urlParams.has('verified')) {
       const verified = urlParams.get('verified')
-      if(verified == 'ok') this.alerts.success = 'Email verificado correctamente. Inicia sesión.'
-      if(verified == 'error44') this.alerts.warning = 'El email ya ha sido verificado anteriormente. Puedes iniciar sesión.'
-      if(verified == 'error') this.alerts.error = 'No se ha podido verificar tu email. Contacta con nosotros.'
+      if(verified == 'ok') {
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.success = text.alerts.verified
+          }
+        })
+      }
+      if(verified == 'error44'){ 
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.warning = text.alerts.too_verified
+          }
+        })
+      }
+      if(verified == 'error'){ 
+        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
+          next: (text) => {
+            return this.alerts.error = text.alerts.server_err
+          }
+        })
+      }
     }
   }
 

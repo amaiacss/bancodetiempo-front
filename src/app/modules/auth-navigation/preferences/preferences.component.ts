@@ -32,6 +32,18 @@ export class PreferencesComponent implements OnInit {
 
   passwordForm: FormGroup = new FormGroup({})
   selectedLang:string = 'es-ES'
+  translations = {
+    es: {
+      saved: 'Los datos se han guardado correctamente',
+      error: '¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.',
+      server_err:'Ups! Algo ha salido mal. Por favor, inténtalo más tarde'
+    },
+    eus: {
+      saved: 'Datuak zuzen gorde dira',
+      error: 'Ups! Zerbait gaizki igaro da. Baietzatu eremu guztiak edo beranduago saiatu.',
+      server_err:'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu'
+    }
+  }
   alerts = {
     success:'',
     error:''
@@ -143,18 +155,24 @@ export class PreferencesComponent implements OnInit {
       }
       this.usersService.updateUserProfile(body).subscribe({
         next: () => {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.success = text.alerts.saved
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.saved
+              break
+            default:
+              this.alerts.success = this.translations.es.saved
+              break
+          }
         },
         error: () => {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.error = text.alerts.error
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.error
+              break
+            default:
+              this.alerts.error = this.translations.es.error
+              break
+          }
         }
       })
     }
@@ -175,18 +193,24 @@ export class PreferencesComponent implements OnInit {
         next: () => {
           localStorage.setItem('fullProfile', 'true')
           this.fullProfile = true
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.success = text.alerts.saved
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.saved
+              break
+            default:
+              this.alerts.success = this.translations.es.saved
+              break
+          }
         },
         error: () => {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.error = text.alerts.error
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.error
+              break
+            default:
+              this.alerts.error = this.translations.es.error
+              break
+          }
         }
       })
     }
@@ -211,25 +235,34 @@ export class PreferencesComponent implements OnInit {
     this.usersService.updatePassword(body).subscribe({
       next: (res) => {
         if (res.ok === false){
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.error = text.alerts.error
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.error
+              break
+            default:
+              this.alerts.error = this.translations.es.error
+              break
+          }
         }else {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.success = text.alerts.saved
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.saved
+              break
+            default:
+              this.alerts.success = this.translations.es.saved
+              break
+          }
         }
       },
       error: () => {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.error = text.alerts.error
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.error = this.translations.eus.error
+            break
+          default:
+            this.alerts.error = this.translations.es.error
+            break
+        }
       }
     })
   }
@@ -273,21 +306,26 @@ export class PreferencesComponent implements OnInit {
 
         this.usersService.updatePicture({"id":this.userId,"pictureData":imageData}).subscribe({
           next: () => {
-            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-              next: (text) => {
-                return this.alerts.success = text.alerts.saved
-              }
-            })
+            switch(this.selectedLang) {
+              case 'eus-EUS':
+                this.alerts.success = this.translations.eus.saved
+                break
+              default:
+                this.alerts.success = this.translations.es.saved
+                break
+            }
           },
           error: () => {
-            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-              next: (text) => {
-                return this.alerts.error = text.alerts.server_err
-              }
-            })
+            switch(this.selectedLang) {
+              case 'eus-EUS':
+                this.alerts.error = this.translations.eus.server_err
+                break
+              default:
+                this.alerts.error = this.translations.es.server_err
+                break
+            }
           }
         })
-        
       }
     }
   }

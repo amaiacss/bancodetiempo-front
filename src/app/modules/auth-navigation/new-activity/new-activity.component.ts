@@ -22,7 +22,16 @@ export class NewActivityComponent implements OnInit {
   }
 
   profileContent:any = {}
-
+  translations = {
+    es: {
+      activity_created: '¡Actividad creada correctamente!',
+      error: '¡Ups! Algo ha salido mal. Comprueba los campos o intentalo de nuevo más tarde.',
+    },
+    eus: {
+      activity_created: 'Jarduera zuzen sortu da!',
+      error: 'Ups! Zerbait gaizki igaro da. Baietzatu eremu guztiak edo beranduago saiatu.',
+    }
+  }
   alerts = {
     success:'',
     error:''
@@ -45,7 +54,7 @@ export class NewActivityComponent implements OnInit {
       if(this.userId) {
         this.isLoged = true
     //Controla que el usuario no pueda falsear su identidad mediante url
-        this.router.navigate([`/user/${this.userId}/create`])
+        this.router.navigate([`/user/${this.userId}/new-activity`])
       }else{  //USUARIO NO LOGUEADO
         this.isLoged = false
         alert('Inicie sesión')
@@ -72,7 +81,6 @@ export class NewActivityComponent implements OnInit {
   }
 
   loadCategoriesSelect(lang:string){
-    console.log('switched to', lang)
     this.activitiesService.getCategories().subscribe({
       next: (categories:[{id:string,name_es:string,name_eu:string}]) => {
         switch(lang){
@@ -105,7 +113,6 @@ export class NewActivityComponent implements OnInit {
   selectCategory(event:any){
     const value = event.target.value
     this.inputs.selectedCategory = value
-    console.log(value)
   }
 
   allInputsCompleted():boolean {
@@ -128,18 +135,24 @@ export class NewActivityComponent implements OnInit {
           selectedCategory: '0',
           description: ''
         }
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            this.alerts.success = text.alerts.activity_created
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.success = this.translations.eus.activity_created
+            break
+          default:
+            this.alerts.success = this.translations.es.activity_created
+            break
+        }
       },
-      error: (err) => {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            this.alerts.error = text.alerts.error
-          }
-        })
+      error: () => {
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.error = this.translations.eus.error
+            break
+          default:
+            this.alerts.error = this.translations.es.error
+            break
+        }
       }
     })
   }

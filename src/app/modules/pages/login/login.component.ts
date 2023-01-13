@@ -19,6 +19,20 @@ export class LoginComponent implements OnInit {
   }
   fieldTextType: boolean
   selectedLang = 'es-ES'
+  translations = {
+    es: {
+      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
+      not_verified: 'Usuario no verificado. Compruebe su email',
+      verified:'Email verificado correctamente. Inicia sesión.',
+      too_verified:'El email ya ha sido verificado anteriormente. Puedes iniciar sesión.'
+    },
+    eus: {
+      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',
+      not_verified: 'Erabiltzailea ez da egiaztatu. Begira ezazu zure posta elektronikoa',
+      verified:'Email zuzen egiaztatu da. Saioa hasi.',
+      too_verified:'Emaila egiaztatuta zegoen jada. Saioa hasi dezakezu.'
+    }
+  }
   alerts = {
     success:'',
     warning:'',
@@ -69,11 +83,14 @@ export class LoginComponent implements OnInit {
           this.loginErrors.passwordIncorrect= true
         }
         if(res.verified==0){
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.warning = text.alerts.not_verified
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.warning = this.translations.eus.not_verified
+              break
+            default:
+              this.alerts.warning = this.translations.es.not_verified
+              break
+          }
         }
         if(res.id===null){
           this.loginErrors.notRegistered=true
@@ -97,25 +114,34 @@ export class LoginComponent implements OnInit {
     if(urlParams.has('verified')) {
       const verified = urlParams.get('verified')
       if(verified == 'ok') {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.success = text.alerts.verified
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.success = this.translations.eus.verified
+            break
+          default:
+            this.alerts.success = this.translations.es.verified
+            break
+        }
       }
       if(verified == 'error44'){ 
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.warning = text.alerts.too_verified
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.warning = this.translations.eus.too_verified
+            break
+          default:
+            this.alerts.warning = this.translations.es.too_verified
+            break
+        }
       }
       if(verified == 'error'){ 
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.error = text.alerts.server_err
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.error = this.translations.eus.server_err
+            break
+          default:
+            this.alerts.error = this.translations.es.server_err
+            break
+        }
       }
     }
   }

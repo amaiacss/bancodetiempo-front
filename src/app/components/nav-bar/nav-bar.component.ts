@@ -25,7 +25,6 @@ export class NavBarComponent implements OnInit {
     this.usersService.getSessionData().subscribe({
       next: response => {
         this.userInfo = response
-        console.log(this.userInfo)
       }
     })
   }
@@ -35,7 +34,6 @@ export class NavBarComponent implements OnInit {
   }
 
   pickLanguage(e:any){
-    console.log(e.target.value)
     this.translateService.use(e.target.value)
     localStorage.setItem('lang',e.target.value)
   }

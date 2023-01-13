@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { CustomValidation } from 'src/app/pipes/customVal';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -11,6 +10,16 @@ import { UsersService } from 'src/app/services/users.service';
 export class ContactComponent implements OnInit {
   contactForm: FormGroup = new FormGroup({})
   selectedLang = 'es-ES'
+  translations = {
+    es: {
+      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
+      email_success: 'Tu emai ha sido enviado. Te responderemos lo antes posible.',
+    },
+    eus: {
+      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',
+      email_success: 'Zure emaila bidali egin da. Lehen baino lehen erantzungo dizugu.',
+    }
+  }
   alerts = {
     success: '',
     error: ''
@@ -51,27 +60,36 @@ export class ContactComponent implements OnInit {
       }
       this.usersService.sendContactEmail(body).subscribe({
         next: () => {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.success = text.alerts.email_success
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.email_success
+              break
+            default:
+              this.alerts.success = this.translations.es.email_success
+              break
+          }
         },
         error: (err) => {
           switch (err.status) {
             case 200:
-              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-                next: (text) => {
-                  return this.alerts.success = text.alerts.email_success
-                }
-              })
+              switch(this.selectedLang) {
+                case 'eus-EUS':
+                  this.alerts.success = this.translations.eus.email_success
+                  break
+                default:
+                  this.alerts.success = this.translations.es.email_success
+                  break
+              }
               break;
             default:
-              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-                next: (text) => {
-                  return this.alerts.error = text.alerts.server_err
-                }
-              })
+              switch(this.selectedLang) {
+                case 'eus-EUS':
+                  this.alerts.error = this.translations.eus.server_err
+                  break
+                default:
+                  this.alerts.error = this.translations.es.server_err
+                  break
+              }
               break;
           }
         }

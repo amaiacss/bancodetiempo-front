@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
 
   getSessionData() {
     this.usersService.getSessionData().subscribe(response => {
-      console.log(response);
       let id, fragment
       this.userId = response.userData?.id || localStorage.getItem('id')
         if(this.userId) {

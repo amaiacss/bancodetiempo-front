@@ -16,6 +16,16 @@ export class RegisterComponent implements OnInit {
   error: any
   response: any
   selectedLang = 'es-ES'
+  translations = {
+    es: {
+      server_err2: 'Hay un problema en el servidor o ese usuario ya está registrado. Verifica los datos o intentalo más tarde.',
+      register_success: '¡Registrado! Por favor, chequea tu email y activa el código de verificación para activar tu cuenta.'
+    },
+    eus: {
+      server_err2: 'Zerbitzariak arazoren bat dauka edo erabiltaile hau erregistratua dago jada. Baietzatu eremu guztiak edo beranduago saiatu.',
+      register_success: 'Erregistratua! Mesedez begiratu zure emailean eta baieztatze kodea aktibatu zure kontua aktibatzeko.'
+    }
+  }
   alerts = {
     success:'',
     error:''
@@ -74,18 +84,24 @@ export class RegisterComponent implements OnInit {
         console.log(`Error: ${error.status}`)
         switch(error.status) {
           case 400:
-            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-              next: (text) => {
-                return this.alerts.error = text.alerts.server_err2
-              }
-            })
+            switch(this.selectedLang) {
+              case 'eus-EUS':
+                this.alerts.error = this.translations.eus.server_err2
+                break
+              default:
+                this.alerts.error = this.translations.es.server_err2
+                break
+            }
             break;
           case 200: //manejando el error 200 como success
-            this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-              next: (text) => {
-                return this.alerts.success = text.alerts.register_success
-              }
-            })
+            switch(this.selectedLang) {
+              case 'eus-EUS':
+                this.alerts.success = this.translations.eus.register_success
+                break
+              default:
+                this.alerts.success = this.translations.es.register_success
+                break
+            }
             break
         }
         // after handling error, return a new observable 
@@ -93,11 +109,14 @@ export class RegisterComponent implements OnInit {
         return of();
       }))
       .subscribe(() => {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.success = text.alerts.register_success
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.success = this.translations.eus.register_success
+            break
+          default:
+            this.alerts.success = this.translations.es.register_success
+            break
+        }
         this.buildForm()
       });
   }

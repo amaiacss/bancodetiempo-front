@@ -27,6 +27,23 @@ export class UserComponent implements OnInit {
 
   interactionHours = 0
 
+  translations = {
+    es: {
+      saved: 'Los datos se han guardado correctamente',
+      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
+      timeless: 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.',
+      req_min: 'El mínimo es de una hora'
+
+    },
+    eus: {
+      saved: 'Datuak zuzen gorde dira',
+      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',
+      timeless: 'Ezin duzu aktibitaterik eskatu zure denbora kopurua handitu arte.',
+      req_min: 'Gutxienez ordu bat'
+
+    }
+  }
+
   alerts = {
     success: '',
     error: ''
@@ -95,7 +112,6 @@ export class UserComponent implements OnInit {
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
         this.profileContent = data[0]
-        console.log(this.profileContent)
         if (this.profileContent.length && Number(this.profileContent.credit)>=1){
           this.canRequest = true
         }
@@ -183,26 +199,35 @@ export class UserComponent implements OnInit {
     if (this.canRequest){
       this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
         next: ()=> {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.success = text.alerts.saved
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.saved
+              break
+            default:
+              this.alerts.success = this.translations.es.saved
+              break
+          }
         },
         error: ()=> {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.error = text.alerts.server_err
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.server_err
+              break
+            default:
+              this.alerts.error = this.translations.es.server_err
+              break
+          }
         }
       })
     } else {
-      this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-        next: (text) => {
-          return this.alerts.error = text.alerts.timeless
-        }
-      })
+      switch(this.selectedLang) {
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.timeless
+          break
+        default:
+          this.alerts.error = this.translations.es.timeless
+          break
+      }
     }
   }
 
@@ -218,11 +243,14 @@ export class UserComponent implements OnInit {
         this.loadRequestsData()
       },
       error: () => {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.error = text.alerts.server_err
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.error = this.translations.eus.server_err
+            break
+          default:
+            this.alerts.error = this.translations.es.server_err
+            break
+        }
       }
     })
     this.interactionHours = 0
@@ -240,11 +268,13 @@ export class UserComponent implements OnInit {
         this.loadRequestsData()
       },
       error: () => {
-        this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-          next: (text) => {
-            return this.alerts.error = text.alerts.server_err
-          }
-        })
+        switch(this.selectedLang) {
+          case 'eus-EUS':
+            this.alerts.error = this.translations.eus.server_err
+            break
+          default:
+            this.alerts.error = this.translations.es.server_err
+        }
       }
     })
     this.interactionHours = 0
@@ -265,19 +295,23 @@ export class UserComponent implements OnInit {
           this.loadData()
         },
         error: () => {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              return this.alerts.error = text.alerts.server_err
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.server_err
+              break
+            default:
+              this.alerts.error = this.translations.es.server_err
+          }
         }
       })
     } else {
-      this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-        next: (text) => {
-          return this.alerts.error = text.alerts.req_min
-        }
-      })
+      switch(this.selectedLang) {
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.req_min
+          break
+        default:
+          this.alerts.error = this.translations.es.req_min
+      }
     }
     this.interactionHours = 0
   }

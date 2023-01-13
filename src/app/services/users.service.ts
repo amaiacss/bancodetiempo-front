@@ -34,8 +34,8 @@ export class UsersService {
     private http:HttpClient,
     
   ) { 
-    this.url="http://localhost:8080/api"
-    // this.url = "http://bancodetiempo.alwaysdata.net/api"
+    // this.url="http://localhost:8080/api"
+    this.url = "http://bancodetiempo.alwaysdata.net/api"
     this.login_endpoint="/user/login"
     this.register_endpoint = "/user/create"
     this.user_endpoint="/user/find/"
@@ -56,7 +56,6 @@ export class UsersService {
   }
 
   updateUserProfile(body:{"id":string,"firstName":string,"lastName":string,"phone":string,"locationCode":string,"aboutMe":string}): Observable<any>{
-    console.log(body)
     return this.http.put(this.url+this.profile_update_endpoint,body)
   }
 
@@ -97,10 +96,8 @@ export class UsersService {
     this.getUserProfile(id).subscribe({
       next: (data) => {
         if(data.length){
-          console.log(true,'fullProfile')
           localStorage.setItem('fullProfile', 'true')
         }else {
-          console.log(false,'fullProfile')
           localStorage.setItem('fullProfile', 'false')
         }
       }

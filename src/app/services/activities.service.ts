@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CardInfo } from '../models/activities';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +23,8 @@ export class ActivitiesService {
   constructor(
     private http:HttpClient
   ) { 
-    this.url="http://localhost:8080/api"
-    // this.url = "http://bancodetiempo.alwaysdata.net/api"
+    // this.url="http://localhost:8080/api"
+    this.url = "http://bancodetiempo.alwaysdata.net/api"
     this.categories_endpoint="/category/findall"
     this.provinces_endpoint = "/province/findall"
     this.citiesByProvince_endpoint = "/city/findByProvince/"
@@ -39,7 +38,6 @@ export class ActivitiesService {
   }
 
   createActivity(body:{"title":string,"description":string,"idCategory":number,"idUser":number}): Observable<any>{
-    console.log(body)
     return this.http.post(this.url+this.create_activity_endpoint,body)
   }
 
@@ -84,7 +82,6 @@ export class ActivitiesService {
   }
 
   getFilteredSearch(filters:{idUser?:string,province?:string,city?:string,category?:number,text?:string}): Observable<any>{
-    console.log(filters)
     return this.http.post(this.url+this.filterd_search_endpoint,filters)
   }
 }

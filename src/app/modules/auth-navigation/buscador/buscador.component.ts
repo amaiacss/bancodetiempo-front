@@ -39,6 +39,18 @@ export class BuscadorComponent implements OnInit {
     phone:string
   }> = []
 
+  translations = {
+    es: {
+      request_sended: 'Tu solicitud se ha enviado correctamente',
+      timeless: 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.',
+      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde'
+    },
+    eus: {
+      request_sended: 'Zure eskaera zuzen bidali da',
+      timeless: 'Ezin duzu aktibitaterik eskatu zure denbora kopurua handitu arte.',
+      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu'
+    }
+  }
   alerts = {
     success: '',
     error: ''
@@ -62,7 +74,6 @@ export class BuscadorComponent implements OnInit {
         this.router.navigate([`/user/${this.userId}/search`])
         this.usersService.getUserProfile(this.userId).subscribe({
           next: (res)=> {
-            console.log(res)
             if (res.length && Number(res[0].credit)>=1){
               this.canRequest = true
               this.alerts.error = ''
@@ -70,7 +81,14 @@ export class BuscadorComponent implements OnInit {
               this.canRequest = false
               this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
                 next: (text) => {
-                  this.alerts.error = text.alerts.timeless
+                  switch(this.selectedLang) {
+                    case 'eus-EUS':
+                      this.alerts.error = this.translations.eus.timeless
+                      break
+                    default:
+                      this.alerts.error = this.translations.es.timeless
+                      break
+                  }
                 }
               })
             }
@@ -90,7 +108,6 @@ export class BuscadorComponent implements OnInit {
     })
 
     this.loadCategoriesSelect(localStorage.getItem('lang') || 'es-ES')
-
   }
 
   initSearch() {
@@ -106,14 +123,11 @@ export class BuscadorComponent implements OnInit {
     if (this.filters.text && this.filters.text.length) {
       body['search'] = this.filters.text
     }
-    console.log(body)
+
     this.activitiesService.getFilteredSearch(body).subscribe({
-      
       next: (res) => {
         this.searchresult = res.data.filter((activity: { idUser: string | null | undefined; }) => activity.idUser!==this.userId)
         this.searchMessage = ['search_page.result_text',this.searchresult.length]
-        console.log(this.searchresult)
-
         switch(localStorage.getItem('lang')){
           case 'eus-EUS': 
             this.searchresult.forEach(res => {
@@ -179,32 +193,29 @@ export class BuscadorComponent implements OnInit {
     this.filters.text = text
   }
 
-  createCategory(){
-    // {
-    //   "title": "Prueba titulo",
-    //   "description" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    //   "idCategory": 2,
-    //   "idUser": 9000
-    // }
-  }
-
   sendRequest(activityId:string){
     this.clearAlerts()
     if(this.canRequest){
       this.activitiesService.requestActivity({"idUser":Number(this.userId),"idActivity":Number(activityId)}).subscribe({
         next: ()=> {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              this.alerts.success = text.alerts.request_sended
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.success = this.translations.eus.request_sended
+              break
+            default:
+              this.alerts.success = this.translations.es.request_sended
+              break
+          }
         },
         error: ()=> {
-          this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-            next: (text) => {
-              this.alerts.error = text.alerts.server_err
-            }
-          })
+          switch(this.selectedLang) {
+            case 'eus-EUS':
+              this.alerts.error = this.translations.eus.server_err
+              break
+            default:
+              this.alerts.error = this.translations.es.server_err
+              break
+          }
         }
       })
     } else {

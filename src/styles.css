@@ -11423,7 +11423,7 @@ p {
     font-size: 1.25em;
   }
   #mainNav.navbar-shrink .navbar-brand svg,
-#mainNav.navbar-shrink .navbar-brand img {
+  #mainNav.navbar-shrink .navbar-brand img {
     height: 1.5rem;
   }
   #mainNav .navbar-nav .nav-item {
@@ -11439,7 +11439,8 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;  
-  background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("src/assets/img/relojbolsillo.jpg");
+  background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("src/assets/img/abstract.jpg");
+  /*background-image:url("src/assets/img/abstract.jpg");*/
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -12156,4 +12157,12 @@ section#perfilUsuario .section-heading {
   object-fit: cover;
 }
 
-
+@media (max-width:992px) {
+  nav#mainNav button {
+    padding: 8px 10px;
+    margin-bottom: 0.7em;
+  }
+  .langSize{
+    width: 75px;
+  }
+}

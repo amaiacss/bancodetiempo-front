@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['superuser@omnipresente.soy',{updateOn: 'change', validators:[Validators.email]}],
-      password: ['Aa123456',{updateOn:'change', validators:[CustomValidation.passwordPattern]}],
+      email: ['',{updateOn: 'change', validators:[Validators.email]}],
+      password: ['',{updateOn:'change', validators:[CustomValidation.passwordPattern]}],
     })
   }
 

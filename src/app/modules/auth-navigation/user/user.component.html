@@ -270,7 +270,7 @@
                             <p class="align-self-start item-intro text-muted">{{'profile_page.finish_modal.text' | translate}}</p>
 
                             <div class="input-group mb-3 w-50 mx-auto">
-                                <input name="interactionHours" [(ngModel)]="interactionHours" type="number" class="form-control" placeholder="{{'profile_page.finish_modal.placeholder' | translate}}" aria-label="hours input" aria-describedby="button-addon2">
+                                <input name="interactionHours" [(ngModel)]="interactionHours" type="number" class="form-control" placeholder="{{'profile_page.finish_modal.placeholder' | translate}}" aria-label="hours input" aria-describedby="button-addon2" min="0">
                                 <button (click)="endRequest(request.id)" class="btn btn-primary text-uppercase fw-bold" type="button" id="button-addon2" data-bs-dismiss="modal">{{'profile_page.finish_modal.btn' | translate}}</button>
                             </div> 
                             
@@ -313,7 +313,7 @@
                             <p class="align-self-start item-intro text-muted">{{'profile_page.finish_modal.text' | translate}}</p>
 
                             <div class="input-group mb-3 w-50 mx-auto">
-                                <input name="interactionHours" [(ngModel)]="interactionHours" type="number" class="form-control" placeholder="{{'profile_page.finish_modal.placeholder' | translate}}" aria-label="hours input" aria-describedby="button-addon2">
+                                <input name="interactionHours" [(ngModel)]="interactionHours" type="number" class="form-control" placeholder="{{'profile_page.finish_modal.placeholder' | translate}}" aria-label="hours input" aria-describedby="button-addon2" min="0">
                                 <button (click)="endRequest(request.id)" class="btn btn-primary text-uppercase fw-bold" type="button" id="button-addon2" data-bs-dismiss="modal">{{'profile_page.finish_modal.btn' | translate}}</button>
                             </div> 
                             

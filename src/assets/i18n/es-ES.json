@@ -26,9 +26,9 @@
     "contact_page": {
         "title": "Contacta con nosotros",
         "subtitle": "Si tienes alguna consulta dejanos un mensaje",
-        "msg_inp_error": "Mezua derrigorrezkoa da eta gehienez 300 karaktere izan ditzazke.",
-        "chars": "Karaktere",
-        "btn": "Bidali",
+        "msg_inp_error": "El mensaje es obligatorio y puede tener como máximo 300 caracteres.",
+        "chars": "Caracteres",
+        "btn": "Enviar",
         "message": "Mensaje"
     },
     "register_page": {

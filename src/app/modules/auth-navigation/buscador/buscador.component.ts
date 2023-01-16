@@ -108,6 +108,7 @@ export class BuscadorComponent implements OnInit {
     })
 
     this.loadCategoriesSelect(localStorage.getItem('lang') || 'es-ES')
+    this.initSearch()
   }
 
   initSearch() {

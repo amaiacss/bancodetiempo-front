@@ -154,6 +154,7 @@ export class UserComponent implements OnInit {
     this.activitiesService.getIncomingRequests(this.selectedProfile).subscribe({
       next: (response:any) => {
         this.incomingRequests = response.data
+        console.log(this.incomingRequests)
         switch(this.selectedLang){
           case 'eus-EUS':
             this.incomingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {

@@ -26,9 +26,9 @@
     "contact_page": {
         "title": "Contacta con nosotros",
         "subtitle": "Si tienes alguna consulta dejanos un mensaje",
-        "msg_inp_error": "Mezua derrigorrezkoa da eta gehienez 300 karaktere izan ditzazke.",
-        "chars": "Karaktere",
-        "btn": "Bidali",
+        "msg_inp_error": "El mensaje es obligatorio y puede tener como máximo 300 caracteres.",
+        "chars": "Caracteres",
+        "btn": "Enviar",
         "message": "Mensaje"
     },
     "register_page": {
@@ -131,7 +131,7 @@
         "new_activitie_span": "Nueva actividad",
         "activities_text": "actividades publicadas",
         "in_request": {
-            "subtitle": "Tiempo te han solicitado",
+            "subtitle": "Tiempo que te han solicitado",
             "text": "te ha solicitado",
             "state": "Estado",
             "accept": "Aceptar",
@@ -146,8 +146,8 @@
             "finish": "Finalizar"
         },
         "historical_request": {
-            "out": "Tiempo ofrecido",
-            "in": "Tiempo recibido"
+            "out": "Tiempo recibido",
+            "in": "Tiempo ofrecido"
         },
         "finish_modal": {
             "title": "¿Actividad finalizada?",

@@ -69,15 +69,14 @@ export class LoginComponent implements OnInit {
 
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
-    console.log(this.fieldTextType)
   }
 
   requestLogin() {
     this.clearAlerts()
     if(this.loginForm.valid) {
       const data = this.loginForm.value
-      this.usersService.requestLogin(data).subscribe(res => {
-        console.log(res)
+      this.usersService.requestLogin(data).subscribe({
+        next: (res) => {
         if(res.pass===false){
           this.loginErrors.notRegistered=false
           this.loginErrors.passwordIncorrect= true
@@ -100,9 +99,19 @@ export class LoginComponent implements OnInit {
           this.loginErrors.notRegistered=false
           this.loginErrors.passwordIncorrect= false
           this.usersService.login(res.id)
-          console.log(res.id)
           this.router.navigate(['/user/',res.id])
         }
+      },
+      error: () => {
+        switch(this.selectedLang) {
+          case 'eus-EUS': 
+            this.alerts.error = this.translations.eus.server_err
+            break
+          default:
+            this.alerts.error = this.translations.es.server_err
+            break
+        }
+      } 
       }) 
     }
   }

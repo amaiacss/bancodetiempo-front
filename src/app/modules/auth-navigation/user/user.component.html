@@ -29,7 +29,9 @@
                     </div>                           
                     <div class="media-body mb-5 ms-3 text-white align-items-center">
                         <h4 class="mt-0 mb-0">{{profileContent.firstName}} {{profileContent.lastName}}</h4>
-                        <p class="small mb-4"> <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}}</p>
+                        <p class="small mb-4"> 
+                            <i class="fa fa-map-marker me-2"></i>{{profileContent.city}}, {{profileContent.province}} | {{profileContent.phone}} | {{profileContent.email}}
+                        </p>
                     </div> 
 
                     
@@ -194,7 +196,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.incoming" class="border-bottom mb-3">
                             <p *ngIf="interaction.id.length">
-                                <b>{{interaction.title}} </b> --   @{{interaction.username}}  -- {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --   <a (click)="goToProfile(interaction.userId)">@{{interaction.username}}</a>  -- {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
@@ -205,7 +207,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.outgoing" class="border-bottom mb-3">
                             <p *ngIf="interaction.id.length" class="">
-                                <b>{{interaction.title}} </b> --  @{{interaction.username}}  --  {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --  <a (click)="goToProfile(interaction.userId)">@{{interaction.username}}</a>  --  {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
@@ -226,8 +228,12 @@
                         <div *ngFor="let request of outgoingRequests; let i = index" class="border-bottom mt-3">
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><strong>@{{request.username}}</strong> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
-                                    <p>{{'profile_page.out_request.state' | translate}}: <strong>{{request.name}}</strong></p>
+                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}}</strong></a> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
+                                    <p>{{'profile_page.out_request.state' | translate}}: 
+                                        <strong>{{request.name}}</strong>
+                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                    </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end ">
                                     <button *ngIf="request.name_es==='Pendiente'" (click)="cancelRequest(request.id)" class="col-md-3 btn btn btn-primary">{{'profile_page.out_request.cancel' | translate}}</button>                      
@@ -240,8 +246,12 @@
                         <div *ngFor="let request of incomingRequests; let i = index" class="border-bottom mt-3">
                             <li *ngIf="request.id.length" class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><strong>@{{request.username}} </strong>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong></p>
-                                    <p>{{'profile_page.in_request.state' | translate}}: <strong>{{request.name}}</strong></p>
+                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}} </strong></a>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong></p>
+                                    <p>{{'profile_page.in_request.state' | translate}}: 
+                                        <strong>{{request.name}}</strong>
+                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                    </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">
                                     <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="acceptRequest(request.id)">{{'profile_page.in_request.accept' | translate}}</button>

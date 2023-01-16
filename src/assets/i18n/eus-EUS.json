@@ -146,7 +146,7 @@
         },
         "historical_request": {
             "out": "Jasotako denbora",
-            "in": "Eskeinitako"
+            "in": "Eskeinitako denbora"
         },
         "finish_modal": {
             "title": "¿Jarduera amaitua?",

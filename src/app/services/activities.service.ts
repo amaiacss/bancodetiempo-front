@@ -23,8 +23,8 @@ export class ActivitiesService {
   constructor(
     private http:HttpClient
   ) { 
-    this.url="http://localhost:8080/api"
-    // this.url = "https://bancodetiempo.alwaysdata.net/api"
+    // this.url="http://localhost:8080/api"
+    this.url = "https://bancodetiempo.alwaysdata.net/api"
     this.categories_endpoint="/category/findall"
     this.provinces_endpoint = "/province/findall"
     this.citiesByProvince_endpoint = "/city/findByProvince/"

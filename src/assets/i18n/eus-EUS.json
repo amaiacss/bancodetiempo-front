@@ -145,8 +145,8 @@
             "finish": "Amaitu"
         },
         "historical_request": {
-            "out": "Eskainitako denbora",
-            "in": "Jasotako denbora"
+            "out": "Jasotako denbora",
+            "in": "Eskeinitako"
         },
         "finish_modal": {
             "title": "¿Jarduera amaitua?",

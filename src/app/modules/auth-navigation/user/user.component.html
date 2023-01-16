@@ -194,7 +194,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.incoming" class="border-bottom mb-3">
                             <p *ngIf="interaction.id.length">
-                                <b>{{interaction.title}} </b> --   @{{interaction.username}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --   @{{interaction.username}}  -- {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.outgoing" class="border-bottom mb-3">
                             <p *ngIf="interaction.id.length" class="">
-                                <b>{{interaction.title}} </b> --  @{{interaction.username}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --  @{{interaction.username}}  --  {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>

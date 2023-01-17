@@ -172,7 +172,7 @@ export class UserComponent implements OnInit {
 
       }
     })
-    // TO-DO outgoing Requests - Falta "a quién"
+
     this.activitiesService.getOutgoingRequests(this.userId).subscribe({
       next: (response:any) => {
         this.outgoingRequests = response.data

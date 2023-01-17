@@ -16,7 +16,7 @@ export class PreferencesComponent implements OnInit {
 
   fullProfile:boolean = false
 
-  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string,picture:string} = {
+  inputData:{firstName:string,lastName:string,email:string,phone:string,province_code:string,city_code:string,aboutMe:string,picture:string,username:string} = {
     firstName:'',
     lastName:'',
     email:'',
@@ -24,7 +24,8 @@ export class PreferencesComponent implements OnInit {
     province_code:'',
     city_code:'',
     aboutMe:'',
-    picture:''
+    picture:'',
+    username:''
   }
   profileContent:any = {}
 
@@ -98,6 +99,7 @@ export class PreferencesComponent implements OnInit {
           this.inputData.lastName = this.profileContent.lastName
           this.inputData.phone = this.profileContent.phone
           this.inputData.aboutMe = this.profileContent.aboutMe
+          this.inputData.username = this.profileContent.username
           if(this.profileContent.province_code){
             this.inputData.province_code = this.profileContent.province_code
             this.inputData.city_code = this.profileContent.city_code
@@ -138,7 +140,8 @@ export class PreferencesComponent implements OnInit {
       this.inputData.phone.length>0 &&
       this.inputData.province_code.length>0 &&
       this.inputData.city_code.length>0 &&
-      this.inputData.aboutMe.length>0
+      this.inputData.aboutMe.length>0 &&
+      this.inputData.username.length>0
     )
   }
 
@@ -151,7 +154,8 @@ export class PreferencesComponent implements OnInit {
         "lastName":this.inputData.lastName,
         "phone":this.inputData.phone,
         "locationCode":this.inputData.city_code,
-        "aboutMe":this.inputData.aboutMe
+        "aboutMe":this.inputData.aboutMe,
+        "username": this.inputData.username
       }
       this.usersService.updateUserProfile(body).subscribe({
         next: () => {
@@ -188,6 +192,7 @@ export class PreferencesComponent implements OnInit {
         phone:this.inputData.phone,
         locationCode:this.inputData.city_code,
         aboutMe:this.inputData.aboutMe,
+        username: this.inputData.username,
         credit: 5
       }
       this.usersService.createUserProfile(body).subscribe({

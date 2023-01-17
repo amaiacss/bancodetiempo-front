@@ -81,7 +81,7 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
                 <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
-                <button *ngIf="canEdit" class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">{{'profile_page.requests_tab' | translate}}</button>
+                <button *ngIf="canEdit" class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="false">{{'profile_page.requests_tab' | translate}}</button>
             </div>
         </nav>
         <!--Publicaciones-->          
@@ -217,7 +217,7 @@
             </div>
             
              <!--Solicitudes-->           
-             <div class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
+             <div *ngIf="canEdit" class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h4 class="">{{'profile_page.requests_title' | translate}}</h4>
                 </div>

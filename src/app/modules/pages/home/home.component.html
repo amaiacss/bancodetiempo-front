@@ -63,9 +63,9 @@
                                                                                     
                     <div class="portfolio-caption justify-content-between aling-items-center pt-3 pb-3 bg-white" >                                              
                         <div class="col-2 col-md-2 pt-2">
-                            <a><!--Imagen de usuario que solicita la actividad-->
+                            <!--Imagen de usuario que solicita la actividad-->
                                 <img src="{{activity.userPicture || './assets/img/user-icons/generic_user.png'}}" class="imgContent rounded-circle shadow">
-                            </a>                    
+                                               
                         </div> 
                         <div class="col-8 col-md-8 d-flex flex-column align-self-center">                        
                             <h6 class="text-start ms-3 mb-1">{{activity.firstName}} {{activity.lastName}}</h6><!--Datos de la persona que solicita la actividad-->
@@ -73,9 +73,9 @@
                             <h6 class="text-end me-3 mb-0 mt-1">{{activity.nameOwner}}</h6><!--Datos de la persona que publicado la actividad-->  
                         </div>
                         <div class="col-2 col-md-2 pt-2 ">
-                            <a><!--Imagen de usuario que ha publicado la actividad-->
+                            <!--Imagen de usuario que ha publicado la actividad-->
                                 <img src="{{activity.pictureOwner || './assets/img/user-icons/generic_user.png'}}" class="imgContent rounded-circle shadow">
-                            </a>                    
+                                               
                         </div>
                     </div>                                   
                 </div>

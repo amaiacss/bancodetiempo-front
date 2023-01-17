@@ -7,22 +7,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">                
-                <li class="nav-item"><a class="nav-link" (click)="goToServices()">{{'nav_bar.servicesLink' | translate}}</a></li>
-                <li class="nav-item"><a class="nav-link" (click)="goToPortfolio()">{{'nav_bar.portfolioLink' | translate}}</a></li>
-                <li *ngIf="!userInfo.isLoged" class="nav-item"><a class="nav-link" (click)="goToParticipate()">{{'nav_bar.participateLink' | translate}}</a></li>
-                <li *ngIf="userInfo.isLoged" class="nav-item" (click)="goToSearchPage()"><a class="nav-link">{{'nav_bar.searchLink' | translate}}</a></li> 
+                <li class="nav-item"><a class="nav-link" (click)="goToServices()"  data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.servicesLink' | translate}}</a></li>
+                <li class="nav-item"><a class="nav-link" (click)="goToPortfolio()" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.portfolioLink' | translate}}</a></li>
+                <li *ngIf="!userInfo.isLoged" class="nav-item"><a class="nav-link" (click)="goToParticipate()" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.participateLink' | translate}}</a></li>
+                <li *ngIf="userInfo.isLoged" class="nav-item" (click)="goToSearchPage()"><a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.searchLink' | translate}}</a></li> 
                 <li *ngIf="!userInfo.isLoged" class="nav-item"><button class="btn btn-primary fw-bold nav-link text-uppercase" (click)="goToLoginPage()">{{'login_page.title' | translate}}</button> </li>                
                 <!-- <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item dropdown"> -->
                 <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" ><i class="fa-solid fa-user"></i></a>
                     <ul class="dropdown-menu">
-                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="goToProfilePage(userInfo.userData?.id)"><a class="nav-link">@{{userInfo.userData?.username || 'username'}}</a></li>
-                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="goToPreferencesPage()"><a class="nav-link">{{'nav_bar.preferencesLink' | translate}}</a></li>
-                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="logout()"><a class="nav-link">{{'nav_bar.logoutLink' | translate}}</a></li>
+                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="goToProfilePage(userInfo.userData?.id)"><a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">@{{userInfo.userData?.username || 'username'}}</a></li>
+                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="goToPreferencesPage()"><a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.preferencesLink' | translate}}</a></li>
+                        <li *ngIf="userInfo.isLoged && userInfo.userData?.id!==undefined && userInfo.userData?.id!==null" class="nav-item" (click)="logout()"><a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">{{'nav_bar.logoutLink' | translate}}</a></li>
                     </ul>
                 </li>
                 <li class="langSize">
-                    <select  class="form-select" id="lang-picker" (change)="pickLanguage($event)" [value]="selectedLang">
+                    <select  class="form-select" id="lang-picker" (change)="pickLanguage($event)" [value]="selectedLang" >
                         <option value="es-ES">ES</option>
                         <option value="eus-EUS">EUS</option>
                     </select>

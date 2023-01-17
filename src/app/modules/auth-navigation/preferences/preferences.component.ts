@@ -187,7 +187,8 @@ export class PreferencesComponent implements OnInit {
         lastName:this.inputData.lastName,
         phone:this.inputData.phone,
         locationCode:this.inputData.city_code,
-        aboutMe:this.inputData.aboutMe
+        aboutMe:this.inputData.aboutMe,
+        credit: 5
       }
       this.usersService.createUserProfile(body).subscribe({
         next: () => {

@@ -127,7 +127,7 @@
         "requests_tab": "Solicitudes",
         "publications_title": "Actividades publicadas",
         "interactions_title": "Interacciones realizadas",
-        "requests_title": "Pagína de solicitudes",
+        "requests_title": "Gestiona tus solicitudes",
         "new_activitie_span": "Nueva actividad",
         "activities_text": "actividades publicadas",
         "in_request": {
@@ -146,8 +146,8 @@
             "finish": "Finalizar"
         },
         "historical_request": {
-            "out": "Tiempo recibido",
-            "in": "Tiempo ofrecido"
+            "out": "Tiempo consumido",
+            "in": "Tiempo obtenido"
         },
         "finish_modal": {
             "title": "¿Actividad finalizada?",

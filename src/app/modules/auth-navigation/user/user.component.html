@@ -231,8 +231,8 @@
                                     <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}}</strong></a> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
                                     <p>{{'profile_page.out_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.phone}}</span>
                                     </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end ">
@@ -249,8 +249,8 @@
                                     <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}} </strong></a>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong></p>
                                     <p>{{'profile_page.in_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.phone}}</span>
                                     </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">

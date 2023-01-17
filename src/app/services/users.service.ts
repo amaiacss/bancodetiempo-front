@@ -55,7 +55,7 @@ export class UsersService {
     return this.http.get(this.url+this.profile_endpoint+id)
   }
 
-  updateUserProfile(body:{"id":string,"firstName":string,"lastName":string,"phone":string,"locationCode":string,"aboutMe":string}): Observable<any>{
+  updateUserProfile(body:{"id":string,"firstName":string,"lastName":string,"phone":string,"locationCode":string,"aboutMe":string,"username":string}): Observable<any>{
     return this.http.put(this.url+this.profile_update_endpoint,body)
   }
 
@@ -63,7 +63,7 @@ export class UsersService {
     return this.http.put(this.url+this.update_picture_endpoint,body)
   }
 
-  createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string}): Observable<any>{
+  createUserProfile(body:{id:string,firstName:string,lastName:string,phone:string,locationCode:string,aboutMe:string,credit:number}): Observable<any>{
     return this.http.post(this.url+this.create_profile_endpoint,body)
   }
 

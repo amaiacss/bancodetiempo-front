@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <!-- Name input-->
                         <label for="nombre">{{'preferences_page.subname_inp' | translate}}</label>
-                        <input name="lastName" [(ngModel)]="inputData.lastName" class="form-control" id="name" type="text" placeholder="{{'preferences_page.subname_inp' | translate}} *" data-sb-validations="required" />
+                        <input name="lastName" [(ngModel)]="inputData.lastName" class="form-control" id="lastName" type="text" placeholder="{{'preferences_page.subname_inp' | translate}} *" data-sb-validations="required" />
                         <div class="invalid-feedback" data-sb-feedback="name:required">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                     <div class="form-group">
@@ -54,6 +54,12 @@
                         <label for="phone">{{'preferences_page.phone_inp' | translate}}</label>
                         <input name="phone" [(ngModel)]="inputData.phone"  class="form-control" id="phone" type="text" placeholder="{{'preferences_page.phone_inp' | translate}} *" />
                         
+                    </div>
+                    <div class="form-group">
+                        <!-- Name input-->
+                        <label for="username">Username</label>
+                        <input name="username" [(ngModel)]="inputData.username" class="form-control" id="username" type="text" placeholder="Username *" data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="name:required">{{'preferences_page.required_err' | translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -98,7 +104,7 @@
             </div>
             <!-- Submit Button-->
             <div *ngIf="fullProfile" class="text-center"><button [disabled]="!allInputsCompleted()" (click)="updateProfile()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'preferences_page.save_btn' | translate}}</button></div>
-            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">{{'preferences_page.create_btn' | translate}}</button></div>
+            <div *ngIf="!fullProfile" (click)="createProfile()" class="text-center"><button [disabled]="!allInputsCompleted()" class="btn btn-primary btn-xl text-uppercase" id="submitButton2" type="submit">{{'preferences_page.create_btn' | translate}}</button></div>
         </form>
     </div>
 </section>
@@ -154,7 +160,7 @@
                                     </div>                                                                     
                                 </div>
                                 <!-- Submit Button-->
-                                <div class="text-center"><button (click)="updatePassword()" class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" data-bs-dismiss="modal">{{'preferences_page.modal_btn' | translate}}</button></div>
+                                <div class="text-center"><button (click)="updatePassword()" class="btn btn-primary btn-xl text-uppercase" id="submitButton3" type="submit" data-bs-dismiss="modal">{{'preferences_page.modal_btn' | translate}}</button></div>
                             </form>
                         </div>
                     </div>

@@ -126,7 +126,7 @@
         "requests_tab": "Eskaerak",
         "publications_title": "Argitaratutako jarduerak",
         "interactions_title": "Burututako elkarrekintzak",
-        "requests_title": "Eskaera orria",
+        "requests_title": "Zure eskaerak kudeatu",
         "new_activitie_span": "Jarduera berria",
         "activities_text": "jarduera argitaratuak",
         "in_request": {
@@ -145,8 +145,8 @@
             "finish": "Amaitu"
         },
         "historical_request": {
-            "out": "Jasotako denbora",
-            "in": "Eskeinitako denbora"
+            "out": "Kontsumitutako denbora",
+            "in": "Lortutako denbora"
         },
         "finish_modal": {
             "title": "¿Jarduera amaitua?",

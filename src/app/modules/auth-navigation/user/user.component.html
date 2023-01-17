@@ -81,7 +81,7 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active border" id="nav-publicaciones-tab" data-bs-toggle="tab" data-bs-target="#nav-publicaciones" type="button" role="tab" aria-controls="nav-publicaciones" aria-selected="true">{{'profile_page.publications_tab' | translate}}</button>
                 <button class="nav-link border" id="nav-interacciones-tab" data-bs-toggle="tab" data-bs-target="#nav-interacciones" type="button" role="tab" aria-controls="nav-interacciones" aria-selected="false">{{'profile_page.interactions_tab' | translate}}</button>
-                <button *ngIf="canEdit" class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">{{'profile_page.requests_tab' | translate}}</button>
+                <button *ngIf="canEdit" class="nav-link border" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes" type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="false">{{'profile_page.requests_tab' | translate}}</button>
             </div>
         </nav>
         <!--Publicaciones-->          
@@ -207,7 +207,7 @@
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.outgoing" class="border-bottom mb-3">
                             <p *ngIf="interaction.id.length" class="">
-                                <b>{{interaction.title}} </b> --  <a (click)="goToProfile(interaction.userId)">@{{interaction.username}}</a>  --  {{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
+                                <b>{{interaction.title}} </b> --  <a (click)="goToProfile(interaction.userId)">@{{interaction.username}}</a>  -- (-){{interaction.hours}} {{'profile_page.hours' | translate}}  --  {{interaction.updated_at | date:'dd/MM/yyyy'}}
                             </p>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
             </div>
             
              <!--Solicitudes-->           
-             <div class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
+             <div *ngIf="canEdit" class="tab-pane fade py-4 px-4" id="nav-solicitudes" role="tabpanel" aria-labelledby="nav-solicitudes-tab" tabindex="0">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h4 class="">{{'profile_page.requests_title' | translate}}</h4>
                 </div>
@@ -228,11 +228,11 @@
                         <div *ngFor="let request of outgoingRequests; let i = index" class="border-bottom mt-3">
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}}</strong></a> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong></p>
+                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}}</strong></a> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
                                     <p>{{'profile_page.out_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.phone}}</span>
                                     </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end ">
@@ -246,17 +246,17 @@
                         <div *ngFor="let request of incomingRequests; let i = index" class="border-bottom mt-3">
                             <li *ngIf="request.id.length" class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}} </strong></a>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong></p>
+                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}} </strong></a>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
                                     <p>{{'profile_page.in_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.email}}</span>
-                                        <span *ngIf="request.name_es==='Aceptada'">  |  {{request.phone}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>
+                                        <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.phone}}</span>
                                     </p>
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end">
                                     <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="acceptRequest(request.id)">{{'profile_page.in_request.accept' | translate}}</button>
                                     <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="cancelRequest(request.id)">{{'profile_page.in_request.cancel' | translate}}</button>
-                                    <button *ngIf="request.name_es!=='Pendiente'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button>
+                                    <!-- <button *ngIf="request.name_es!=='Pendiente'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button> -->
                                 </div>                            
                             </li>
                         </div>

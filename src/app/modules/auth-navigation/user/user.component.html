@@ -256,7 +256,7 @@
                                 <div class="col-md-6 d-flex justify-content-end">
                                     <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="acceptRequest(request.id)">{{'profile_page.in_request.accept' | translate}}</button>
                                     <button *ngIf="request.name_es==='Pendiente'" class="col-md-3 btn btn-primary" (click)="cancelRequest(request.id)">{{'profile_page.in_request.cancel' | translate}}</button>
-                                    <button *ngIf="request.name_es!=='Pendiente'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button>
+                                    <!-- <button *ngIf="request.name_es!=='Pendiente'" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#assingHours'+request.id" class="col-md-3 btn btn-primary" >{{'profile_page.in_request.finish' | translate}}</button> -->
                                 </div>                            
                             </li>
                         </div>

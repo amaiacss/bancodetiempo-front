@@ -34,8 +34,8 @@ export class UsersService {
     private http:HttpClient,
     
   ) { 
-    // this.url="http://localhost:8080/api"
-    this.url = "https://bancodetiempo.alwaysdata.net/api"
+    this.url="http://localhost:8080/api"
+    // this.url = "https://bancodetiempo.alwaysdata.net/api"
     this.login_endpoint="/user/login"
     this.register_endpoint = "/user/create"
     this.user_endpoint="/user/find/"

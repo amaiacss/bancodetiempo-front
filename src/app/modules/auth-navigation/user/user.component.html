@@ -190,7 +190,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h4 class="mb-0">{{'profile_page.interactions_title' | translate}}</h4>
                 </div>
-                <h5 class="text-muted fst-italic mb-3">{{'profile_page.historical_request.in' | translate}}:</h5>
+                <h5 *ngIf="requestHistorical.incoming.length" class="text-muted fst-italic mb-3">{{'profile_page.historical_request.in' | translate}}:</h5>
                           
                 <div class="row">                   
                     <div class="col"> 
@@ -207,7 +207,7 @@
                     </div>
                     
                 </div>
-                <h5 class="text-muted fst-italic my-3">{{'profile_page.historical_request.out' | translate}}:</h5>
+                <h5 *ngIf="requestHistorical.outgoing.length" class="text-muted fst-italic my-3">{{'profile_page.historical_request.out' | translate}}:</h5>
                 <div class="row">
                     <div class="col"> 
                         <div *ngFor="let interaction of requestHistorical.outgoing" class="border-bottom mb-3">
@@ -231,7 +231,7 @@
                 </div>
                 
                 <div class="row userRequests">
-                    <h5 class="text-muted fst-italic">{{'profile_page.out_request.subtitle' | translate}}</h5>
+                    <h5 *ngIf="outgoingRequests.length" class="text-muted fst-italic">{{'profile_page.out_request.subtitle' | translate}}</h5>
 
 
                     
@@ -255,7 +255,7 @@
                                 </div>                            
                             </li>
                         </div>
-                        <h5 class="text-muted fst-italic mt-3">{{'profile_page.in_request.subtitle' | translate}}</h5>
+                        <h5 *ngIf="incomingRequests.length" class="text-muted fst-italic mt-3">{{'profile_page.in_request.subtitle' | translate}}</h5>
                         <div *ngFor="let request of incomingRequests; let i = index" class="border-bottom mt-3">
                             <li *ngIf="request.id.length" class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">

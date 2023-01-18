@@ -112,7 +112,7 @@
                                                             <strong>{{'search_page.filters.category' | translate}}:</strong>#{{card.category}}
                                                         </li>
                                                     </ul>
-                                                    <button class="btn btn-primary btn-xl text-uppercase"
+                                                    <button [disabled]="!canRequest || !fullProfile" class="btn btn-primary btn-xl text-uppercase"
                                                         type="button" (click)="sendRequest(card.id)">
                                                         {{'home_page.sect2.modal_button' | translate}}
                                                     </button>

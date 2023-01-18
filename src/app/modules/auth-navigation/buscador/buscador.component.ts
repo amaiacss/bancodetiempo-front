@@ -14,6 +14,7 @@ export class BuscadorComponent implements OnInit {
   searchMessage:any = ['search_page.search_text','']
 
   canRequest:boolean = false
+  fullProfile:boolean = false
 
   filterElements: {provinces:Array<any>,cities:Array<any>,categories:Array<{id:string,name:string}>,text:string} = {provinces:[],cities:[],categories:[],text:''}
   filters: {province?:string,city?:string,category?:string,text?:string} = {}
@@ -43,12 +44,14 @@ export class BuscadorComponent implements OnInit {
     es: {
       request_sended: 'Tu solicitud se ha enviado correctamente',
       timeless: 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.',
-      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde'
+      server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
+      no_profile:'No puedes solicitar ninguna actividad hasta que no hayas completado tu perfil'
     },
     eus: {
       request_sended: 'Zure eskaera zuzen bidali da',
       timeless: 'Ezin duzu aktibitaterik eskatu zure denbora kopurua handitu arte.',
-      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu'
+      server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',
+      no_profile:'Ezin duzu aktibitaterik eskatu zure profila osatu arte.'
     }
   }
   alerts = {
@@ -68,29 +71,39 @@ export class BuscadorComponent implements OnInit {
       this.initSearch()
     })
     this.usersService.getSessionData().subscribe(response => {
+      console.log(response)
       this.userId = response.userData?.id || localStorage.getItem('id')
       if(this.userId) {
         this.isLoged = true
         this.router.navigate([`/user/${this.userId}/search`])
         this.usersService.getUserProfile(this.userId).subscribe({
           next: (res)=> {
-            if (res.length && Number(res[0].credit)>=1){
+            if (res.length<=0){
+              this.fullProfile = false
+              switch(this.selectedLang) {
+                case 'eus-EUS':
+                  this.alerts.error = this.translations.eus.no_profile
+                  break
+                default:
+                  this.alerts.error = this.translations.es.no_profile
+                  break
+              }
+            }
+            else if (Number(res[0].credit)<=0){
+              this.fullProfile = true
+              this.canRequest = false
+              switch(this.selectedLang) {
+                case 'eus-EUS':
+                  this.alerts.error = this.translations.eus.timeless
+                  break
+                default:
+                  this.alerts.error = this.translations.es.timeless
+                  break
+              }
+            } else {
+              this.fullProfile = true
               this.canRequest = true
               this.alerts.error = ''
-            } else {
-              this.canRequest = false
-              this.translateService.getTranslation(`/${this.selectedLang}`).subscribe({
-                next: (text) => {
-                  switch(this.selectedLang) {
-                    case 'eus-EUS':
-                      this.alerts.error = this.translations.eus.timeless
-                      break
-                    default:
-                      this.alerts.error = this.translations.es.timeless
-                      break
-                  }
-                }
-              })
             }
           }
         })
@@ -226,6 +239,26 @@ export class BuscadorComponent implements OnInit {
 
   clearAlerts(){
     this.alerts = {success:'',error:''}
+    if (!this.fullProfile){
+      switch(this.selectedLang){
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.no_profile
+          break
+        default:
+          this.alerts.error = this.translations.es.no_profile
+        break
+      }
+    }
+    else if (!this.canRequest){
+      switch(this.selectedLang){
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.timeless
+          break
+        default:
+          this.alerts.error = this.translations.es.timeless
+        break
+      }
+    }
   }
 
 }

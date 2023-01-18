@@ -64,6 +64,7 @@ export class PreferencesComponent implements OnInit {
     })
     this.usersService.getSessionData().subscribe(response => {
       this.userId = response.userData?.id || localStorage.getItem('id')
+      this.inputData.username = response.userData?.username || ''
       this.fullProfile = response.fullProfile || localStorage.getItem('fullProfile')==='true'
       // Controlar que el usuario que navega está logueado
       if(this.userId) {
@@ -99,7 +100,6 @@ export class PreferencesComponent implements OnInit {
           this.inputData.lastName = this.profileContent.lastName
           this.inputData.phone = this.profileContent.phone
           this.inputData.aboutMe = this.profileContent.aboutMe
-          this.inputData.username = this.profileContent.username
           if(this.profileContent.province_code){
             this.inputData.province_code = this.profileContent.province_code
             this.inputData.city_code = this.profileContent.city_code

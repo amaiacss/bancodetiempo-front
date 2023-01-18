@@ -153,7 +153,7 @@
                                                             <strong>{{'search_page.filters.category' | translate}}:</strong>#{{activitie.category}}
                                                         </li>
                                                     </ul>
-                                                    <button *ngIf="selectedProfile!==userId" class="btn btn-primary btn-xl text-uppercase"
+                                                    <button *ngIf="selectedProfile!==userId" [disabled]="!canRequest || !fullProfile" class="btn btn-primary btn-xl text-uppercase"
                                                         type="button" (click)="sendRequest(activitie.id)">
                                                         {{'home_page.sect2.modal_button' | translate}}
                                                     </button>                                                  

@@ -32,15 +32,15 @@ export class UserComponent implements OnInit {
       saved: 'Los datos se han guardado correctamente',
       server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
       timeless: 'No puedes solicitar ninguna actividad hasta que no tengas más saldo de tiempo.',
-      req_min: 'El mínimo es de una hora'
-
+      req_min: 'El mínimo es de una hora',
+      no_profile:'No puedes solicitar ninguna actividad hasta que no hayas completado tu perfil'
     },
     eus: {
       saved: 'Datuak zuzen gorde dira',
       server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',
       timeless: 'Ezin duzu aktibitaterik eskatu zure denbora kopurua handitu arte.',
-      req_min: 'Gutxienez ordu bat'
-
+      req_min: 'Gutxienez ordu bat',
+      no_profile:'Ezin duzu aktibitaterik eskatu zure profila osatu arte.'
     }
   }
 
@@ -90,6 +90,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.clearAlerts()
   }   
 
   goToNewActivitiePage(): void{
@@ -154,7 +155,6 @@ export class UserComponent implements OnInit {
     this.activitiesService.getIncomingRequests(this.selectedProfile).subscribe({
       next: (response:any) => {
         this.incomingRequests = response.data
-        console.log(this.incomingRequests)
         switch(this.selectedLang){
           case 'eus-EUS':
             this.incomingRequests.forEach((res: { [x: string]: any; name_eu: any; }) => {
@@ -319,6 +319,26 @@ export class UserComponent implements OnInit {
 
   clearAlerts(){
     this.alerts = {success:'',error:''}
+    if (!this.fullProfile){
+      switch(this.selectedLang){
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.no_profile
+          break
+        default:
+          this.alerts.error = this.translations.es.no_profile
+        break
+      }
+    }
+    else if (!this.canRequest){
+      switch(this.selectedLang){
+        case 'eus-EUS':
+          this.alerts.error = this.translations.eus.timeless
+          break
+        default:
+          this.alerts.error = this.translations.es.timeless
+        break
+      }
+    }
   }
 
 }

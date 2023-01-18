@@ -241,7 +241,7 @@
 
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}}</strong></a> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
+                                    <p><strong>@{{request.username}}</strong> {{'profile_page.out_request.text' | translate}} <strong>{{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
                                     <p>{{'profile_page.out_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
                                         <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>
@@ -259,7 +259,7 @@
                         <div *ngFor="let request of incomingRequests; let i = index" class="border-bottom mt-3">
                             <li *ngIf="request.id.length" class="d-flex justify-content-between align-items-center">
                                 <div class="col-md-6">
-                                    <p><a (click)="goToProfile(request.userId)"><strong>@{{request.username}} </strong></a>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
+                                    <p><strong>@{{request.username}} </strong>{{'profile_page.in_request.text' | translate}}:  <strong> {{request.title}}</strong>  --  {{request.updated_at| date:'dd/MM/yyyy'}}</p>
                                     <p>{{'profile_page.in_request.state' | translate}}: 
                                         <strong>{{request.name}}</strong>
                                         <span *ngIf="request.name_es!=='Cancelada'">  |  {{request.email}}</span>

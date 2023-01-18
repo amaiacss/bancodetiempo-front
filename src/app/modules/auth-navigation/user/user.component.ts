@@ -173,7 +173,7 @@ export class UserComponent implements OnInit {
       }
     })
 
-    this.activitiesService.getOutgoingRequests(this.userId).subscribe({
+    this.activitiesService.getOutgoingRequests(this.selectedProfile).subscribe({
       next: (response:any) => {
         this.outgoingRequests = response.data
         switch(this.selectedLang){

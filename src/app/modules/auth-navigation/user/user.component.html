@@ -6,7 +6,7 @@
     <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
 </div>
 
-<section *ngIf="fullProfile" class="page-section pb-5" id="perfilUsuario">
+<section *ngIf="fullProfile || !canEdit" class="page-section pb-5" id="perfilUsuario">
     <div class="container">     
         <h2 class="text-muted p-3">{{'profile_page.title' | translate}} @{{profileContent.username}}</h2>
         <!-- Profile widget -->
@@ -69,7 +69,7 @@
 
 
 
-<section *ngIf="fullProfile" class="page-section pt-5">
+<section *ngIf="fullProfile  || !canEdit" class="page-section pt-5">
     <div class="container">
          <!-----------------Div para la descripción de usuario al cambio 992px----------------------------->
         <div class="userDescriptionCh text-muted pb-4 mx-2">

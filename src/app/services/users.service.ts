@@ -44,7 +44,7 @@ export class UsersService {
     this.create_profile_endpoint = "/profile/create"
     this.update_pass_endpoint = "/user/updatepass"
     this.update_picture_endpoint = '/profile/updatePicture'
-    this.contact_endpoint = '/contact/index/'
+    this.contact_endpoint = '/contact/index'
   }
 
   findUserById(id:string): Observable<User | null> {

@@ -11439,8 +11439,8 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;  
-  background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("src/assets/img/abstract.jpg");
-  /*background-image:url("src/assets/img/abstract.jpg");*/
+ /* background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("src/assets/img/relojbolsillobw.jpg");*/
+  background-image:url("src/assets/img/woman.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;

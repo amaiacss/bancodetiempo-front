@@ -126,7 +126,7 @@
                                         <div class="form-group">
                                             <!-- Contraseña antigua-->
                                             <label for="passAntigua">{{'preferences_page.modal_old_pass' | translate}}:</label>
-                                            <input formControlName="pass" class="form-control" id="passAntigua" type="password" placeholder="Contraseña antigua" data-sb-validations="required" />
+                                            <input formControlName="pass" class="form-control" id="passAntigua" type="password" placeholder="{{'preferences_page.modal_old_pass' | translate}}" data-sb-validations="required" />
                                             <div  *ngIf="passwordForm.get('pass')?.dirty &&  passwordForm.get('pass')?.hasError('required')" class="text-center text-danger mb-3" >
                                                 {{'preferences_page.required_err' | translate}}
                                             </div>
@@ -137,7 +137,7 @@
                                         <div class="form-group">
                                             <!-- Nueva contraseña-->
                                             <label for="passNueva">{{'preferences_page.modal_new_pass' | translate}}</label>
-                                            <input formControlName="pass1" class="form-control" id="passNueva" type="password" placeholder="Nueva contraseña" data-sb-validations="required,passNueva" />
+                                            <input formControlName="pass1" class="form-control" id="passNueva" type="password" placeholder="{{'preferences_page.modal_new_pass' | translate}}" data-sb-validations="required,passNueva" />
                                             <div  *ngIf="passwordForm.get('pass1')?.dirty &&  passwordForm.get('pass1')?.hasError('required')" class="text-center text-danger mb-3" >
                                                 {{'preferences_page.required_err' | translate}}
                                             </div>
@@ -149,7 +149,7 @@
                                         <div class="form-group">
                                             <!-- Repite contraseña-->
                                             <label for="passRepeat">{{'preferences_page.modal_pass_repeat' | translate}}</label>
-                                            <input formControlName="pass2" class="form-control" id="passRepeat" type="password" placeholder="Repita la contraseña" data-sb-validations="required,passRepeat" />
+                                            <input formControlName="pass2" class="form-control" id="passRepeat" type="password" placeholder="{{'preferences_page.modal_pass_repeat' | translate}}" data-sb-validations="required,passRepeat" />
                                             <div *ngIf="passwordForm.get('pass2')?.dirty &&  passwordForm.get('pass2')?.hasError('required')" class="text-center text-danger mb-3">
                                                 {{'register_page.required_error' | translate}}
                                             </div>

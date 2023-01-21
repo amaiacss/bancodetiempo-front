@@ -11986,7 +11986,10 @@ section#perfilUsuario .section-heading {
 /*Cambio de tamaño para el modal de portfolio*/
 @media (max-width: 576px) {
   .cambio {
-    display: block;
+    display: block;    
+  }
+  .portfolio-modal .modal-content h2{
+    font-size: 2em;
   }
 }
 
@@ -12157,6 +12160,8 @@ section#perfilUsuario .section-heading {
   object-fit: cover;
 }
 
+/*--Responsive para el nav--*/
+
 @media (max-width:992px) {
   nav#mainNav button {
     padding: 8px 10px;
@@ -12166,3 +12171,4 @@ section#perfilUsuario .section-heading {
     width: 75px;
   }
 }
+

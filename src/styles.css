@@ -11983,6 +11983,11 @@ section#perfilUsuario .section-heading {
   transform: translateY(6rem);
 }
 
+.profileUser {
+  margin-top: 10em;
+  min-height: 70vh;
+}
+
 /*Cambio de tamaño para el modal de portfolio*/
 @media (max-width: 576px) {
   .cambio {
@@ -12019,7 +12024,6 @@ section#perfilUsuario .section-heading {
 .searchResults{
   min-height: 50vh;
 }
-
 
 @media (max-width:768px) {
 

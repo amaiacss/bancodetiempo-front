@@ -1,13 +1,18 @@
 <!-- PerfilUsuario Heather-->
-<div *ngIf="!fullProfile && canEdit" class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16"  style="margin-top:300px;">
+<div  *ngIf="!fullProfile && canEdit" class="w-75 mx-auto col-lg-8 profileUser">
+<div  class="alert alert-danger mt-5 d-flex align-items-center" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16"  style="margin-top:30px;">
     </svg> 
     <strong style="margin-right:20px;">{{'alerts.profile_false' | translate}}</strong>
     <a (click)="gotToConfigurationPage()" class="btn btn-secondary mb-2">{{'profile_page.edit_profile_btn' | translate}}</a>
+</div> 
 </div>
 
+ 
 <section *ngIf="fullProfile || !canEdit" class="page-section pb-5" id="perfilUsuario">
-    <div class="container">     
+
+    <div class="container"> 
+          
         <h2 class="text-muted p-3">{{'profile_page.title' | translate}} @{{profileContent.username}}</h2>
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">

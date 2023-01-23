@@ -319,26 +319,6 @@ export class UserComponent implements OnInit {
 
   clearAlerts(){
     this.alerts = {success:'',error:''}
-    if (!this.fullProfile){
-      switch(this.selectedLang){
-        case 'eus-EUS':
-          this.alerts.error = this.translations.eus.no_profile
-          break
-        default:
-          this.alerts.error = this.translations.es.no_profile
-        break
-      }
-    }
-    else if (!this.canRequest){
-      switch(this.selectedLang){
-        case 'eus-EUS':
-          this.alerts.error = this.translations.eus.timeless
-          break
-        default:
-          this.alerts.error = this.translations.es.timeless
-        break
-      }
-    }
   }
 
 }

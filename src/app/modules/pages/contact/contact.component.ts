@@ -13,7 +13,7 @@ export class ContactComponent implements OnInit {
   translations = {
     es: {
       server_err: 'Ups! Algo ha salido mal. Por favor, inténtalo más tarde',
-      email_success: 'Tu emai ha sido enviado. Te responderemos lo antes posible.',
+      email_success: 'Tu email ha sido enviado. Te responderemos lo antes posible.',
     },
     eus: {
       server_err: 'Ups! Zerbait gaizki igaro da. Mesedez beranduago saiatu',

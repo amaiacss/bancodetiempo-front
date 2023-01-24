@@ -110,15 +110,18 @@ export class UserComponent implements OnInit {
   }
 
   loadData(){
+    this.usersService.getUserProfile(this.userId || '0').subscribe({
+      next: (data) => this.canRequest = Number(data[0].credit)>=1
+    })
     this.usersService.getUserProfile(this.selectedProfile).subscribe({
       next: (data) => {
         this.profileContent = data[0]
-        if (this.profileContent.length && Number(this.profileContent.credit)>=1){
-          this.canRequest = true
-        }
-        else {
-          this.canRequest = false
-        }
+        // if (this.profileContent.length && Number(this.profileContent.credit)>=1){
+        //   this.canRequest = true
+        // }
+        // else {
+        //   this.canRequest = false
+        // }
         this.usersService.findUserById(this.selectedProfile || '').subscribe({
           next: (data) => {
             this.profileContent['email'] = data?.email || ''
